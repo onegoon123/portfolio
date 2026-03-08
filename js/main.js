@@ -129,13 +129,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', animateSkillBars);
 });
 
-// Prevent default on demo links (placeholder)
-document.querySelectorAll('.project-link.demo').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('데모 영상을 준비 중입니다. 곧 업데이트될 예정입니다.');
-    });
-});
-
 // Console message for developers
 console.log('%c 김경학의 포트폴리오에 오신 것을 환영합니다! ', 'background: #6366f1; color: white; padding: 10px; border-radius: 5px;');

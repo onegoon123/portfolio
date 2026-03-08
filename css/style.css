@@ -489,29 +489,10 @@ body {
     color: var(--text-gray);
 }
 
-.project-achievements {
-    margin-bottom: 1.5rem;
-}
-
-.achievement {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.achievement-icon {
-    color: #10b981;
-}
-
-.achievement span {
-    font-size: 0.875rem;
-    color: var(--text-dark);
-}
-
 .project-links {
     display: flex;
     gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .project-link {

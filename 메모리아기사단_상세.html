@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메모리아 기사단 - 프로젝트 상세 | 김경학 포트폴리오</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">KKH</a>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html#about" class="nav-link">소개</a>
+                <a href="index.html#projects" class="nav-link">프로젝트</a>
+                <a href="index.html#skills" class="nav-link">기술 스택</a>
+                <a href="index.html#contact" class="nav-link">연락처</a>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Technical Document -->
+    <section class="tech-doc">
+        <div class="container">
+            <div class="doc-nav">
+                <a href="index.html#projects">← 프로젝트 목록으로 돌아가기</a>
+            </div>
+
+            <div class="doc-header">
+                <h1 class="doc-title">메모리아 기사단 - 프로젝트 상세</h1>
+                <div class="doc-meta">
+                    <span>2026-03-08</span>
+                    <span>방치형 RPG</span>
+                    <span>Unity, C#, 뒤끝, LLM API</span>
+                </div>
+            </div>
+
+            <div class="doc-content">
+                <h2>프로젝트 개요</h2>
+                <p>메모리아 기사단은 LLM API를 연동한 AI 기반 방치형 RPG 게임입니다. 플레이어는 영웅들을 수집하고 육성하며 AI 기반 대화 시스템을 통해 캐릭터들과 자연스러운 대화를 나눌 수 있습니다.</p>
+
+                <table>
+                    <tr>
+                        <th>항목</th>
+                        <th>내용</th>
+                    </tr>
+                    <tr>
+                        <td>프로젝트명</td>
+                        <td>메모리아 기사단</td>
+                    </tr>
+                    <tr>
+                        <td>장르</td>
+                        <td>방치형 RPG</td>
+                    </tr>
+                    <tr>
+                        <td>개발 엔진</td>
+                        <td>Unity 2022</td>
+                    </tr>
+                    <tr>
+                        <td>개발 언어</td>
+                        <td>C#</td>
+                    </tr>
+                    <tr>
+                        <td>백엔드</td>
+                        <td>뒤끝 (TheBackend)</td>
+                    </tr>
+                    <tr>
+                        <td>AI</td>
+                        <td>LLM API (ChatGPT)</td>
+                    </tr>
+                    <tr>
+                        <td>출시 플랫폼</td>
+                        <td>Google Play Store</td>
+                    </tr>
+                </table>
+
+                <h2>기술 스택</h2>
+                <ul>
+                    <li><strong>엔진:</strong> Unity 2022</li>
+                    <li><strong>언어:</strong> C#</li>
+                    <li><strong>백엔드:</strong> 뒤끝 서버</li>
+                    <li><strong>AI:</strong> LLM API (ChatGPT)</li>
+                    <li><strong>비동기 처리:</strong> UniTask</li>
+                    <li><strong>형상 관리:</strong> Git</li>
+                </ul>
+
+                <h2>시스템 아키텍처</h2>
+                <pre><code>메모리아 기사단
+├── Scripts/
+│   ├── Backend/           # 뒤끝 연동
+│   │   ├── BackendManager.cs
+│   │   ├── InGameManager.cs
+│   │   └── SyncManager.cs
+│   ├── AI/               # AI 대화 시스템
+│   │   ├── AIManager.cs
+│   │   └── DialogueHandler.cs
+│   ├── Game/             # 게임 로직
+│   │   ├── GameManager.cs
+│   │   ├── PlayerManager.cs
+│   │   └── HeroManager.cs
+│   └── Data/             # 데이터 관리
+│       ├── DataManager.cs
+│       └── Loader.cs
+└── Resources/            # 데이터 리소스</code></pre>
+
+                <div class="doc-section">
+                    <h2>1. LLM API 연동 시스템</h2>
+
+                    <div class="problem-box">
+                        <h4>문제 상황</h4>
+                        <p>처음 구현했을 때 다음 문제들이 발생했습니다:</p>
+                        <ul>
+                            <li>API 응답 시간이 3~5초로 길어 게임 프레임 저하</li>
+                            <li>요청이 많아질 경우 속도 제한(Rate Limit)으로 실패</li>
+                            <li>API 비용이 예상보다 많이 발생</li>
+                        </ul>
+                    </div>
+
+                    <h3>해결 과정</h3>
+
+                    <h4>1단계: 비동기 처리 도입</h4>
+                    <p>기존 동기 방식으로 인한 프레임 저하를 해결하기 위해 비동기 처리를 도입했습니다.</p>
+
+                    <div class="solution-box">
+                        <h4>개선된 방식</h4>
+                        <pre><code>// 비동기 요청 구현
+using (var cts = new CancellationTokenSource(timeout))
+{
+    string response = await LLM_API.SendMessageAsync(userInput, cts.Token);
+    OnResponseReceived(response);
+}</code></pre>
+                    </div>
+
+                    <h4>2단계: 요청 큐 및 디바운싱 구현</h4>
+                    <p>Rate Limit 문제를 해결하기 위해 요청 큐와 디바운싱을 구현했습니다.</p>
+                    <pre><code>public class AIRequestQueue
+{
+    private Queue&lt;string&gt; requestQueue = new Queue&lt;string&gt;();
+    private bool isProcessing = false;
+    private float lastRequestTime = 0f;
+    private const float REQUEST_INTERVAL = 2.0f;
+
+    public async void EnqueueRequest(string prompt)
+    {
+        requestQueue.Enqueue(prompt);
+        if (!isProcessing)
+        {
+            await ProcessQueue();
+        }
+    }
+}</code></pre>
+
+                    <h4>3단계: 응답 캐싱</h4>
+                    <p>동일한 요청에 대한 반복 호출을 줄이기 위해 캐싱을 구현했습니다.</p>
+                    <pre><code>public class ResponseCache
+{
+    private Dictionary&lt;string, CachedResponse&gt; cache = new Dictionary&lt;string, CachedResponse&gt;();
+    private const int CACHE_DURATION = 300; // 5분
+
+    public bool TryGetResponse(string promptHash, out string response)
+    {
+        if (cache.TryGetValue(promptHash, out var cached))
+        {
+            if (Time.time - cached.timestamp &lt; CACHE_DURATION)
+            {
+                response = cached.content;
+                return true;
+            }
+        }
+        response = null;
+        return false;
+    }
+}</code></pre>
+
+                    <div class="result-box">
+                        <h4>결과</h4>
+                        <table>
+                            <tr>
+                                <th>지표</th>
+                                <th>개선 전</th>
+                                <th>개선 후</th>
+                                <th>향상율</th>
+                            </tr>
+                            <tr>
+                                <td>프레임 저하</td>
+                                <td>30~40 FPS</td>
+                                <td>58~60 FPS</td>
+                                <td>100% 해결</td>
+                            </tr>
+                            <tr>
+                                <td>API 비용</td>
+                                <td>1,000,000 토큰/월</td>
+                                <td>600,000 토큰/월</td>
+                                <td>40% 절감</td>
+                            </tr>
+                            <tr>
+                                <td>Rate Limit 실패</td>
+                                <td>자주 발생</td>
+                                <td>거의 없음</td>
+                                <td>95% 감소</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="doc-section">
+                    <h2>2. 뒤끝 백엔드 연동</h2>
+
+                    <div class="problem-box">
+                        <h4>문제 상황</h4>
+                        <p>데이터 로딩 시 다음 문제들이 발생했습니다:</p>
+                        <ul>
+                            <li>대량의 데이터를 한 번에 요청하여 로딩 시간이 길음 (5~8초)</li>
+                            <li>동기 요청으로 인한 게임 일시 정지 현상</li>
+                            <li>네트워크 오류 시 재시도 로직 부재</li>
+                        </ul>
+                    </div>
+
+                    <h3>해결 과정</h3>
+
+                    <h4>1단계: 데이터 분산 로딩</h4>
+                    <p>모든 데이터를 한 번에 로딩하지 않고 우선순위별로 분산 로딩했습니다.</p>
+                    <ul>
+                        <li><strong>1단계:</strong> 필수 데이터 (로딩 화면)</li>
+                        <li><strong>2단계:</strong> 백그라운드에서 로딩</li>
+                    </ul>
+
+                    <h4>2단계: 로컬 캐싱 구현</h4>
+                    <p>데이터를 로컬에 캐싱하여 로딩 시간을 단축했습니다.</p>
+                    <pre><code>public class DataCache
+{
+    public async Task&lt;T&gt; GetOrLoad&lt;T&gt;(string tableName, string inDate, string ownerInDate)
+    {
+        string cacheKey = $"{tableName}_{inDate}_{ownerInDate}";
+
+        // 로컬 캐시 확인
+        if (File.Exists(GetCachePath(cacheKey)))
+        {
+            T cachedData = LoadFromCache&lt;T&gt;(cacheKey);
+            // 백그라운드에서 서버 동기화
+            _ = SyncWithServer(cacheKey, tableName);
+            return cachedData;
+        }
+
+        // 서버에서 로드 및 캐싱
+        T serverData = await LoadFromServer&lt;T&gt;(tableName, inDate, ownerInDate);
+        SaveToCache(cacheKey, serverData);
+        return serverData;
+    }
+}</code></pre>
+
+                    <h4>3단계: 재시도 및 에러 처리</h4>
+                    <p>네트워크 오류 발생 시 자동 재시도 로직을 구현했습니다.</p>
+
+                    <div class="result-box">
+                        <h4>결과</h4>
+                        <table>
+                            <tr>
+                                <th>지표</th>
+                                <th>개선 전</th>
+                                <th>개선 후</th>
+                                <th>향상율</th>
+                            </tr>
+                            <tr>
+                                <td>데이터 로딩 시간</td>
+                                <td>5~8초</td>
+                                <td>2.5~4초</td>
+                                <td>50% 단축</td>
+                            </tr>
+                            <tr>
+                                <td>네트워크 오류 복구율</td>
+                                <td>0%</td>
+                                <td>95%</td>
+                                <td>95% 개선</td>
+                            </tr>
+                            <tr>
+                                <td>일시 정지 현상</td>
+                                <td>발생</td>
+                                <td>해결</td>
+                                <td>100% 해결</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="doc-section">
+                    <h2>3. AI 대화 시스템</h2>
+                    <h3>프롬프트 엔지니어링</h3>
+                    <p>자연스러운 대화를 위해 프롬프트 엔지니어링을 적용했습니다.</p>
+                    <pre><code>public class PromptBuilder
+{
+    public string BuildDialoguePrompt(Character character, string userMessage, DialogueContext context)
+    {
+        return $@"당신은 메모리아 기사단의 {character.Name}({character.Role})입니다.
+
+성격: {character.Personality}
+말투: {character.SpeechStyle}
+현재 상황: {context.CurrentSituation}
+
+이전 대화 기록:
+{context.GetRecentDialogue()}
+
+플레이어의 말: {userMessage}
+
+{character.Name}으로서 답변해주세요. (100자 이내)";
+    }
+}</code></pre>
+
+                    <h3>문맥 관리</h3>
+                    <p>최근 10개의 대화 기록을 유지하여 자연스러운 대화 흐름을 만듭니다.</p>
+                </div>
+
+                <div class="doc-section">
+                    <h2>성과 및 성능 개선</h2>
+                    <table>
+                        <tr>
+                            <th>지표</th>
+                            <th>개선 전</th>
+                            <th>개선 후</th>
+                            <th>향상율</th>
+                        </tr>
+                        <tr>
+                            <td>API 호출 비용</td>
+                            <td>1,000,000 토큰/월</td>
+                            <td>600,000 토큰/월</td>
+                            <td>40% 절감</td>
+                        </tr>
+                        <tr>
+                            <td>데이터 로딩 시간</td>
+                            <td>5~8초</td>
+                            <td>2.5~4초</td>
+                            <td>50% 단축</td>
+                        </tr>
+                        <tr>
+                            <td>프레임 저하 (API 호출 시)</td>
+                            <td>30~40 FPS</td>
+                            <td>58~60 FPS</td>
+                            <td>100% 해결</td>
+                        </tr>
+                        <tr>
+                            <td>네트워크 오류 복구율</td>
+                            <td>0%</td>
+                            <td>95%</td>
+                            <td>95% 개선</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="doc-section">
+                    <h2>개발 도전과제 및 해결</h2>
+
+                    <h3>비동기 프로그래밍</h3>
+                    <div class="problem-box">
+                        <p><strong>문제:</strong> C# async/await에 대한 이해도 부족으로 교착 상태(deadlock) 발생</p>
+                    </div>
+                    <div class="solution-box">
+                        <p><strong>해결:</strong> UniTask 라이브러리 도입, async Task 사용 규칙 정립, ConfigureAwait(false) 적용</p>
+                    </div>
+
+                    <h3>API 보안</h3>
+                    <div class="problem-box">
+                        <p><strong>문제:</strong> API 키가 클라이언트 코드에 노출되는 보안 취약점</p>
+                    </div>
+                    <div class="solution-box">
+                        <p><strong>해결:</strong> 뒤끝 펑션(Function)을 프록시 서버로 활용, API 키는 뒤끝 서버에서만 관리</p>
+                    </div>
+
+                    <h3>데이터 구조 설계</h3>
+                    <div class="problem-box">
+                        <p><strong>문제:</strong> 데이터 양이 증가함에 따라 유지보수가 어려워짐</p>
+                    </div>
+                    <div class="solution-box">
+                        <p><strong>해결:</strong> ScriptableObject 기반 데이터 구조로 직렬화, JsonUtility 활용, 에디터 확장으로 데이터 관리 툴 제작</p>
+                    </div>
+                </div>
+
+                <div class="doc-section">
+                    <h2>결론</h2>
+                    <p>메모리아 기사단 프로젝트에서는 LLM API와 뒤끝 백엔드를 효과적으로 연동하여 AI 기반 방치형 RPG를 구현했습니다.</p>
+
+                    <h3>주요 성과</h3>
+                    <ul>
+                        <li><strong>API 비용 40% 절감:</strong> 요청 큐, 캐싱, 프롬프트 최적화</li>
+                        <li><strong>데이터 로딩 시간 50% 단축:</strong> 분산 로딩, 로컬 캐싱, 비동기 처리</li>
+                        <li><strong>비동기 프로그래밍 능력 향상:</strong> UniTask 활용 및 async/await 완전 정복</li>
+                        <li><strong>보안 설계:</strong> 뒤끝 펑션을 활용한 API 키 보호</li>
+                    </ul>
+
+                    <h3>학습 내용</h3>
+                    <ul>
+                        <li>비동기 프로그래밍과 병렬 처리</li>
+                        <li>캐싱 전략과 데이터 최적화</li>
+                        <li>API 연동 및 보안 설계</li>
+                        <li>에러 처리 및 재시도 로직</li>
+                    </ul>
+                </div>
+
+                <div class="doc-nav" style="margin-top: 3rem;">
+                    <a href="index.html#projects">← 프로젝트 목록으로 돌아가기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

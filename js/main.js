@@ -10,6 +10,29 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
+// Dropdown toggle for mobile
+const dropdownTriggers = document.querySelectorAll('.nav-item.dropdown .nav-link');
+dropdownTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+        // Only prevent default on mobile (small screens)
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle('active');
+        }
+    });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+    dropdowns.forEach(dropdown => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+});
+
 // Close mobile menu when clicking a nav link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {

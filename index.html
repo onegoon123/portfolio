@@ -47,7 +47,7 @@
             <div class="nav-menu" id="navMenu">
                 <a href="#about" class="nav-link">소개</a>
                 <div class="nav-item dropdown">
-                    <a href="#projects" class="nav-link">프로젝트</a>
+                    <a href="#" class="nav-link dropdown-toggle">프로젝트</a>
                     <div class="dropdown-menu">
                         <a href="메모리아기사단_상세.html" class="dropdown-item">메모리아 기사단</a>
                         <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
@@ -75,7 +75,7 @@
                     <p class="hero-subtitle">Unity, Unreal Engine, AI를 잘 다룰 수 있는<br>신입 게임 프로그래머입니다.</p>
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <span class="stat-number">7회</span>
+                            <span class="stat-number">6회</span>
                             <span class="stat-label">팀 프로젝트 경험</span>
                         </div>
                         <div class="stat-item">
@@ -93,6 +93,7 @@
                         <img src="./Images/스크린샷1.webp" alt="게임 스크린샷 1" class="screenshot">
                         <img src="./Images/스크린샷2.webp" alt="게임 스크린샷 2" class="screenshot">
                         <img src="./Images/스크린샷3.webp" alt="게임 스크린샷 3" class="screenshot">
+                        <img src="./Images/스크린샷4.jpg" alt="게임 스크린샷 4" class="screenshot">
                     </div>
                 </div>
             </div>
@@ -108,13 +109,17 @@
                 <!-- Project 1 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="./Images/메모리아기사단.webp" alt="메모리아 기사단" class="project-img">
+                        <a href="https://youtube.com/shorts/ODL8KZSSxWY?feature=share" class="video-thumbnail" target="_blank" rel="noopener">
+                            <img src="./Images/메모리아기사단.webp" alt="메모리아 기사단 게임플레이 영상">
+                            <div class="play-icon"></div>
+                        </a>
                     </div>
                     <div class="project-content">
                         <span class="project-tag">방치형 RPG</span>
+                        <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag unity">Unity</span>
                         <h3 class="project-title">메모리아 기사단</h3>
-                        <p class="project-description">LLM API 연동으로 AI 대화 시스템 구현, 비동기 처리로 API 호출 최적화하여 비용 40% 절감, 뒤끝 백엔드로 서버 데이터 구조화 및 로딩 속도 50% 개선</p>
+                        <p class="project-description">AI 캐릭터 채팅을 결합한 방치형 RPG<br>뒤끝 서버를 활용한 온라인 기능들</p>
                         <div class="project-tech">
                             <span>Unity</span>
                             <span>C#</span>
@@ -143,11 +148,11 @@
                         <span class="project-tag">방치형 RPG</span>
                         <span class="engine-tag unity">Unity</span>
                         <h3 class="project-title">미궁기사 키우기</h3>
-                        <p class="project-description">객체 풀링 패턴 적용으로 GC Spike 90% 감소, Naninovel로 시나리오 시스템 구축, ScriptableObject 기반 데이터 구조로 밸런싱 작업 효율 3배 향상</p>
+                        <p class="project-description">AI를 활용한 시나리오 스크립트 작성</p>
                         <div class="project-tech">
                             <span>Unity</span>
                             <span>C#</span>
-                            <span>Object Pooling</span>
+                            <span>Claude Skills</span>
                             <span>Naninovel</span>
                         </div>
                         <div class="project-links">
@@ -172,12 +177,11 @@
                         <span class="project-tag">뱀서라이크</span>
                         <span class="engine-tag unity">Unity</span>
                         <h3 class="project-title">와일드 템페스트</h3>
-                        <p class="project-description">GPGS 리더보드 연동으로 전역 랭킹 시스템 구현, 뒤끝 동기화로 실시간 데이터 관리, 모듈화된 아이템 시스템으로 신규 아이템 추가 시간 70% 단축</p>
+                        <p class="project-description">구글플레이 게임 서비스 연동으로 리더보드 및 업적 구현<br>클라우드 저장 기능</p>
                         <div class="project-tech">
                             <span>Unity</span>
                             <span>C#</span>
                             <span>GPGS</span>
-                            <span>뒤끝</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/onegoon123" class="project-link" target="_blank" rel="noopener">GitHub</a>
@@ -196,9 +200,10 @@
                     </div>
                     <div class="project-content">
                         <span class="project-tag">타워 디펜스</span>
+                        <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag unity">Unity</span>
                         <h3 class="project-title">원더메이트</h3>
-                        <p class="project-description">FSM 상태 머신으로 유닛 AI 동작 패턴 구현, Command 패턴 기반 스킬 시스템 설계로 15종 이상 스킬 확장 가능, 상태 효과 관리 시스템으로 버프/디버프 체계화</p>
+                        <p class="project-description">Command 패턴 기반 스킬 시스템 설계로 45 종류의 스킬 구현<br>상태 효과 관리 시스템으로 버프/디버프 체계화</p>
                         <div class="project-tech">
                             <span>Unity</span>
                             <span>C#</span>
@@ -218,17 +223,20 @@
                 <!-- Project 5 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="./Images/여관.webp" alt="여관" class="project-img">
+                        <a href="https://youtu.be/tI8UoKhYg0E" class="video-thumbnail" target="_blank" rel="noopener">
+                            <img src="./Images/여관.webp" alt="여관" class="project-img">
+                            <div class="play-icon"></div>
+                        </a>
                     </div>
                     <div class="project-content">
                         <span class="project-tag">호러 어드벤처</span>
+                        <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag unreal">Unreal</span>
                         <h3 class="project-title">여관</h3>
-                        <p class="project-description">MetaHuman Framework와 Face Capture를 적극 활용하여 실제 개발진들의 페이스 캡쳐로 제작된 고품질 NPC 캐릭터 구현, Component 기반 대화 시스템과 Interface 기반 인터랙션 시스템으로 모듈화된 아키텍처 설계</p>
+                        <p class="project-description">Live Link Face를 사용해 실제 개발진들의 페이스 캡쳐로 제작된 고품질 MetaHuman 캐릭터 제작<br>인게임 이벤트 및 컷신 구현</p>
                         <div class="project-tech">
                             <span>Unreal Engine 5</span>
                             <span>MetaHuman</span>
-                            <span>Face Capture</span>
                             <span>Blueprint</span>
                         </div>
                         <div class="project-links">
@@ -247,10 +255,11 @@
                         </a>
                     </div>
                     <div class="project-content">
-                        <span class="project-tag">3D 액션 어드벤처</span>
+                        <span class="project-tag">액션 어드벤처</span>
+                        <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag unreal">Unreal</span>
                         <h3 class="project-title">바이오하자드 RE4 모작</h3>
-                        <p class="project-description">Unreal Engine 5.3 기반 서바이벌 호러, C++와 Blueprint 혼용으로 인터랙션 시스템, 인벤토리, 맵 UI 등 핵심 시스템 구현, BInteraction 인터페이스로 표준화된 인터랙션 시스템 설계</p>
+                        <p class="project-description">그리드 인벤토리 시스템과 상점 시스템<br>구현</p>
                         <div class="project-tech">
                             <span>Unreal</span>
                             <span>C++</span>
@@ -259,6 +268,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/rudtlrdl96/BiohazardRe4" class="project-link" target="_blank" rel="noopener">GitHub</a>
+                            <a href="https://drive.google.com/file/d/1BQigPbnvmMZAOyc8CbMgA2kAMFlBm60M/view?usp=sharing" class="project-link demo" target="_blank" rel="noopener" download>Download</a>
                         </div>
                     </div>
                 </div>
@@ -272,10 +282,11 @@
                         </a>
                     </div>
                     <div class="project-content">
-                        <span class="project-tag">3D 액션</span>
+                        <span class="project-tag">액션</span>
+                        <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag directx">DirectX</span>
                         <h3 class="project-title">데빌 메이 크라이 5 모작</h3>
-                        <p class="project-description">Unreal Engine 기반 3D 액션 게임, C++와 Blueprint 혼용하여 네트워크 멀티플레이 구현, 호스트/클라이언트 구조로 최대 3인 동시 플레이, 실시간 플레이어 동기화 시스템</p>
+                        <p class="project-description">플레이어 캐릭터 움직임 및 이펙트 구현<br>복잡한 기술 커맨드과 카메라 로직</p>
                         <div class="project-tech">
                             <span>Unreal Engine</span>
                             <span>C++</span>
@@ -284,6 +295,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/rudtlrdl96/DMC5" class="project-link" target="_blank" rel="noopener">GitHub</a>
+                            <a href="https://drive.google.com/file/d/1Ttj-wddjmTxE2jM5kSX5SefnMrLcACjq/view?usp=sharing" class="project-link demo" target="_blank" rel="noopener" download>Download</a>
                         </div>
                     </div>
                 </div>
@@ -300,7 +312,7 @@
                         <span class="project-tag">SRPG</span>
                         <span class="engine-tag directx">DirectX</span>
                         <h3 class="project-title">파이어엠블렘 모작</h3>
-                        <p class="project-description">DirectX 기반 SRPG. A*, BFS 알고리즘을 사용한 경로 탐색, 컴퓨터 그래픽스 기초와 저수준 API 활용 능력 향상</p>
+                        <p class="project-description">A*, BFS 알고리즘을 사용한 경로 탐색<br>전투 로직과 턴 되돌리기 기능 구현</p>
                         <div class="project-tech">
                             <span>C++</span>
                             <span>DirectX</span>
@@ -324,14 +336,13 @@
                     </div>
                     <div class="project-content">
                         <span class="project-tag">RPG</span>
+                        <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag custom">Win32 API</span>
                         <h3 class="project-title">포켓몬스터 모작</h3>
-                        <p class="project-description">Win32 API로 구현한 포켓몬스터 스타일 RPG, PokeDataBase와 ItemDataBase로 데이터 구조화, 턴제 배틀 시스템, 가방 시스템, UI/UX 시스템 등 핵심 기능 구현</p>
+                        <p class="project-description">가방, 포켓몬 등 UI 기능 구현</p>
                         <div class="project-tech">
                             <span>C++</span>
                             <span>Win32 API</span>
-                            <span>Custom Engine</span>
-                            <span>Data Structure</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/KyungUnMin/PocketMon" class="project-link" target="_blank" rel="noopener">GitHub</a>
@@ -352,7 +363,7 @@
                         <span class="project-tag">2D 플랫포머</span>
                         <span class="engine-tag custom">Win32 API</span>
                         <h3 class="project-title">슈퍼 마리오 월드 모작</h3>
-                        <p class="project-description">Win32 API로 처음부터 구현한 커스텀 엔진 기반 2D 플랫포머, 모듈화된 엔진 아키텍처로 플랫폼 독립성 확보, 마리오 특유의 스핀 점프, 대시 등 다양한 액션 시스템 구현</p>
+                        <p class="project-description">플랫포머 게임의 디테일한 움직임<br>잡기 기능으로 다양한 액션</p>
                         <div class="project-tech">
                             <span>C++</span>
                             <span>Win32 API</span>

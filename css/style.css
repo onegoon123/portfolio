@@ -473,6 +473,18 @@ body {
     margin-right: 0.5rem;
 }
 
+.teamproject-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #2225c5;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    margin-right: 0.5rem;
+}
+
 .engine-tag {
     display: inline-block;
     padding: 0.25rem 0.75rem;

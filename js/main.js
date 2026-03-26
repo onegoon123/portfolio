@@ -158,3 +158,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Console message for developers
 console.log('%c 김경학의 포트폴리오에 오신 것을 환영합니다! ', 'background: #6366f1; color: white; padding: 10px; border-radius: 5px;');
+
+// Image Modal Functionality
+const modal = document.getElementById('imageModal');
+const modalImage = document.getElementById('modalImage');
+const modalClose = document.querySelector('.modal-close');
+const screenshotItems = document.querySelectorAll('.screenshot-item');
+
+// Open modal when clicking a screenshot
+screenshotItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const imageSrc = item.getAttribute('data-src');
+        if (!imageSrc) {
+            console.error('No data-src found');
+            return;
+        }
+        modalImage.src = imageSrc;
+        modalImage.onload = () => {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        };
+        modalImage.onerror = () => {
+            console.error('Failed to load image:', imageSrc);
+        };
+        // Fallback: if image is already cached
+        if (modalImage.complete) {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+// Close modal when clicking close button
+modalClose.addEventListener('click', closeModal);
+
+// Close modal when clicking anywhere
+modal.addEventListener('click', closeModal);
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeModal();
+    }
+});
+
+function closeModal() {
+    modal.classList.remove('show');
+    document.body.style.overflow = ''; // Restore scrolling
+    setTimeout(() => {
+        modalImage.src = '';
+    }, 300);
+}

@@ -18,7 +18,7 @@
     <meta property="og:title" content="김경학 - 게임 프로그래머 포트폴리오">
     <meta property="og:description" content="Unity, C# 전문 게임 프로그래머 김경학의 포트폴리오. 방치형 RPG, 뱀서라이크, 타워 디펜스 등 다양한 게임 개발 프로젝트를 확인하세요.">
     <meta property="og:url" content="https://onegoon123.github.io/portfolio/">
-    <meta property="og:image" content="./Images/metaimage.png">
+    <meta property="og:image" content="./Images/metaimage.webp">
     <meta property="og:image:alt" content="김경학 게임 프로그래머 포트폴리오 대표 이미지">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="김경학 - 게임 프로그래머 포트폴리오">
     <meta name="twitter:description" content="Unity, C# 전문 게임 프로그래머 김경학의 포트폴리오. 방치형 RPG, 뱀서라이크, 타워 디펜스 등 다양한 게임 개발 프로젝트를 확인하세요.">
-    <meta name="twitter:image" content="./Images/metaimage.png">
+    <meta name="twitter:image" content="./Images/metaimage.webp">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://onegoon123.github.io/portfolio/">
@@ -90,11 +90,76 @@
                 </div>
                 <div class="hero-image">
                     <div class="screenshot-gallery">
-                        <img src="./Images/스크린샷1.webp" alt="게임 스크린샷 1" class="screenshot">
-                        <img src="./Images/스크린샷2.webp" alt="게임 스크린샷 2" class="screenshot">
-                        <img src="./Images/스크린샷3.webp" alt="게임 스크린샷 3" class="screenshot">
-                        <img src="./Images/스크린샷4.jpg" alt="게임 스크린샷 4" class="screenshot">
+                        <div class="screenshot-item" data-src="./Images/스크린샷1.webp">
+                            <img src="./Images/스크린샷1.webp" alt="게임 스크린샷 1" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">여관</div>
+                                <div class="screenshot-desc">페이스 캡쳐로 제작한 메타휴먼 캐릭터</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷2.webp">
+                            <img src="./Images/스크린샷2.webp" alt="게임 스크린샷 2" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">원더메이트</div>
+                                <div class="screenshot-desc">타워 디펜스</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷3.webp">
+                            <img src="./Images/스크린샷3.webp" alt="게임 스크린샷 3" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">와일드 템페스트</div>
+                                <div class="screenshot-desc">뱀서라이크 보물상자 연출</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷4.webp">
+                            <img src="./Images/스크린샷4.webp" alt="게임 스크린샷 4" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">미궁기사 키우기</div>
+                                <div class="screenshot-desc">AI 활용 비주얼노벨 스크립트</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷5.webp">
+                            <img src="./Images/스크린샷5.webp" alt="게임 스크린샷 5" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">메모리아 기사단</div>
+                                <div class="screenshot-desc">방치형 RPG</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷6.webp">
+                            <img src="./Images/스크린샷6.webp" alt="게임 스크린샷 6" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">메모리아 기사단</div>
+                                <div class="screenshot-desc">LLM 캐릭터 채팅</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷7.webp">
+                            <img src="./Images/스크린샷7.webp" alt="게임 스크린샷 7" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">DMC5 모작</div>
+                                <div class="screenshot-desc">3D 액션</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷8.webp">
+                            <img src="./Images/스크린샷8.webp" alt="게임 스크린샷 8" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">바이오하자드 RE4 모작</div>
+                                <div class="screenshot-desc">그리드 인벤토리 시스템</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-item" data-src="./Images/스크린샷9.webp">
+                            <img src="./Images/스크린샷9.webp" alt="게임 스크린샷 9" class="screenshot">
+                            <div class="screenshot-description">
+                                <div class="screenshot-title">바이오하자드 RE4 모작</div>
+                                <div class="screenshot-desc">상점</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Image Modal -->
+                <div id="imageModal" class="image-modal">
+                    <span class="modal-close">&times;</span>
+                    <img class="modal-content" id="modalImage">
                 </div>
             </div>
         </div>
@@ -196,7 +261,10 @@
                 <!-- Project 4 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="./Images/원더메이트.webp" alt="원더메이트" class="project-img">
+                        <a href="https://youtu.be/OwavoZ98NgQ?si=WJg5D1sNNLtlOjkW" class="video-thumbnail" target="_blank" rel="noopener">
+                            <img src="./Images/원더메이트.webp" alt="원더메이트" class="project-img">
+                            <div class="play-icon"></div>
+                        </a>
                     </div>
                     <div class="project-content">
                         <span class="project-tag">타워 디펜스</span>
@@ -233,7 +301,7 @@
                         <span class="teamproject-tag">팀프로젝트</span>
                         <span class="engine-tag unreal">Unreal</span>
                         <h3 class="project-title">여관</h3>
-                        <p class="project-description">Live Link Face를 사용해 실제 개발진들의 페이스 캡쳐로 제작된 고품질 MetaHuman 캐릭터 제작<br>인게임 이벤트 및 컷신 구현</p>
+                        <p class="project-description">Live Link Face를 사용해 실제 개발진들의 페이스 캡쳐로 제작된 고품질 MetaHuman 캐릭터 제작<br>인게임 대화 이벤트 및 컷신 구현</p>
                         <div class="project-tech">
                             <span>Unreal Engine 5</span>
                             <span>MetaHuman</span>
@@ -304,7 +372,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <a href="https://youtu.be/UdB202DavTI?si=wjTEHpEmufyYXN04" class="video-thumbnail" target="_blank" rel="noopener">
-                            <img src="./Images/FE.png" alt="FireEmblem DirectX 게임플레이 영상">
+                            <img src="./Images/FE.webp" alt="FireEmblem DirectX 게임플레이 영상">
                             <div class="play-icon"></div>
                         </a>
                     </div>
@@ -330,7 +398,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <a href="https://youtu.be/8jVTPhwwT4I?si=EKxOCqEMt4iG0ECv" class="video-thumbnail" target="_blank" rel="noopener">
-                            <img src="./Images/Pokemon.png" alt="PocketMon API 게임플레이 영상">
+                            <img src="./Images/Pokemon.webp" alt="PocketMon API 게임플레이 영상">
                             <div class="play-icon"></div>
                         </a>
                     </div>
@@ -355,7 +423,7 @@
                 <div class="project-card">
                     <div class="project-image">
                         <a href="https://youtu.be/E81ikakN7ys?si=SFCny_2sWjgsEL7R" class="video-thumbnail" target="_blank" rel="noopener">
-                            <img src="./Images/SMW.png" alt="슈퍼 마리오 월드 게임플레이 영상">
+                            <img src="./Images/SMW.webp" alt="슈퍼 마리오 월드 게임플레이 영상">
                             <div class="play-icon"></div>
                         </a>
                     </div>

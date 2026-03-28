@@ -1130,6 +1130,9 @@ body {
     background-color: transparent;
     padding: 0;
     color: #e2e8f0;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    text-shadow: none;
 }
 
 .doc-content table {

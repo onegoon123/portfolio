@@ -4,28 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>미궁기사 키우기 - 프로젝트 상세 | 김경학 포트폴리오</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="미궁기사 키우기 프로젝트 상세 페이지. Unity, Naninovel을 활용한 방치형 RPG 게임 개발 프로젝트 기술 문서 및 성과">
-    <meta name="keywords" content="미궁기사 키우기, 방치형 RPG, Unity, Naninovel, 게임 개발, 시나리오 시스템">
-    <meta name="author" content="김경학">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / KakaoTalk -->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="김경학 포트폴리오">
-    <meta property="og:title" content="미궁기사 키우기 - 프로젝트 상세 | 김경학 포트폴리오">
-    <meta property="og:description" content="Unity, Naninovel을 활용한 방치형 RPG 게임 개발 프로젝트. 기술 스택, 문제 해결 과정, 성과를 상세하게 소개합니다.">
-    <meta property="og:url" content="https://onegoon123.github.io/portfolio/미궁기사키우기_상세.html">
-    <meta property="og:image" content="https://onegoon123.github.io/portfolio/Images/metaimage.png">
-    <meta property="og:image:alt" content="미궁기사 키우기 게임 스크린샷">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="미궁기사 키우기 - 프로젝트 상세">
-    <meta name="twitter:description" content="Unity, Naninovel을 활용한 방치형 RPG 게임 개발 프로젝트. 기술 스택, 문제 해결 과정, 성과를 상세하게 소개합니다.">
-    <meta name="twitter:image" content="https://onegoon123.github.io/portfolio/Images/metaimage.png">
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -57,370 +35,268 @@
             <div class="doc-header">
                 <h1 class="doc-title">미궁기사 키우기 - 프로젝트 상세</h1>
                 <div class="doc-meta">
-                    <span>2026-03-08</span>
+                    <span>2026-03-13</span>
                     <span>방치형 RPG</span>
-                    <span>Unity, C#, Naninovel</span>
+                    <span>Unity 2022.3 LTS, C#, Naninovel, DOTween</span>
                 </div>
             </div>
 
             <div class="doc-content">
                 <h2>프로젝트 개요</h2>
-                <p>미궁기사 키우기는 시나리오 시스템과 방치형 요소가 결합된 RPG 게임입니다. Naninovel 엔진을 활용하여 스토리텔링과 게임플레이를 자연스럽게 통합했으며, Object Pooling으로 성능 최적화를 구현했습니다.</p>
+                <p>Naninovel 비주얼 노벨 엔진과 방치형 RPG 시스템을 통합한 게임입니다. 플레이어는 기사를 조작해 무한 스테이지의 몬스터를 자동 전투로 처치하며 골드를 획득하고, 골드로 스탯을 강화해 더 높은 스테이지에 도전합니다. 3명의 동료 캐릭터(Ariel, Elena, Lynn)를 해금하고 호감도를 쌓으면 개별 스토리가 진행되는 구조입니다.</p>
 
+                <h2>팀원 소개</h2>
                 <table>
-                    <tr>
-                        <th>항목</th>
-                        <th>내용</th>
-                    </tr>
-                    <tr>
-                        <td>프로젝트명</td>
-                        <td>미궁기사 키우기</td>
-                    </tr>
-                    <tr>
-                        <td>장르</td>
-                        <td>방치형 RPG</td>
-                    </tr>
-                    <tr>
-                        <td>개발 엔진</td>
-                        <td>Unity 2022</td>
-                    </tr>
-                    <tr>
-                        <td>개발 언어</td>
-                        <td>C#</td>
-                    </tr>
-                    <tr>
-                        <td>시나리오 엔진</td>
-                        <td>Naninovel</td>
-                    </tr>
-                    <tr>
-                        <td>출시 플랫폼</td>
-                        <td>Google Play Store</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>역할</th>
+                            <th>담당 업무</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>김경학</td>
+                            <td>프로그래머, 기획, 아트</td>
+                            <td>프로젝트 전체 개발 (시스템 설계, 동료 시스템, 장비 제작 시스템, Naninovel 연동, Claude Skill 기반 시나리오 자동 생성, 일러스트 제작)</td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <h2>기술 스택</h2>
                 <ul>
-                    <li><strong>엔진:</strong> Unity 2022</li>
+                    <li><strong>엔진:</strong> Unity 2022.3 LTS</li>
                     <li><strong>언어:</strong> C#</li>
-                    <li><strong>시나리오:</strong> Naninovel</li>
-                    <li><strong>데이터 구조:</strong> ScriptableObject</li>
-                    <li><strong>패턴:</strong> Object Pooling, Singleton, Factory</li>
-                    <li><strong>형상 관리:</strong> Git</li>
+                    <li><strong>라이브러리:</strong> Naninovel (비주얼 노벨 스크립트 엔진), DOTween (애니메이션), DarkNaku.Number (대수 표기)</li>
+                    <li><strong>시나리오 생성:</strong> Claude Code Skill (nani-scenario-generator)</li>
+                    <li><strong>아키텍처:</strong> Singleton, Object Pool, Observer (이벤트), Interface 기반 전투 타겟팅</li>
+                    <li><strong>데이터:</strong> ScriptableObject (캐릭터/적 스탯), CSV (외부 데이터), JSON (세이브)</li>
                 </ul>
 
-                <div class="doc-section">
-                    <h2>1. 객체 풀링 (Object Pooling)</h2>
+                <!-- ============================================ -->
+                <!-- Naninovel 스토리 시스템 (핵심 섹션) -->
+                <!-- ============================================ -->
 
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>전투 시 다음과 같은 성능 문제들이 발생했습니다:</p>
-                        <ul>
-                            <li>공격 효과가 100개 이상 생성되어 GC Spike 발생 (5~10초 지연)</li>
-                            <li>프레임이 30 FPS 미만으로 떨어짐</li>
-                            <li>메모리 사용량이 계속 증가</li>
-                        </ul>
+                <h2>Claude Skill 기반 Naninovel 시나리오 자동 생성</h2>
+                <p>이 프로젝트에서는 Claude Code의 커스텀 스킬(<code>nani-scenario-generator</code>)을 개발해, 자연어 시나리오를 Naninovel 스크립트(.nani)로 자동 변환하는 워크플로우를 구축했습니다.</p>
 
-                        <h4>프로파일링 결과:</h4>
-                        <pre><code>Profiler Sample:
-- GC.Collect: 150ms (전투 중)
-- AttackEffect.Instantiate: 80ms
-- UI Element.Instantiate: 45ms</code></pre>
-                    </div>
+                <h3>시나리오 생성 워크플로우</h3>
+                <p>캐릭터 일러스트는 니지저니(Nijiourney)로 제작하고, 캐릭터 설정과 스토리 초안은 제미나이(Gemini)가 작성합니다. 작성된 시나리오를 Claude Skill에 전달하면 Naninovel 규칙에 맞춰 스크립트가 자동 완성됩니다.</p>
 
-                    <h3>해결 과정</h3>
+                <pre><code>[시나리오 생성 워크플로우]
+1. 니지저니(Nijiourney) → 캐릭터 일러스트 제작
+2. 제미나이(Gemini) → 캐릭터 설정, 스토리 초안 작성
+3. Claude Skill(nani-scenario-generator) → Naninovel 스크립트 자동 변환</code></pre>
 
-                    <h4>1단계: 기본 객체 풀 구현</h4>
-                    <p>재사용 가능한 오브젝트를 풀에 저장하고 필요할 때 꺼내 쓰는 방식을 구현했습니다.</p>
-                    <pre><code>public class ObjectPool&lt;T&gt; where T : Component
+                <h3>nani-scenario-generator 스킬 구조</h3>
+                <p>스킬은 <code>.claude/skills/nani-scenario-generator/SKILL.md</code>에 정의되어 있으며, Naninovel의 전체 명령어 문법을 포함합니다. 자연어 입력에서 캐릭터, 배경, 선택지, 효과음, 카메라 연출 등을 추출해 .nani 파일로 변환합니다.</p>
+
+                <pre><code>; --- 스킬이 지원하는 Naninovel 명령어 ---
+@back BackgroundName time:1.0        ; 배경 전환
+@char CharacterName.pose pose:center  ; 캐릭터 표정/위치
+@hide CharacterName                   ; 캐릭터 숨기기
+@hideAll time:1                       ; 전체 숨기기
+@choice "선택지" goto:.LabelName     ; 분기 선택지
+@goto .LabelName                      ; 라벨 이동
+@bgm BGMName volume:0.3              ; 배경음악
+@sfx SFXName                          ; 효과음
+@camera zoom:0.3                      ; 카메라 줌
+@shake MainBackground power:0.2       ; 화면 흔들기
+@spawn SpawnName pos:55,45            ; 이펙트 생성
+@showUI / @hideUI                     ; UI 표시/숨기기
+@wait / @delay                        ; 대기
+@end                                  ; 스크립트 종료</code></pre>
+
+                <h3>스킬 입력 예시</h3>
+                <pre><code>[입력] "Scene starts in a dark dungeon.
+Elena is scared, cornered by slimes.
+She screams for help.
+The player can choose to help her immediately or watch first."</code></pre>
+
+                <h3>스킬 출력 결과</h3>
+                <pre><code>; Elena story 1
+@back Dungeon0 time:1
+@showUI time:1
+@bgm Action2 volume:.3
+
+@char Elena.scared pose:center
+Unknown: 으악! 안 돼! 이건 졸업 기념으로 맞춘 특제 로브란 말이야!
+
+@char Slime pose:left
+Unknown: 저리 가! 이렇게 붙으면 마법을 못쓴다고!
+
+@choice "구해준다." goto:.Rescue
+@choice "잠깐 지켜본다." goto:.Watch
+@stop
+
+# Rescue
+나는 검을 뽑아 들고 슬라임 사이로 뛰어들었다.
+@hide Elena
+@char Slime pose:center
+@camera zoom:.3
+@delay .5
+    @spawn SwordSlashThinBlue pos:55,45
+    @sfx Skill_Knife_Throw_B
+@delay 1.2
+    @hide Slime lazy:true
+    @sfx Weapon_Impact_Blood</code></pre>
+
+                <p>이 워크플로우를 통해 3개 캐릭터 × 5개 에피소드, 총 16개의 시나리오 스크립트를 효율적으로 생성했습니다.</p>
+
+                <h3>시나리오 통계</h3>
+                <table>
+                    <thead>
+                        <tr><th>항목</th><th>수치</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>시나리오 스크립트</td><td>16개 (.nani 파일)</td></tr>
+                        <tr><td>총 선택지(Choice) 지점</td><td>39개</td></tr>
+                        <tr><td>분기 라벨(Label)</td><td>60개 이상</td></tr>
+                        <tr><td>사용 배경(Background)</td><td>12종 (던전, 숲, 동굴, 비, 모닥불, 레이저 복도 등)</td></tr>
+                        <tr><td>캐릭터 표정(Pose)</td><td>14종 (default, happy, angry, scared, nervous, love, sad, shy, embarrassed, tired, disgusted, thinking, worried, determined)</td></tr>
+                        <tr><td>효과음/배경음</td><td>20종 이상 (전투, 마법, 환경음, 타격음)</td></tr>
+                        <tr><td>카메라 연출</td><td>줌, 흔들기, 페이드</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>3개 캐릭터 스토리 라인</h2>
+                <p>각 캐릭터는 프롤로그 1개 + 에피소드 5개로 구성되며, 선택지에 따라 대사가 분기합니다.</p>
+
+                <h3>Elena - 수석 졸업생 마법사</h3>
+                <p>에피소드 1에서 던전에서 슬라임에게 쫓기는 모습으로 첫 등장합니다. 플레이어가 구해주거나 지켜보는 선택지로 시작해, 마법 실전 강의(에피소드 2), 수정 동굴 사고와 스킨십(에피소드 3), 모닥불 야간 장면(에피소드 4), 최종 전투와 평생 계약(에피소드 5)으로 이어집니다.</p>
+
+                <p>선택지는 전투 방식(직접 구출 vs 관전), 대화 태도(위로 vs 놀림), 관계 발전(수락 vs 거절) 등 상황마다 2~3개의 분기를 제공합니다. 에피소드 5에서는 최종 선택지로 "평생 함께하자"와 "보수는 너로 충분해" 두 가지 결말이 있습니다.</p>
+
+                <h3>Lynn - 용병 기사</h3>
+                <p>에피소드 1에서 던전에서 몬스터와 교전 중인 용병으로 만납니다. 왕립 기사냐는 질문, 협력 제안, 전투 돕기 등의 선택지로 관계가 시작됩니다. 레이저 트랩에서 함께 넘어지는 해프닝(에피소드 2), 불침번 교대(에피소드 3), 전투 전 손잡기(에피소드 4), 최종 전투 후 새로운 계약(에피소드 5)으로 진행됩니다.</p>
+
+                <p>Lynn의 스토리는 전투와 전문성이 핵심 테마입니다. 선택지는 작전 수락, 걱정 표현, 로맨스 모멘트 등으로 구성되고, 최종적으로 플레이어와 "새로운 계약"을 맺으며 용병 생활을 마감합니다.</p>
+
+                <h3>Ariel - 숲의 수호자</h3>
+                <p>에피소드 1에서 숲 던전에서 활을 겨누며 경계하는 엘프로 등장합니다. 길을 잃었다고 설명하거나 항복하는 선택지로 시작합니다. 흔들리는 다리 공포(에피소드 2), 비 피하며 동굴에서 대화(에피소드 3), 괴물 습격 시 아리엘의 희생(에피소드 4), 모닥불 앞 맹세(에피오드 5)로 이어집니다.</p>
+
+                <p>에피소드 3의 비 피하기 씬에서는 일러스트 CG(ArielCG0)가 등장하고, 에피소드 4에서는 아리엘이 플레이어를 구하기 위해 몸을 던지는 연출로 감정적 몰입을 높입니다. 최종 선택지에서 숲을 함께 떠나거나 영원히 곁에 있겠다는 약속으로 마무리됩니다.</p>
+
+                <h2>동료 시스템과 스토리 연동</h2>
+                <p>3명의 동료는 각각 고유한 <code>CompanionData</code> ScriptableObject로 스탯, 애니메이션, 해금 비용을 관리합니다. 한 번에 1명만 활성화할 수 있으며, <code>CompanionSystem</code> 싱글톤이 해금, 호감도, 리스폰을 관리합니다.</p>
+
+                <p>호감도는 활성화된 동료와 함께 전투하는 동안 20초마다 1씩 상승하며 최대 100까지 쌓입니다. 스토리 에피소드는 호감도 기준(예: 에피소드 1은 호감도 10, 에피소드 5는 호감도 80)으로 해금되어, 전투와 스토리가 자연스럽게 연결되는 루프를 구성합니다.</p>
+
+                <p>동료의 레벨은 플레이어 레벨에 동기화됩니다. 플레이어가 레벨업하면 <code>OnLevelUp</code> 이벤트를 통해 동료 스탯도 갱신됩니다. 동료 AI는 플레이어가 공격 중인 적에게 2.5배 거리 페널티를 적용해 적을 분산시키는 전략을 사용합니다.</p>
+
+                <h2>Naninovel 커스텀 명령어</h2>
+                <p>한국어 조사 처리를 위해 <code>@jong</code> 커스텀 명령어를 구현했습니다. 문자열의 마지막 글자 받침 여부를 판별해 올바른 조사(은/는, 이/가 등)를 선택합니다.</p>
+
+                <pre><code>[CommandAlias("jong")]
+public class JongsungCheck : Command
 {
-    private Queue&lt;T&gt; pool = new Queue&lt;T&gt;();
-    private T prefab;
-    private Transform parent;
-    private int initialSize;
+    [ParameterAlias("text")]   public StringParameter SourceText;
+    [ParameterAlias("with")]   public StringParameter WithBatchim;    // 받침 있을 때
+    [ParameterAlias("without")] public StringParameter WithoutBatchim; // 받침 없을 때
+    [ParameterAlias("set")]    public StringParameter TargetVariable;
+    [ParameterAlias("append")] public BooleanParameter AppendToSource;
 
-    public ObjectPool(T prefab, Transform parent, int initialSize)
+    private static bool HasFinalConsonant(string text)
     {
-        this.prefab = prefab;
-        this.parent = parent;
-        this.initialSize = initialSize;
-        PreWarm();
-    }
-
-    private void PreWarm()
-    {
-        for (int i = 0; i &lt; initialSize; i++)
-        {
-            T obj = Object.Instantiate(prefab, parent);
-            obj.gameObject.SetActive(false);
-            pool.Enqueue(obj);
-        }
-    }
-
-    public T Get()
-    {
-        if (pool.Count &gt; 0)
-        {
-            T obj = pool.Dequeue();
-            obj.gameObject.SetActive(true);
-            return obj;
-        }
-        return Object.Instantiate(prefab, parent);
-    }
-
-    public void Return(T obj)
-    {
-        obj.gameObject.SetActive(false);
-        pool.Enqueue(obj);
+        var lastChar = text[text.Length - 1];
+        const int hangulBase = 0xAC00;
+        const int hangulLast = 0xD7A3;
+        if (lastChar &lt; hangulBase || lastChar &gt; hangulLast) return false;
+        var code = lastChar - hangulBase;
+        var jong = code % 28;
+        return jong != 0;
     }
 }</code></pre>
 
-                    <h4>2단계: 풀 매니저 통합</h4>
-                    <p>여러 종류의 오브젝트 풀을 중앙에서 관리하는 매니저를 구현했습니다.</p>
+                <p>시나리오에서의 사용 예시:</p>
+                <pre><code>; 플레이어 이름의 받침 여부에 따라 조사 선택
+@jong text:{PlayerName} with:이 without:"" append:true set:name
+@choice "난 {name}야. 잘 부탁해." goto:.Accept</code></pre>
 
-                    <h4>3단계: 효과 매니저에 풀링 적용</h4>
-                    <p>공격 효과, 히트 효과, 레벨업 효과 등을 모두 풀링 방식으로 변경했습니다.</p>
+                <p>스토리 종료 시 <code>@end</code> 커스텀 명령어가 메인 게임 씬으로 전환합니다.</p>
 
-                    <h4>4단계: 자동 반환 효과</h4>
-                    <p>수명이 다한 효과가 자동으로 풀로 반환되도록 구현했습니다.</p>
-
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <table>
-                            <tr>
-                                <th>지표</th>
-                                <th>개선 전</th>
-                                <th>개선 후</th>
-                                <th>향상율</th>
-                            </tr>
-                            <tr>
-                                <td>GC Spike</td>
-                                <td>150ms</td>
-                                <td>5ms</td>
-                                <td>97% 감소</td>
-                            </tr>
-                            <tr>
-                                <td>프레임 (전투 시)</td>
-                                <td>25~30 FPS</td>
-                                <td>55~60 FPS</td>
-                                <td>100% 안정화</td>
-                            </tr>
-                            <tr>
-                                <td>메모리 사용량</td>
-                                <td>지속 증가</td>
-                                <td>안정화</td>
-                                <td>메모리 누수 해결</td>
-                            </tr>
-                            <tr>
-                                <td>오브젝트 생성/삭제</td>
-                                <td>수백 번/분</td>
-                                <td>0번</td>
-                                <td>100% 감소</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="doc-section">
-                    <h2>2. 시나리오 시스템 (Naninovel)</h2>
-
-                    <h3>커스텀 명령어 추가</h3>
-                    <p>Naninovel의 기본 기능을 확장하여 게임 로직과 연동하는 커스텀 명령어를 구현했습니다.</p>
-
-                    <h4>히어로 스폰 명령어</h4>
-                    <pre><code>@spawnHero HeroId:Knight Position:Center</code></pre>
-
-                    <h4>파티에 추가 명령어</h4>
-                    <pre><code>@addHeroToParty HeroId:Knight
-
-Jared:
-    (힘내라! 이 힘으로 미궁을 정복하자!)
-
---- 선택지 ---
-
-[label StartBattle]
-@startBattle BattleId:Maze1
-
-[label CheckInventory]
-@openInventory</code></pre>
-
-                    <h3>시나리오와 게임 데이터 연동</h3>
-                    <p>시나리오 진행에 따라 실제 게임 데이터가 업데이트되도록 연동했습니다.</p>
-                </div>
-
-                <div class="doc-section">
-                    <h2>3. ScriptableObject 기반 데이터 관리</h2>
-
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>데이터가 하드코딩되어 있어 다음 문제가 발생했습니다:</p>
-                        <ul>
-                            <li>수치를 변경할 때마다 코드 수정 필요</li>
-                            <li>데이터 추가 시 새로운 클래스 작성</li>
-                            <li>버전 관리 및 비교 어려움</li>
-                        </ul>
-                    </div>
-
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: ScriptableObject 데이터 구조</h4>
-                    <pre><code>[CreateAssetMenu(fileName = "NewHero", menuName = "Data/Hero")]
-public class HeroData : ScriptableObject
+                <pre><code>[CommandAlias("end")]
+public class SwitchToAdventureMode : Command
 {
-    [Header("기본 정보")]
-    public string heroId;
-    public string heroName;
-    public Sprite icon;
-    public GameObject prefab;
-
-    [Header("능력치")]
-    public int baseHP;
-    public int baseAttack;
-    public int baseDefense;
-
-    [Header("성장률")]
-    public float hpGrowthRate;
-    public float attackGrowthRate;
-    public float defenseGrowthRate;
-
-    // 레벨별 능력치 계산
-    public HeroStats GetStats(int level)
+    public override async UniTask Execute(AsyncToken asyncToken)
     {
-        return new HeroStats
-        {
-            hp = Mathf.FloorToInt(baseHP * Mathf.Pow(hpGrowthRate, level - 1)),
-            attack = Mathf.FloorToInt(baseAttack * Mathf.Pow(attackGrowthRate, level - 1)),
-            defense = Mathf.FloorToInt(baseDefense * Mathf.Pow(defenseGrowthRate, level - 1))
-        };
+        var opMain = SceneManager.LoadSceneAsync("main");
+        await UniTask.WaitUntil(() =&gt; opMain.isDone);
     }
 }</code></pre>
 
-                    <h4>2단계: 데이터 매니저</h4>
-                    <p>모든 히어로 데이터를 중앙에서 관리하는 매니저를 구현했습니다.</p>
+                <p><code>DialogueManager</code>는 스토리 재생 시 <code>SceneFadeManager</code>로 페이드 효과와 함께 스토리 씬으로 전환하고, Naninovel 엔진 초기화 후 플레이어 이름을 커스텀 변수로 설정합니다.</p>
 
-                    <h4>3단계: 에디터 확장으로 데이터 관리 툴</h4>
-                    <p>중복 아이디 체크, 미할당 데이터 체크 등의 기능을 추가했습니다.</p>
+                <h2>지수 성장 스탯 시스템</h2>
+                <p>캐릭터와 적의 스탯은 지수 함수 기반으로 성장합니다. <code>CharacterStatsData</code> ScriptableObject에 기본값과 성장 계수를 정의합니다.</p>
 
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <table>
-                            <tr>
-                                <th>지표</th>
-                                <th>개선 전</th>
-                                <th>개선 후</th>
-                                <th>향상율</th>
-                            </tr>
-                            <tr>
-                                <td>밸런싱 작업 시간</td>
-                                <td>3시간</td>
-                                <td>1시간</td>
-                                <td>3배 효율화</td>
-                            </tr>
-                            <tr>
-                                <td>데이터 구조화</td>
-                                <td>어려움</td>
-                                <td>쉬움</td>
-                                <td>300% 개선</td>
-                            </tr>
-                            <tr>
-                                <td>버전 관리</td>
-                                <td>어려움</td>
-                                <td>쉬움</td>
-                                <td>Git으로 관리 가능</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <pre><code>Stat(n) = baseStat × growthRate^(n-1)
 
-                <div class="doc-section">
-                    <h2>성과 및 성능 개선</h2>
-                    <table>
-                        <tr>
-                            <th>지표</th>
-                            <th>개선 전</th>
-                            <th>개선 후</th>
-                            <th>향상율</th>
-                        </tr>
-                        <tr>
-                            <td>GC Spike</td>
-                            <td>150ms</td>
-                            <td>5ms</td>
-                            <td>97% 감소</td>
-                        </tr>
-                        <tr>
-                            <td>전투 중 프레임</td>
-                            <td>25~30 FPS</td>
-                            <td>55~60 FPS</td>
-                            <td>100% 안정화</td>
-                        </tr>
-                        <tr>
-                            <td>밸런싱 작업 시간</td>
-                            <td>3시간</td>
-                            <td>1시간</td>
-                            <td>3배 효율화</td>
-                        </tr>
-                        <tr>
-                            <td>메모리 누수</td>
-                            <td>발생</td>
-                            <td>해결</td>
-                            <td>100% 해결</td>
-                        </tr>
-                        <tr>
-                            <td>데이터 관리 편의성</td>
-                            <td>어려움</td>
-                            <td>쉬움</td>
-                            <td>300% 개선</td>
-                        </tr>
-                    </table>
-                </div>
+// 예: HP의 경우 baseMaxHealth=150, growthHealth=1.12
+// 레벨 10 → 150 × 1.12^9 ≈ 415
 
-                <div class="doc-section">
-                    <h2>개발 도전과제 및 해결</h2>
+private int CalculateStat(int baseValue, float growth, int level)
+{
+    if (level &lt;= 1) return baseValue;
+    double result = baseValue * System.Math.Pow(growth, level - 1);
+    if (result &gt; int.MaxValue) return int.MaxValue; // 오버플로우 방지
+    return (int)result;
+}</code></pre>
 
-                    <h3>GC 최적화</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 방치형 게임의 특성상 지속적인 오브젝트 생성/삭제로 GC 발생</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> Object Pooling 패턴 적용, 효과/UI/적 등 재사용 가능한 오브젝트 풀링, String Concatenation 대신 StringBuilder 사용</p>
-                    </div>
+                <p>플레이어는 업그레이드 레벨을 골드로 올려 스탯을 성장시키고, 장비 보너스가 추가로 더해집니다. 골드는 <code>DarkNaku.Number</code> 타입으로 대수 표기(1.5K, 2.3M 등)를 지원합니다.</p>
 
-                    <h3>데이터 밸런싱</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 수백 개의 데이터 관리와 밸런싱의 어려움</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> ScriptableObject로 데이터 직렬화, 에디터 확장으로 데이터 검증 툴 제작, 시각적인 데이터 편집기 구현</p>
-                    </div>
+                <h2>ICombatTarget 인터페이스 기반 전투</h2>
+                <p>적이 플레이어와 동료 모두를 공격할 수 있도록 <code>ICombatTarget</code> 인터페이스를 도입했습니다. PlayerStats와 CompanionController 모두 이 인터페이스를 구현합니다.</p>
 
-                    <h3>시나리오 연동</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> Naninovel과 게임 로직의 통합 복잡성</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> 커스텀 명령어로 게임 시스템 호출, ScriptableObject와 연동된 데이터 참조, 이벤트 기반 통신으로 느슨한 결합</p>
-                    </div>
-                </div>
+                <pre><code>public interface ICombatTarget
+{
+    Transform GetTransform();
+    bool IsAlive();
+    void TakeDamage(int damage);
+    int GetCurrentHealth();
+    int GetMaxHealth();
+    string GetName();
+}</code></pre>
 
-                <div class="doc-section">
-                    <h2>결론</h2>
-                    <p>미궁기사 키우기 프로젝트에서는 객체 풀링으로 GC 최적화, ScriptableObject로 데이터 구조화, Naninovel으로 시나리오 시스템을 구현했습니다.</p>
+                <p>적은 플레이어와 모든 활성 동료 중 가장 가까운 대상을 타겟으로 삼습니다. 타겟 유효성 검사에서 null 체크, GameObject 파괴 여부, IsAlive까지 확인하고 <code>MissingReferenceException</code>도 캐치합니다.</p>
 
-                    <h3>주요 성과</h3>
-                    <ul>
-                        <li><strong>GC Spike 97% 감소:</strong> Object Pooling으로 메모리 최적화</li>
-                        <li><strong>밸런싱 작업 효율 3배 향상:</strong> ScriptableObject와 에디터 확장</li>
-                        <li><strong>안정적인 프레임:</strong> 전투 중 55~60 FPS 유지</li>
-                        <li><strong>시나리오-게임 통합:</strong> Naninovel 커스텀 명령어로 원활한 연동</li>
-                    </ul>
+                <h2>장비 제작 시스템</h2>
+                <p><code>EquipmentCraftingSystem</code>은 포인트 기반으로 랜덤 장비를 생성합니다. 최대 5포인트를 보유하고 60초마다 1포인트가 회복됩니다. 앱을 종료했다가 돌아오면 오프라인 시간만큼 포인트를 자동 회복합니다.</p>
 
-                    <h3>학습 내용</h3>
-                    <ul>
-                        <li>Object Pooling 패턴과 GC 최적화 기법</li>
-                        <li>ScriptableObject 활용과 에디터 확장</li>
-                        <li>Naninovel 시나리오 엔진 활용</li>
-                        <li>방치형 게임의 성능 최적화 전략</li>
-                    </ul>
-                </div>
+                <p>생성된 장비는 희귀도(일반 50%, 고급 75%, 희귀 90%, 영웅 98%, 전설 2%)에 따라 1~4개의 랜덤 스탯이 부여되고, 희귀도 배율이 스탯에 곱해집니다.</p>
+
+                <h2>세이브 시스템</h2>
+                <p><code>GameSaveSystem</code>은 JSON 파일로 버전 관리(<code>saveVersion = 5</code>)하며 저장합니다. 업그레이드 레벨만 저장하고 기본 스탯과 성장 계수는 ScriptableObject에서 불러오는 방식으로, 밸런스 수정 시 기존 세이브에 영향을 주지 않습니다.</p>
+
+                <p>30초 간격 자동 저장, 앱 일시정지/종료 시에도 저장을 수행합니다. 장비 제작 포인트는 오프라인 시간을 계산해 복귀 시 자동 회복합니다.</p>
+
+                <h2>주요 성과</h2>
+                <ul>
+                    <li><strong>Claude Skill 기반 시나리오 자동 생성:</strong> nani-scenario-generator 스킬로 자연어 → Naninovel 스크립트 변환 워크플로우 구축</li>
+                    <li><strong>16개 시나리오 스크립트:</strong> 3개 캐릭터 × 5개 에피소드 + 프롤로그, 총 39개 선택지 분기</li>
+                    <li><strong>Naninovel 커스텀 명령어:</strong> 한국어 조사 처리(jong)와 스토리-게임플레이 전환(end) 구현</li>
+                    <li><strong>동료 호감도-스토리 연동:</strong> 전투로 호감도를 올리고, 호감도 기준으로 에피소드가 해금되는 루프</li>
+                    <li><strong>지수 성장 스탯 시스템:</strong> 방치형 RPG의 장기 진행 밸런스 설계</li>
+                    <li><strong>ICombatTarget 인터페이스:</strong> 플레이어와 동료가 동시에 공격받는 전투 구조</li>
+                    <li><strong>랜덤 장비 생성:</strong> 5단계 희귀도, 포인트 기반 제작, 오프라인 회복</li>
+                    <li><strong>버전 관리 세이브:</strong> 밸런스 패치 시 데이터 호환성 유지</li>
+                </ul>
+
+                <h2>결론/학습 내용</h2>
+
+                <h3>프로젝트의 의의</h3>
+                <p>비주얼 노벨 엔진과 방치형 RPG를 통합해 스토리와 전투가 연결되는 게임을 만들었습니다. Claude Code 커스텀 스킬을 개발해 시나리오 작업을 자동화하고, 니지저니·제미나이와 결합한 AI 워크플로우로 콘텐츠 제작 효율을 높였습니다. 동료 호감도 시스템이 스토리 진행의 핵심 동기가 되고, 전투로 얻은 자원으로 성장하는 루프를 구성했습니다.</p>
+
+                <h3>학습 내용</h3>
+                <ul>
+                    <li>Claude Code Skill 개발: 자연어 → 도메인 특화 스크립트 변환 스킬 설계</li>
+                    <li>Naninovel 엔진의 커스텀 명령어와 씬 전환 구조 이해</li>
+                    <li>AI 도구 협업 워크플로우: 니지저니(일러스트) + 제미나이(스토리) + Claude Skill(스크립트 변환)</li>
+                    <li>Interface 기반 다중 타겟 전투 시스템 설계</li>
+                    <li>지수 함수 스탯 성장 시스템과 오버플로우 방지</li>
+                    <li>Observer 패턴(이벤트)을 활용한 시스템 간 느슨한 결합</li>
+                    <li>JSON 기반 버전 관리 세이브 시스템 설계</li>
+                </ul>
 
                 <div class="doc-nav" style="margin-top: 3rem;">
                     <a href="index.html#projects">← 프로젝트 목록으로 돌아가기</a>

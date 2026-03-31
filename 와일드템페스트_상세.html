@@ -4,38 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>와일드 템페스트 - 프로젝트 상세 | 김경학 포트폴리오</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="와일드 템페스트 프로젝트 상세 페이지. Unity, GPGS를 활용한 뱀서라이크 게임 개발 프로젝트 기술 문서 및 성과">
-    <meta name="keywords" content="와일드 템페스트, 뱀서라이크, Unity, GPGS, Google Play Games Services, 게임 개발, 로그라이크">
-    <meta name="author" content="김경학">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / KakaoTalk -->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="김경학 포트폴리오">
-    <meta property="og:title" content="와일드 템페스트 - 프로젝트 상세 | 김경학 포트폴리오">
-    <meta property="og:description" content="Unity, GPGS를 활용한 뱀서라이크 게임 개발 프로젝트. 기술 스택, 문제 해결 과정, 성과를 상세하게 소개합니다.">
-    <meta property="og:url" content="https://onegoon123.github.io/portfolio/와일드템페스트_상세.html">
-    <meta property="og:image" content="https://onegoon123.github.io/portfolio/Images/metaimage.png">
-    <meta property="og:image:alt" content="와일드 템페스트 게임 스크린샷">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="와일드 템페스트 - 프로젝트 상세">
-    <meta name="twitter:description" content="Unity, GPGS를 활용한 뱀서라이크 게임 개발 프로젝트. 기술 스택, 문제 해결 과정, 성과를 상세하게 소개합니다.">
-    <meta name="twitter:image" content="https://onegoon123.github.io/portfolio/Images/metaimage.png">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">KKH</a>
+            <a href="index.html" class="logo">김경학 Portfolio</a>
             <div class="nav-menu" id="navMenu">
                 <a href="index.html#about" class="nav-link">소개</a>
-                <a href="index.html#projects" class="nav-link">프로젝트</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">프로젝트</a>
+                    <div class="dropdown-menu">
+                        <a href="메모리아기사단_상세.html" class="dropdown-item">메모리아 기사단</a>
+                        <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
+                        <a href="와일드템페스트_상세.html" class="dropdown-item">와일드 템페스트</a>
+                        <a href="원더메이트_상세.html" class="dropdown-item">원더메이트</a>
+                        <a href="여관_상세.html" class="dropdown-item">여관</a>
+                    </div>
+                </div>
                 <a href="index.html#skills" class="nav-link">기술 스택</a>
                 <a href="index.html#contact" class="nav-link">연락처</a>
             </div>
@@ -57,372 +47,581 @@
             <div class="doc-header">
                 <h1 class="doc-title">와일드 템페스트 - 프로젝트 상세</h1>
                 <div class="doc-meta">
-                    <span>2026-03-08</span>
+                    <span>2026-03-13</span>
                     <span>뱀서라이크</span>
-                    <span>Unity, C#, GPGS, 뒤끝</span>
+                    <span>Unity, C#, GPGS</span>
                 </div>
             </div>
 
             <div class="doc-content">
                 <h2>프로젝트 개요</h2>
-                <p>와일드 템페스트는 GPGS 리더보드와 모듈화된 아이템 시스템을 갖춘 뱀서라이크 게임입니다. 전역 랭킹 시스템으로 플레이어들과 경쟁하며, 확장 가능한 아이템 시스템으로 다양한 전략을 구사할 수 있습니다.</p>
+                <p>Google Play Game Services(GPGS)를 활용한 뱀서라이크 게임입니다. 플레이어는 무작위 생성되는 던전을 탐험하며 적을 처치하고 아이템을 수집합니다. 사망 시 모든 진행이 초기화되는 뱀서라이크 특성을 살리면서, 리더보드와 업적 시스템으로 플레이어의 도전 의지를 고취시켰습니다.</p>
 
+                <h2>팀원 소개</h2>
                 <table>
-                    <tr>
-                        <th>항목</th>
-                        <th>내용</th>
-                    </tr>
-                    <tr>
-                        <td>프로젝트명</td>
-                        <td>와일드 템페스트</td>
-                    </tr>
-                    <tr>
-                        <td>장르</td>
-                        <td>뱀서라이크 (Roguelike)</td>
-                    </tr>
-                    <tr>
-                        <td>개발 엔진</td>
-                        <td>Unity 2022</td>
-                    </tr>
-                    <tr>
-                        <td>개발 언어</td>
-                        <td>C#</td>
-                    </tr>
-                    <tr>
-                        <td>백엔드</td>
-                        <td>뒤끝 서버</td>
-                    </tr>
-                    <tr>
-                        <td>리더보드</td>
-                        <td>Google Play Games Services (GPGS)</td>
-                    </tr>
-                    <tr>
-                        <td>출시 플랫폼</td>
-                        <td>Google Play Store</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>역할</th>
+                            <th>담당 업무</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>김경학</td>
+                            <td>프로그래머</td>
+                            <td>프로젝트 전체 개발 (던전 생성, 아이템/무기 시스템, AI, 데이터 관리, 수익화)</td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <h2>기술 스택</h2>
                 <ul>
-                    <li><strong>엔진:</strong> Unity 2022</li>
+                    <li><strong>엔진:</strong> Unity 2022.3 LTS</li>
                     <li><strong>언어:</strong> C#</li>
-                    <li><strong>백엔드:</strong> 뒤끝 서버</li>
-                    <li><strong>리더보드:</strong> Google Play Games Services (GPGS)</li>
-                    <li><strong>패턴:</strong> Singleton, Factory, Object Pooling</li>
-                    <li><strong>형상 관리:</strong> Git</li>
+                    <li><strong>백엔드:</strong> GPGS (Google Play Game Services)</li>
+                    <li><strong>데이터 관리:</strong> Unity Google Sheets (UGS)</li>
+                    <li><strong>디자인 패턴:</strong> Singleton, Object Pool, Factory, Observer, Strategy</li>
                 </ul>
 
-                <div class="doc-section">
-                    <h2>1. GPGS 리더보드 시스템</h2>
+                <h2>아이템 및 무기 시스템</h2>
+                <p>무기와 아이템의 구조를 설계하기 위해 상속 구조를 활용했습니다. 공통적인 속성을 가진 기본 클래스를 정의하고, 각 타입별로 상속받아 구현했습니다.</p>
 
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>기존 로컬 스코어 시스템은 다음 문제가 있었습니다:</p>
-                        <ul>
-                            <li>전역 랭킹 비교 불가</li>
-                            <li>친구와 경쟁 기능 부재</li>
-                            <li>기록 조작 가능성</li>
-                        </ul>
-                    </div>
+                <pre><code>[아이템 상속 구조]
+Item (기본 클래스)
+├── Weapon (무기)
+│   ├── MeleeWeapon (근접 무기)
+│   └── RangedWeapon (원거리 무기)
+├── Consumable (소모품)
+│   ├── Potion (포션)
+│   └── Scroll (스크롤)
+└── Equipment (장비)
+    ├── Armor (방어구)
+    └── Accessory (장신구)
+</code></pre>
 
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: GPGS 초기화</h4>
-                    <pre><code>public class GPGSManager : Singleton&lt;GPGSManager&gt;
+                <pre><code>// 기본 아이템 클래스
+public abstract class Item : ScriptableObject
 {
-    private bool isAuthenticated = false;
-
-    public void Initialize()
-    {
-        PlayGamesPlatform.Activate();
-        AuthenticateUser();
-    }
-
-    private void AuthenticateUser()
-    {
-        Social.localUser.Authenticate(success =&gt;
-        {
-            isAuthenticated = success;
-            if (success)
-            {
-                Debug.Log("GPGS 인증 성공");
-                LoadLeaderboard();
-            }
-        });
-    }
-}</code></pre>
-
-                    <h4>2단계: 리더보드 매니저</h4>
-                    <p>전체 랭킹, 친구 랭킹, 내 랭킹 조회 기능을 구현했습니다.</p>
-
-                    <h4>3단계: UI 연동</h4>
-                    <p>실시간으로 랭킹을 표시하는 UI를 구현했습니다.</p>
-
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <ul>
-                            <li><strong>전역 랭킹 시스템:</strong> GPGS로 전체 플레이어와 경쟁 가능</li>
-                            <li><strong>친구 경쟁:</strong> 친구들과 랭킹 비교</li>
-                            <li><strong>실시간 동기화:</strong> 스코어 즉시 반영</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="doc-section">
-                    <h2>2. 모듈화된 아이템 시스템</h2>
-
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>아이템 시스템이 하드코딩되어 있어 다음 문제가 발생했습니다:</p>
-                        <ul>
-                            <li>새 아이템 추가 시 코드 수정 필요</li>
-                            <li>아이템 유형별 로직 분리 어려움</li>
-                            <li>확장성 부족으로 신규 아이템 추가에 오랜 시간 소요</li>
-                        </ul>
-                    </div>
-
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: 아이템 기본 클래스</h4>
-                    <pre><code>[CreateAssetMenu(fileName = "New Item", menuName = "Data/Items/Item")]
-public class ItemData : ScriptableObject
-{
-    [Header("기본 정보")]
     public string itemId;
     public string itemName;
-    [TextArea] public string description;
+    public string description;
     public Sprite icon;
-    public GameObject prefab;
+    public int maxStack;
+    public bool isConsumable;
 
-    [Header("분류")]
-    public ItemType itemType;
-    public ItemRarity rarity;
+    public abstract void Use(GameObject user);
+}
 
-    [Header("효과")]
-    public List&lt;ItemEffect&gt; effects;
+// 무기 클래스
+public abstract class Weapon : Item
+{
+    public int baseDamage;
+    public float attackSpeed;
+    public int durability;
+    public int maxDurability;
 
-    public virtual void Use(PlayerController player)
+    public abstract void Attack(GameObject target);
+
+    public void Repair()
     {
-        foreach (var effect in effects)
+        durability = maxDurability;
+    }
+}
+
+// 근접 무기 구현
+[CreateAssetMenu(fileName = "NewSword", menuName = "Data/Weapons")]
+public class MeleeWeapon : Weapon
+{
+    public float attackRange;
+
+    public override void Attack(GameObject target)
+    {
+        // 근접 공격 로직
+        if (Vector3.Distance(transform.position, target.transform.position) <= attackRange)
         {
-            effect.Apply(player);
+            var damageable = target.GetComponent&lt;IDamageable&gt;();
+            damageable?.TakeDamage(baseDamage);
         }
     }
-}</code></pre>
+}
 
-                    <h4>2단계: 아이템 효과 시스템</h4>
-                    <p>다양한 효과 타입을 정의하고 적용하는 시스템을 구현했습니다.</p>
-
-                    <h4>3단계: 아이템 팩토리</h4>
-                    <p>아이템 생성 로직을 중앙화하여 확장성을 높였습니다.</p>
-
-                    <h4>4단계: 구체적 아이템 유형</h4>
-                    <ul>
-                        <li>무기 (WeaponData)</li>
-                        <li>소모품 (ConsumableData)</li>
-                        <li>장갑 (ArmorData)</li>
-                        <li>악세서리 (AccessoryData)</li>
-                    </ul>
-
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <table>
-                            <tr>
-                                <th>지표</th>
-                                <th>개선 전</th>
-                                <th>개선 후</th>
-                                <th>향상율</th>
-                            </tr>
-                            <tr>
-                                <td>신규 아이템 추가 시간</td>
-                                <td>2시간</td>
-                                <td>36분</td>
-                                <td>70% 단축</td>
-                            </tr>
-                            <tr>
-                                <td>모듈화</td>
-                                <td>어려움</td>
-                                <td>쉬움</td>
-                                <td>확장성 확보</td>
-                            </tr>
-                            <tr>
-                                <td>유형 확장</td>
-                                <td>어려움</td>
-                                <td>쉬움</td>
-                                <td>상속으로 구현</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="doc-section">
-                    <h2>3. 뒤끝 실시간 데이터 동기화</h2>
-
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>데이터 동기화가 불안정했습니다:</p>
-                        <ul>
-                            <li>로그인/로그아웃 시 데이터 손실</li>
-                            <li>여러 기기에서 플레이 시 충돌</li>
-                            <li>네트워크 오류 복구 불가</li>
-                        </ul>
-                    </div>
-
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: 로봇 매니저 통합</h4>
-                    <p>뒤끝 서버와의 연결을 안정화했습니다.</p>
-
-                    <h4>2단계: 자동 동기화 시스템</h4>
-                    <pre><code>public class AutoSyncManager : Singleton&lt;AutoSyncManager&gt;
+// 원거리 무기 구현
+[CreateAssetMenu(fileName = "NewBow", menuName = "Data/Weapons")]
+public class RangedWeapon : Weapon
 {
-    private float syncInterval = 30f; // 30초마다 동기화
-    private float lastSyncTime = 0f;
+    public GameObject projectilePrefab;
+    public float projectileSpeed;
 
-    public async void StartSync()
+    public override void Attack(GameObject target)
     {
-        if (isSyncing) return;
-        isSyncing = true;
+        // 투사체 발사 로직
+        var projectile = Instantiate(projectilePrefab, transform.position);
+        projectile.GetComponent&lt;Projectile&gt;().Initialize(target, baseDamage, projectileSpeed);
+    }
+}
+</code></pre>
 
+                <h2>오브젝트 풀링 시스템</h2>
+                <p>던전 생성 시 타일 프리팹을 매번 인스턴스화하지 않고 오브젝트 풀을 사용하여 인스턴스화 비용을 최소화했습니다. 수명이 다한 오브젝트가 자동으로 풀로 반환되도록 구현했습니다.</p>
+
+                <pre><code>// 오브젝트 풀 구현
+public class ObjectPool&lt;T&gt; where T : MonoBehaviour
+{
+    private Queue&lt;T&gt; pool = new Queue&lt;T&gt;();
+    private T prefab;
+    private Transform parent;
+    private int initialSize;
+
+    public ObjectPool(T prefab, Transform parent, int initialSize)
+    {
+        this.prefab = prefab;
+        this.parent = parent;
+        this.initialSize = initialSize;
+        PreWarm();
+    }
+
+    private void PreWarm()
+    {
+        for (int i = 0; i &lt; initialSize; i++)
+        {
+            T obj = Object.Instantiate(prefab, parent);
+            obj.gameObject.SetActive(false);
+            pool.Enqueue(obj);
+        }
+    }
+
+    public T Get()
+    {
+        if (pool.Count &gt; 0)
+        {
+            T obj = pool.Dequeue();
+            obj.gameObject.SetActive(true);
+            return obj;
+        }
+        return Object.Instantiate(prefab, parent);
+    }
+
+    public void Return(T obj)
+    {
+        obj.gameObject.SetActive(false);
+        pool.Enqueue(obj);
+    }
+}
+
+// 오브젝트 풀 매니저
+public class PoolManager : MonoBehaviour
+{
+    private static PoolManager instance;
+    private Dictionary&lt;string, object&gt; pools = new Dictionary&lt;string, object&gt;();
+
+    public static PoolManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                GameObject go = new GameObject("PoolManager");
+                instance = go.AddComponent&lt;PoolManager&gt;();
+                DontDestroyOnLoad(go);
+            }
+            return instance;
+        }
+    }
+
+    public void CreatePool&lt;T&gt;(string key, T prefab, int size, Transform parent) where T : MonoBehaviour
+    {
+        pools[key] = new ObjectPool&lt;T&gt;(prefab, parent, size);
+    }
+
+    public T GetFromPool&lt;T&gt;(string key) where T : MonoBehaviour
+    {
+        if (pools.TryGetValue(key, out var pool))
+        {
+            return ((ObjectPool&lt;T&gt;)pool).Get();
+        }
+        return null;
+    }
+
+    public void ReturnToPool&lt;T&gt;(string key, T obj) where T : MonoBehaviour
+    {
+        if (pools.TryGetValue(key, out var pool))
+        {
+            ((ObjectPool&lt;T&gt;)pool).Return(obj);
+        }
+    }
+}
+</code></pre>
+
+                <h2>데이터 시트 시스템 (UGS)</h2>
+                <p>Unity Google Sheets (UGS) 라이브러리를 사용하여 데이터 관리 시스템을 구현했습니다. 구글 시트에 적용된 데이터를 빠르게 게임에 적용하여 밸런스 수정 시간을 단축했습니다.</p>
+
+                <pre><code>// UGS 데이터 로더
+public class UGSDataLoader : MonoBehaviour
+{
+    public string spreadsheetId;
+    public int sheetIndex = 0;
+
+    private void Start()
+    {
+        LoadMonsterData();
+        LoadStageData();
+        LoadItemData();
+    }
+
+    private async void LoadMonsterData()
+    {
         try
         {
-            await UploadChanges();
-            await DownloadUpdates();
-            lastSyncTime = Time.time;
+            var data = await GoogleSheetsReader.Read(
+                spreadsheetId,
+                sheetIndex,
+                "Monsters!A2:F100"
+            );
+
+            var monsterTable = ParseMonsterData(data);
+            MonsterDataManager.Instance.SetMonsterData(monsterTable);
         }
         catch (Exception e)
         {
-            Debug.LogError($"동기화 실패: {e.Message}");
-        }
-        finally
-        {
-            isSyncing = false;
+            Debug.LogError($"Failed to load monster data: {e.Message}");
         }
     }
-}</code></pre>
 
-                    <h4>3단계: 충돌 해결 전략</h4>
-                    <ul>
-                        <li>높은 스코어 유지</li>
-                        <li>골드 합산</li>
-                        <li>아이템 합집합</li>
-                    </ul>
+    private Dictionary&lt;string, MonsterData&gt; ParseMonsterData(string[,] data)
+    {
+        var monsterTable = new Dictionary&lt;string, MonsterData&gt;();
 
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <table>
-                            <tr>
-                                <th>지표</th>
-                                <th>개선 전</th>
-                                <th>개선 후</th>
-                                <th>향상율</th>
-                            </tr>
-                            <tr>
-                                <td>데이터 동기화 실패율</td>
-                                <td>15%</td>
-                                <td>2%</td>
-                                <td>87% 개선</td>
-                            </tr>
-                            <tr>
-                                <td>데이터 손실</td>
-                                <td>발생</td>
-                                <td>해결</td>
-                                <td>100% 해결</td>
-                            </tr>
-                            <tr>
-                                <td>다중 기기 플레이</td>
-                                <td>불가</td>
-                                <td>가능</td>
-                                <td>충돌 해결</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+        for (int row = 0; row &lt; data.GetLength(0); row++)
+        {
+            string id = data[row, 0];
+            if (string.IsNullOrEmpty(id)) continue;
 
-                <div class="doc-section">
-                    <h2>성과 및 성능 개선</h2>
-                    <table>
-                        <tr>
-                            <th>지표</th>
-                            <th>개선 전</th>
-                            <th>개선 후</th>
-                            <th>향상율</th>
-                        </tr>
-                        <tr>
-                            <td>신규 아이템 추가 시간</td>
-                            <td>2시간</td>
-                            <td>36분</td>
-                            <td>70% 단축</td>
-                        </tr>
-                        <tr>
-                            <td>동시 표시 오브젝트 수</td>
-                            <td>50개</td>
-                            <td>100+개</td>
-                            <td>100% 증가</td>
-                        </tr>
-                        <tr>
-                            <td>데이터 동기화 실패율</td>
-                            <td>15%</td>
-                            <td>2%</td>
-                            <td>87% 개선</td>
-                        </tr>
-                        <tr>
-                            <td>랭킹 시스템</td>
-                            <td>로컬만</td>
-                            <td>전역</td>
-                            <td>전역 랭킹 구현</td>
-                        </tr>
-                    </table>
-                </div>
+            monsterTable[id] = new MonsterData
+            {
+                id = id,
+                name = data[row, 1],
+                hp = int.Parse(data[row, 2]),
+                attack = int.Parse(data[row, 3]),
+                defense = int.Parse(data[row, 4]),
+                expReward = int.Parse(data[row, 5])
+            };
+        }
 
-                <div class="doc-section">
-                    <h2>개발 도전과제 및 해결</h2>
+        return monsterTable;
+    }
+}
+</code></pre>
 
-                    <h3>GPGS 연동</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> GPGS 인증 및 리더보드 설정의 복잡성</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> Google Play Console에서 리더보드 ID 생성, 테스트 계정으로 미리 검증, 인증 실패 시 재시도 로직 구현</p>
-                    </div>
+                <pre><code>// 몬스터 데이터 매니저
+public class MonsterDataManager : MonoBehaviour
+{
+    private static MonsterDataManager instance;
+    private Dictionary&lt;string, MonsterData&gt; monsterData;
 
-                    <h3>뱀서라이크 시스템 설계</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 무작위 생성과 난이도 밸런싱</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> 절차적 생성으로 룸 배치, 난이도 곡선에 따른 적 강도 조절, 아이템 드롭 확률 조정</p>
-                    </div>
+    public static MonsterDataManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                GameObject go = new GameObject("MonsterDataManager");
+                instance = go.AddComponent&lt;MonsterDataManager&gt;();
+                DontDestroyOnLoad(go);
+            }
+            return instance;
+        }
+    }
 
-                    <h3>대규모 오브젝트 관리</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 동시에 많은 적과 효과가 화면에 표시</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> Object Pooling으로 오브젝트 재사용, 비활성 오브젝트 비활성화, LOD (Level of Detail) 적용</p>
-                    </div>
-                </div>
+    public void SetMonsterData(Dictionary&lt;string, MonsterData&gt; data)
+    {
+        monsterData = data;
+        Debug.Log($"Loaded {data.Count} monsters.");
+    }
 
-                <div class="doc-section">
-                    <h2>결론</h2>
-                    <p>와일드 템페스트 프로젝트에서는 GPGS 리더보드로 전역 랭킹 시스템, 모듈화된 아이템 시스템으로 확장성 확보, 뒤끝 실시간 동기화로 안정적인 데이터 관리를 구현했습니다.</p>
+    public MonsterData GetMonsterData(string id)
+    {
+        if (monsterData.TryGetValue(id, out var data))
+        {
+            return data;
+        }
+        Debug.LogWarning($"Monster data not found: {id}");
+        return null;
+    }
+}
 
-                    <h3>주요 성과</h3>
-                    <ul>
-                        <li><strong>전역 랭킹 시스템:</strong> GPGS로 전체 플레이어와 경쟁 가능</li>
-                        <li><strong>신규 아이템 추가 시간 70% 단축:</strong> ScriptableObject 기반 모듈화</li>
-                        <li><strong>동시 표시 오브젝트 100+개 처리:</strong> Object Pooling으로 성능 최적화</li>
-                        <li><strong>안정적인 데이터 동기화:</strong> 자동 동기화와 충돌 해결</li>
-                    </ul>
+// 몬스터 데이터 클래스
+[System.Serializable]
+public class MonsterData
+{
+    public string id;
+    public string name;
+    public int hp;
+    public int attack;
+    public int defense;
+    public int expReward;
+}
+</code></pre>
 
-                    <h3>학습 내용</h3>
-                    <ul>
-                        <li>GPGS (Google Play Games Services) 연동</li>
-                        <li>리더보드 시스템 구현</li>
-                        <li>모듈화된 아이템 시스템 설계</li>
-                        <li>실시간 데이터 동기화 및 충돌 해결</li>
-                    </ul>
-                </div>
+                <pre><code>// 스테이지 데이터 로드
+private async void LoadStageData()
+{
+    try
+    {
+        var data = await GoogleSheetsReader.Read(
+            spreadsheetId,
+            sheetIndex,
+            "Stages!A2:H50"
+        );
+
+        var stageTable = ParseStageData(data);
+        StageDataManager.Instance.SetStageData(stageTable);
+    }
+    catch (Exception e)
+    {
+        Debug.LogError($"Failed to load stage data: {e.Message}");
+    }
+}
+
+private List&lt;StageData&gt; ParseStageData(string[,] data)
+{
+    var stageTable = new List&lt;StageData&gt;();
+
+    for (int row = 0; row &lt; data.GetLength(0); row++)
+    {
+        stageTable.Add(new StageData
+        {
+            stageId = data[row, 0],
+            name = data[row, 1],
+            floorCount = int.Parse(data[row, 2]),
+            minMonsterLevel = int.Parse(data[row, 3]),
+            maxMonsterLevel = int.Parse(data[row, 4]),
+            bossId = data[row, 5],
+            stageDifficulty = float.Parse(data[row, 6]),
+            goldReward = int.Parse(data[row, 7])
+        });
+    }
+
+    return stageTable;
+}
+</code></pre>
+
+                <p>구글 시트에 몬스터 데이터와 스테이지 정보를 입력하고, UGS 라이브러리를 통해 실시간으로 데이터를 로드합니다. 이를 통해 빠르게 밸런스 수정이 가능했습니다.</p>
+
+                <pre><code>[구글 시트 구조 예시]
+
+Monsters 시트:
+| ID | Name | HP | Attack | Defense | Exp Reward |
+|----|------|----|--------|---------|------------|
+| M001 | 슬라임 | 50 | 10 | 5 | 20 |
+| M002 | 고블린 | 80 | 15 | 8 | 35 |
+| M003 | 오크 | 150 | 25 | 12 | 80 |
+
+Stages 시트:
+| ID | Name | Floor Count | Min Lv | Max Lv | Boss ID | Difficulty | Gold Reward |
+|----|------|-------------|---------|---------|-----------|-------------|
+| S001 | 숲의 던전 | 5 | 1 | 10 | B001 | 1.0 | 100 |
+| S002 | 동굴 던전 | 8 | 5 | 20 | B002 | 1.5 | 200 |
+| S003 | 화산 던전 | 12 | 15 | 30 | B003 | 2.0 | 350 |
+</code></pre>
+
+                <h2>GPGS 리더보드 연동</h2>
+                <p>Google Play Game Services(GPGS)를 활용하여 전 세계 플레이어와 점수를 경쟁할 수 있는 리더보드 시스템을 구현했습니다.</p>
+
+                <pre><code>// GPGS 매니저
+public class GPGSManager : MonoBehaviour
+{
+    private void Start()
+    {
+        PlayGamesPlatform.Activate();
+    }
+
+    public void SubmitScore(long score, string leaderboardId)
+    {
+        Social.ReportScore(score, leaderboardId, (bool success) =&gt;
+        {
+            if (success)
+            {
+                Debug.Log("Score submitted successfully.");
+            }
+            else
+            {
+                Debug.LogWarning("Score submission failed.");
+            }
+        });
+    }
+
+    public void ShowLeaderboard(string leaderboardId)
+    {
+        Social.ShowLeaderboardUI(leaderboardId);
+    }
+}
+</code></pre>
+
+                <h2>IAP 및 광고 시스템</h2>
+                <p>Unity IAP를 사용하여 인앱결제 상품을 설계하고, AdMob SDK를 사용하여 광고 시스템을 구현했습니다.</p>
+
+                <pre><code>// IAP 매니저
+public class IAPManager : MonoBehaviour
+{
+    // 상품 종류
+    public enum ProductType
+    {
+        Currency,       // 골드
+        Revive,        // 부활
+        StarterPack     // 스타터 팩
+    }
+
+    public async void PurchaseProduct(string productId)
+    {
+        try
+        {
+            var product = _storeController.products.WithID(productId);
+            await _storeController.InitiatePurchase(product);
+        }
+        catch (Exception e)
+        {
+            HandlePurchaseError(e);
+        }
+    }
+}
+</code></pre>
+
+                <pre><code>// 보상형 광고 매니저
+public class RewardAdManager : MonoBehaviour
+{
+    private RewardedAd _rewardedAd;
+
+    public void LoadRewardAd()
+    {
+        string adUnitId = "ca-app-pub-xxx/yyy";
+        RewardedAd.Load(adUnitId, CreateAdRequest(),
+            (RewardedAd ad, LoadAdError error) =&gt;
+            {
+                if (error != null)
+                {
+                    Debug.LogError("Reward ad load failed");
+                    return;
+                }
+                _rewardedAd = ad;
+            });
+    }
+
+    public void ShowRewardAd(Action&lt;Reward&gt; onRewardEarned)
+    {
+        if (_rewardedAd != null &amp;&amp; _rewardedAd.CanShowAd())
+        {
+            _rewardedAd.Show((Reward reward) =&gt;
+            {
+                onRewardEarned?.Invoke(reward);
+            });
+        }
+    }
+}
+</code></pre>
+
+                <h2>주요 성과</h2>
+                <ul>
+                    <li><strong>아이템 및 무기 상속 구조:</strong> 확장 가능한 시스템 구축</li>
+                    <li><strong>오브젝트 풀링:</strong> 성능 최적화</li>
+                    <li><strong>UGS 라이브러리 활용:</strong> 구글 시트 연동으로 빠른 밸런스 수정 가능</li>
+                    <li><strong>GPGS 연동:</strong> 전 세계 플레이어와 점수 경쟁 가능</li>
+                    <li><strong>IAP 및 광고:</strong> 수익화 모델 구현</li>
+                </ul>
+
+                <h2>결론/학습 내용</h2>
+
+                <h3>프로젝트의 의의</h3>
+                <p>와일드 템페스트 프로젝트는 뱀서라이크 장르의 핵심 요소(무한한 플레이, 난이도 밸런스, 전략적 전투)를 구현하고 데이터 주도 개발 방식을 통해 유지보수성을 높였습니다.</p>
+
+                <h3>학습 내용</h3>
+                <ul>
+                    <li>상속 구조를 활용한 확장 가능한 아이템 시스템 설계</li>
+                    <li>오브젝트 풀링 패턴을 통한 성능 최적화</li>
+                    <li>UGS 라이브러리를 활용한 구글 시트 연동</li>
+                    <li>데이터 주도 개발 방식을 통한 빠른 밸런스 수정</li>
+                    <li>Google Play Game Services API 활용</li>
+                    <li>IAP 및 AdMob을 통한 수익화 모델 구현</li>
+                </ul>
+
+                <h2>코드 예시</h2>
+
+                <h3>던전 생성 시스템</h3>
+                <pre><code>public class DungeonGenerator : MonoBehaviour
+{
+    private int width = 50;
+    private int height = 50;
+    private int[,] map;
+
+    private void GenerateDungeon()
+    {
+        map = new int[width, height];
+
+        // 셀룰러 오토마타 기반 맵 생성
+        CellularAutomata();
+
+        // 경로 검증
+        if (!ValidatePath())
+        {
+            GenerateDungeon(); // 재생성
+        }
+    }
+
+    private void CellularAutomata()
+    {
+        // 초기화
+        for (int x = 0; x &lt; width; x++)
+        {
+            for (int y = 0; y &lt; height; y++)
+            {
+                map[x, y] = Random.value &lt; 0.45f ? 1 : 0;
+            }
+        }
+
+        // 반복 적용
+        for (int i = 0; i &lt; 5; i++)
+        {
+            ApplyCellularAutomataRules();
+        }
+    }
+}
+</code></pre>
+
+                <h3>적 AI 상태 머신</h3>
+                <pre><code>public class EnemyAI : MonoBehaviour
+{
+    private enum State { Idle, Patrol, Chase, Attack, Flee }
+    private State currentState;
+    private IAttackStrategy attackStrategy;
+
+    private void Update()
+    {
+        switch (currentState)
+        {
+            case State.Idle:
+                if (HasSpottedPlayer()) ChangeState(State.Chase);
+                break;
+            case State.Patrol:
+                PatrolBehavior();
+                if (HasSpottedPlayer()) ChangeState(State.Chase);
+                break;
+            case State.Chase:
+                MoveTowardsPlayer();
+                if (IsInAttackRange()) ChangeState(State.Attack);
+                if (IsLowHealth()) ChangeState(State.Flee);
+                break;
+            case State.Attack:
+                attackStrategy.Execute(this);
+                if (!IsInAttackRange()) ChangeState(State.Chase);
+                break;
+            case State.Flee:
+                MoveAwayFromPlayer();
+                if (IsSafe()) ChangeState(State.Patrol);
+                break;
+        }
+    }
+}
+</code></pre>
 
                 <div class="doc-nav" style="margin-top: 3rem;">
                     <a href="index.html#projects">← 프로젝트 목록으로 돌아가기</a>

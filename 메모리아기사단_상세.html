@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메모리아 기사단 - 프로젝트 상세 | 김경학 포트폴리오</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">KKH</a>
+            <a href="index.html" class="logo">김경학 Portfolio</a>
             <div class="nav-menu" id="navMenu">
                 <a href="index.html#about" class="nav-link">소개</a>
-                <a href="index.html#projects" class="nav-link">프로젝트</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">프로젝트</a>
+                    <div class="dropdown-menu">
+                        <a href="메모리아기사단_상세.html" class="dropdown-item">메모리아 기사단</a>
+                        <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
+                        <a href="와일드템페스트_상세.html" class="dropdown-item">와일드 템페스트</a>
+                        <a href="원더메이트_상세.html" class="dropdown-item">원더메이트</a>
+                        <a href="여관_상세.html" class="dropdown-item">여관</a>
+                    </div>
+                </div>
                 <a href="index.html#skills" class="nav-link">기술 스택</a>
                 <a href="index.html#contact" class="nav-link">연락처</a>
             </div>
@@ -43,7 +58,8 @@
 
             <div class="doc-content">
                 <h2>프로젝트 개요</h2>
-                <p>메모리아 기사단은 LLM API를 사용한 캐릭터 채팅을 결합한 방치형 RPG 게임입니다. 프로그래머 2인이서 개발했으며, 한 달이라는 짧은 개발 기간 내에 기획부터 출시까지 완료했습니다. 플레이어는 영웅들을 수집하고 육성하며 캐릭터 채팅 시스템을 통해 캐릭터들과 자연스러운 대화를 나눌 수 있습니다.</p>
+                <p>메모리아 기사단은 LLM API를 사용한 캐릭터 채팅을 결합한 방치형 RPG 게임입니다. 프로그래머 2인이서 개발했으며, 한 달이라는 짧은 개발 기간 내에 기획부터 출시까지
+                    완료했습니다. 플레이어는 영웅들을 수집하고 육성하며 캐릭터 채팅 시스템을 통해 캐릭터들과 자연스러운 대화를 나눌 수 있습니다.</p>
 
                 <h2>팀원 소개</h2>
                 <table>
@@ -82,9 +98,11 @@
                 <h2>LLM 기반 캐릭터 채팅 시스템</h2>
 
                 <h3>백엔드 프록시 아키텍처</h3>
-                <p>클라이언트에서 직접 LLM API를 호출하지 않고, 뒤끝(Backend) 클라우드 함수를 프록시로 사용하는 아키텍처를 채택했습니다. API 키가 클라이언트에 노출되지 않습니다.</p>
+                <p>클라이언트에서 직접 LLM API를 호출하지 않고, 뒤끝(Backend) 클라우드 함수를 프록시로 사용하는 아키텍처를 채택했습니다. API 키가 클라이언트에 노출되지 않습니다.
+                </p>
 
-                <p>모든 LLM 요청은 BackendChatService를 통해 뒤끝 클라우드 함수 <code>AIChat</code>으로 전달되며, provider와 model ID를 파라미터로 보내어 백엔드에서 해당 API를 호출합니다.</p>
+                <p>모든 LLM 요청은 BackendChatService를 통해 뒤끝 클라우드 함수 <code>AIChat</code>으로 전달되며, provider와 model ID를 파라미터로
+                    보내어 백엔드에서 해당 API를 호출합니다.</p>
 
                 <pre><code class="language-csharp">public class BackendChatService : IChatService
 {
@@ -125,21 +143,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Gemini 2.5 Flash-Lite</td><td>일일 무료 10회</td></tr>
-                        <tr><td>Claude Haiku 4.5</td><td>5</td></tr>
-                        <tr><td>Gemini 3 Flash</td><td>15</td></tr>
-                        <tr><td>Claude Sonnet 4.5</td><td>23</td></tr>
-                        <tr><td>Gemini 3 Pro</td><td>40</td></tr>
-                        <tr><td>Claude Opus 4.5</td><td>50</td></tr>
+                        <tr>
+                            <td>Gemini 2.5 Flash-Lite</td>
+                            <td>일일 무료 10회</td>
+                        </tr>
+                        <tr>
+                            <td>Claude Haiku 4.5</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Gemini 3 Flash</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Claude Sonnet 4.5</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>Gemini 3 Pro</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td>Claude Opus 4.5</td>
+                            <td>50</td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <p>모델 선택 시 provider에 따라 BackendChatService를 생성하며, 마지막으로 사용한 모델 ID를 PlayerPrefs에 저장하여 다음 접속 시 자동 복원합니다.</p>
+                <p>모델 선택 시 provider에 따라 BackendChatService를 생성하며, 마지막으로 사용한 모델 ID를 PlayerPrefs에 저장하여 다음 접속 시 자동 복원합니다.
+                </p>
 
                 <h3>캐릭터 데이터 기반 구조</h3>
-                <p>캐릭터 정보를 ScriptableObject로 관리하여 에디터에서 캐릭터를 추가할 수 있습니다. 각 캐릭터는 이름, 시스템 프롬프트, 요약 프롬프트, 표정 스프라이트 리스트를 가집니다.</p>
+                <p>캐릭터 정보를 ScriptableObject로 관리하여 에디터에서 캐릭터를 추가할 수 있습니다. 각 캐릭터는 이름, 시스템 프롬프트, 요약 프롬프트, 표정 스프라이트 리스트를
+                    가집니다.</p>
 
-                <p>summaryPrompt는 편성된 다른 파티멤버를 LLM에게 전달하기 위해 사용합니다. 즉 A캐릭터와 채팅할 때 편성된 B, C 캐릭터에 대한 summaryPrompt를 받습니다.</p>
+                <p>summaryPrompt는 편성된 다른 파티멤버를 LLM에게 전달하기 위해 사용합니다. 즉 A캐릭터와 채팅할 때 편성된 B, C 캐릭터에 대한 summaryPrompt를 받습니다.
+                </p>
 
                 <pre><code class="language-csharp">[CreateAssetMenu(fileName = "NewCharacter", menuName = "AI/Character Data")]
 public class CharacterChatData : ScriptableObject
@@ -167,13 +206,17 @@ public class CharacterChatData : ScriptableObject
                 <h3>시스템 프롬프트 구성</h3>
                 <p>BuildPrompt 메서드에서 게임 상태를 기반으로 시스템 프롬프트를 동적으로 생성합니다.</p>
 
-                <p><strong>System Instruction:</strong> AI가 캐릭터로서 연기하도록 지시하며, "Affinity", "Level", "AI" 같은 용어를 언급하지 않는 몰입 규칙을 포함합니다. 제 4의 벽을 허물지 않고 세계관 속 인물로서 행동하도록 강제합니다.</p>
+                <p><strong>System Instruction:</strong> AI가 캐릭터로서 연기하도록 지시하며, "Affinity", "Level", "AI" 같은 용어를 언급하지 않는
+                    몰입 규칙을 포함합니다. 제 4의 벽을 허물지 않고 세계관 속 인물로서 행동하도록 강제합니다.</p>
 
-                <p><strong>Character Persona:</strong> CharacterChatData의 systemPrompt를 주입합니다. 각 캐릭터의 성격, 말투, 배경 스토리를 포함합니다.</p>
+                <p><strong>Character Persona:</strong> CharacterChatData의 systemPrompt를 주입합니다. 각 캐릭터의 성격, 말투, 배경 스토리를
+                    포함합니다.</p>
 
-                <p><strong>World Context:</strong> 현재 시간, 마지막 접속 이후 경과 시간, 플레이어 레벨과 스테이지, 파티 멤버와 그 인물 정보(summaryPrompt), 장착 무기 정보를 전달합니다.</p>
+                <p><strong>World Context:</strong> 현재 시간, 마지막 접속 이후 경과 시간, 플레이어 레벨과 스테이지, 파티 멤버와 그 인물 정보(summaryPrompt),
+                    장착 무기 정보를 전달합니다.</p>
 
-                <p><strong>Output Protocol:</strong> AI 응답에 포함할 태그 형식을 정의합니다. 감정 태그, 호감도 변화 태그, 보너스 스탯 태그, 액션/이펙트 태그의 형식과 사용 규칙을 지정합니다.</p>
+                <p><strong>Output Protocol:</strong> AI 응답에 포함할 태그 형식을 정의합니다. 감정 태그, 호감도 변화 태그, 보너스 스탯 태그, 액션/이펙트 태그의
+                    형식과 사용 규칙을 지정합니다.</p>
 
                 <p>밑은 프롬프트 전체 내용입니다.</p>
 
@@ -358,20 +401,50 @@ public class CharacterChatData : ScriptableObject
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>-10 이하</td><td>ENEMY</td><td>공격적, 협력 거부</td></tr>
-                        <tr><td>0 미만</td><td>HOSTILE</td><td>차가움, 냉소적</td></tr>
-                        <tr><td>0~20</td><td>STRANGER</td><td>정중, 거리감</td></tr>
-                        <tr><td>20~50</td><td>ACQUAINTANCE</td><td>친근, 적당한 경계</td></tr>
-                        <tr><td>50~80</td><td>CLOSE FRIEND</td><td>편안함, 따뜻함</td></tr>
-                        <tr><td>80~100</td><td>LOVER</td><td>애정 표현</td></tr>
-                        <tr><td>100 초과</td><td>SOULMATE</td><td>헌신적 사랑</td></tr>
+                        <tr>
+                            <td>-10 이하</td>
+                            <td>ENEMY</td>
+                            <td>공격적, 협력 거부</td>
+                        </tr>
+                        <tr>
+                            <td>0 미만</td>
+                            <td>HOSTILE</td>
+                            <td>차가움, 냉소적</td>
+                        </tr>
+                        <tr>
+                            <td>0~20</td>
+                            <td>STRANGER</td>
+                            <td>정중, 거리감</td>
+                        </tr>
+                        <tr>
+                            <td>20~50</td>
+                            <td>ACQUAINTANCE</td>
+                            <td>친근, 적당한 경계</td>
+                        </tr>
+                        <tr>
+                            <td>50~80</td>
+                            <td>CLOSE FRIEND</td>
+                            <td>편안함, 따뜻함</td>
+                        </tr>
+                        <tr>
+                            <td>80~100</td>
+                            <td>LOVER</td>
+                            <td>애정 표현</td>
+                        </tr>
+                        <tr>
+                            <td>100 초과</td>
+                            <td>SOULMATE</td>
+                            <td>헌신적 사랑</td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <p>로맨스 관련 대응도 호감도에 따라 다르게 제어합니다. 호감도가 40 미만이면 고백을 거부하고, 40~80에서는 당황하며 망설이고, 80 이상에서만 감정을 받아들이도록 프롬프트에 명시합니다. 또한 호감도 50 이상에서는 질투 프로토콜이 활성화되어, 파티 내 다른 캐릭터와 플레이어의 관계에 대해 자연스럽게 질투를 표현합니다.</p>
+                <p>로맨스 관련 대응도 호감도에 따라 다르게 제어합니다. 호감도가 40 미만이면 고백을 거부하고, 40~80에서는 당황하며 망설이고, 80 이상에서만 감정을 받아들이도록 프롬프트에
+                    명시합니다. 또한 호감도 50 이상에서는 질투 프로토콜이 활성화되어, 파티 내 다른 캐릭터와 플레이어의 관계에 대해 자연스럽게 질투를 표현합니다.</p>
 
                 <h2>이벤트 로그 시스템</h2>
-                <p>ChatState는 게임 내 중요 이벤트를 수집하여 채팅 프롬프트에 활용하는 정적 상태 관리 클래스입니다. 이벤트 로그는 우선순위(1~5)와 타임스탬프를 가지며, 동일한 mergeKey를 가진 로그는 갱신됩니다.</p>
+                <p>ChatState는 게임 내 중요 이벤트를 수집하여 채팅 프롬프트에 활용하는 정적 상태 관리 클래스입니다. 이벤트 로그는 우선순위(1~5)와 타임스탬프를 가지며, 동일한
+                    mergeKey를 가진 로그는 갱신됩니다.</p>
 
                 <pre><code class="language-csharp">public class EventLog
 {
@@ -381,23 +454,35 @@ public class CharacterChatData : ScriptableObject
     public string mergeKey; // 로그 병합용 키
 }</code></pre>
 
-                <p>최대 20개까지 저장하며, 초과 시 우선순위가 낮고 오래된 로그부터 삭제합니다. 채팅이 진행 중일 때는 새 로그 추가를 차단하여 대화 맥락이 끊기지 않도록 보호합니다. 채팅 시작 시 최대 10개의 최근 로그를 프롬프트에 주입하여, 캐릭터가 방금 일어난 일을 자연스럽게 언급할 수 있도록 합니다.</p>
+                <p>최대 20개까지 저장하며, 초과 시 우선순위가 낮고 오래된 로그부터 삭제합니다. 채팅이 진행 중일 때는 새 로그 추가를 차단하여 대화 맥락이 끊기지 않도록 보호합니다. 채팅 시작 시
+                    최대 10개의 최근 로그를 프롬프트에 주입하여, 캐릭터가 방금 일어난 일을 자연스럽게 언급할 수 있도록 합니다.</p>
 
                 <h2>AI 응답 처리 파이프라인</h2>
                 <p>AI 응답은 ProcessAIResponse 메서드에서 정규식 기반 태그 파싱을 거쳐 UI에 반영됩니다.</p>
 
-                <p><strong>감정 태그:</strong> <code>&lt;happy&gt;</code>, <code>&lt;sad&gt;</code> 등을 파싱하여 캐릭터 초상화 스프라이트를 교체합니다. <code>&lt;Tag&gt;</code> 형식과 <code>/Tag</code> 형식 모두 인식합니다.</p>
+                <p><strong>감정 태그:</strong> <code>&lt;happy&gt;</code>, <code>&lt;sad&gt;</code> 등을 파싱하여 캐릭터 초상화 스프라이트를
+                    교체합니다. <code>&lt;Tag&gt;</code> 형식과 <code>/Tag</code> 형식 모두 인식합니다.</p>
 
-                <p><strong>호감도 태그:</strong> <code>&lt;Affinity+3&gt;</code>, <code>&lt;Affinity-2&gt;</code> 등을 파싱하여 호감도를 갱신합니다. 변화량은 -20~100 사이로 클램프되며, UI에 녹색/빨간색 텍스트로 변화량을 표시합니다.</p>
+                <p><strong>호감도 태그:</strong> <code>&lt;Affinity+3&gt;</code>, <code>&lt;Affinity-2&gt;</code> 등을 파싱하여
+                    호감도를 갱신합니다. 변화량은 -20~100 사이로 클램프되며, UI에 녹색/빨간색 텍스트로 변화량을 표시합니다.</p>
 
-                <p><strong>스탯 태그:</strong> <code>&lt;Stat=Atk&gt;</code>, <code>&lt;Stat=Def&gt;</code>, <code>&lt;Stat=Aspd&gt;</code>를 파싱하여 캐릭터의 보너스 스탯을 변경합니다.</p>
+                <p><strong>스탯 태그:</strong> <code>&lt;Stat=Atk&gt;</code>, <code>&lt;Stat=Def&gt;</code>,
+                    <code>&lt;Stat=Aspd&gt;</code>를 파싱하여 캐릭터의 보너스 스탯을 변경합니다.
+                </p>
 
-                <p><strong>액션 태그:</strong> <code>&lt;Action=Shake&gt;</code>, <code>&lt;Action=Jump&gt;</code>, <code>&lt;Action=Left&gt;</code>, <code>&lt;Action=Right&gt;</code>, <code>&lt;Action=Punch&gt;</code>를 파싱하여 DOTween으로 초상화에 애니메이션을 적용합니다. 흔들림, 점프, 좌우 이동, 펀치 스케일 등의 효과가 있습니다.</p>
+                <p><strong>액션 태그:</strong> <code>&lt;Action=Shake&gt;</code>, <code>&lt;Action=Jump&gt;</code>,
+                    <code>&lt;Action=Left&gt;</code>, <code>&lt;Action=Right&gt;</code>,
+                    <code>&lt;Action=Punch&gt;</code>를 파싱하여 DOTween으로 초상화에 애니메이션을 적용합니다. 흔들림, 점프, 좌우 이동, 펀치 스케일 등의 효과가
+                    있습니다.
+                </p>
 
-                <p><strong>이펙트 태그:</strong> <code>&lt;Effect=Sweat&gt;</code>, <code>&lt;Effect=Angry&gt;</code>, <code>&lt;Effect=Heart&gt;</code>를 파싱하여 Resources 폴더에서 파티클 프리팹을 로드해 초상화에 생성합니다.</p>
+                <p><strong>이펙트 태그:</strong> <code>&lt;Effect=Sweat&gt;</code>, <code>&lt;Effect=Angry&gt;</code>,
+                    <code>&lt;Effect=Heart&gt;</code>를 파싱하여 Resources 폴더에서 파티클 프리팹을 로드해 초상화에 생성합니다.
+                </p>
 
                 <h2>대화 요약 및 장기 기억</h2>
-                <p>채팅 종료 시 SummarizeChat 메서드가 실행됩니다. 기존 요약본에 새 대화 내용을 병합하는 방식으로 장기 기억을 관리합니다. Gemini 2.0 Flash Lite 모델을 사용하여 비용 효율적으로 요약을 수행합니다.</p>
+                <p>채팅 종료 시 SummarizeChat 메서드가 실행됩니다. 기존 요약본에 새 대화 내용을 병합하는 방식으로 장기 기억을 관리합니다. Gemini 2.0 Flash Lite 모델을
+                    사용하여 비용 효율적으로 요약을 수행합니다.</p>
 
                 <pre><code class="language-csharp">string prompt = "You are a memory manager. Update the 'Current Memory' based on the 'New Conversation'.\n" +
     "1. Incorporate new important facts (names, preferences, events) into the memory.\n" +
@@ -409,7 +494,8 @@ public class CharacterChatData : ScriptableObject
                 <p>기존 기억을 완전히 교체하지 않고 새로운 정보를 병합하는 방식을 채택하여, 이전 대화에서 형성된 관계나 정보가 유지됩니다.</p>
 
                 <h2>모바일 UX 최적화</h2>
-                <p>모바일 환경에서 키보드가 올라올 때 채팅 UI가 가려지는 문제를 해결하기 위해 MobileKeyboardAdapter를 구현했습니다. Android 네이티브 코드를 통해 키보드 높이를 감지하고, Canvas scaleFactor를 고려하여 채팅 패널을 스무스하게 위로 이동시킵니다.</p>
+                <p>모바일 환경에서 키보드가 올라올 때 채팅 UI가 가려지는 문제를 해결하기 위해 MobileKeyboardAdapter를 구현했습니다. Android 네이티브 코드를 통해 키보드
+                    높이를 감지하고, Canvas scaleFactor를 고려하여 채팅 패널을 스무스하게 위로 이동시킵니다.</p>
 
                 <pre><code class="language-csharp">// Android 네이티브로 가시 영역 높이 계산
 AndroidJavaObject view = unityPlayer.Call&lt;AndroidJavaObject&gt;("getWindow")
@@ -457,14 +543,27 @@ int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
                     <li><strong>그래픽 겸임:</strong> 프로그래머로서 캐릭터 일러스트 및 리소스 제작 완료</li>
                     <li><strong>글로벌 진출:</strong> 다국어 로컬라이제이션 완료 및 해외 출시</li>
                     <li><strong>수익 창출:</strong> IAP와 AdMob을 통한 수익화 모델 성공 구현</li>
-                    <img src="./Images/메모리아기사단_성과1.webp" alt="성과1">
-                    <br>결제 수입
-                    <img src="./Images/메모리아기사단_성과2.webp" alt="성과2">
-                    <br>광고 수입
-                </ul>
 
-                <h2>시스템 아키텍처</h2>
-                <pre><code class="language-none">메모리아 기사단
+                    <div class="image-gallery">
+                        <img src="./Images/메모리아기사단_성과1.webp" alt="성과1">
+                    </div>
+                    결제 수입<br>
+
+                    <div class="image-gallery">
+                        <img src="./Images/메모리아기사단_성과2.webp" alt="성과2">
+                    </div>
+                    광고 수입<br>
+
+                    <div class="image-gallery">
+                        <img src="./Images/메모리아기사단_지표.webp" alt="ARU">
+                        <img src="./Images/메모리아기사단_DAU.webp" alt="DAU">
+                    </div>
+
+            </div>
+            </ul>
+
+            <h2>시스템 아키텍처</h2>
+            <pre><code class="language-none">메모리아 기사단
 ├── Scripts/
 │   ├── AI/                       # AI 채팅 시스템
 │   │   ├── IChatService.cs       # 채팅 서비스 인터페이스
@@ -498,10 +597,10 @@ int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
 └── Resources/
     └── CharacterChat/            # 캐릭터 데이터 에셋</code></pre>
 
-                <div class="doc-nav" style="margin-top: 3rem;">
-                    <a href="index.html#projects">&larr; 프로젝트 목록으로 돌아가기</a>
-                </div>
+            <div class="doc-nav" style="margin-top: 3rem;">
+                <a href="index.html#projects">&larr; 프로젝트 목록으로 돌아가기</a>
             </div>
+        </div>
         </div>
     </section>
 
@@ -509,4 +608,5 @@ int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

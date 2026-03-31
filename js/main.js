@@ -87,17 +87,31 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Animate skill bars on scroll
-const animateSkillBars = () => {
-    skillFills.forEach(skillFill => {
-        const rect = skillFill.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-
-        if (isVisible) {
-            skillFill.style.width = skillFill.style.width;
+// Animate skill bars on scroll using IntersectionObserver
+const skillBarObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const fills = entry.target.querySelectorAll('.skill-fill');
+            fills.forEach(fill => {
+                const targetWidth = fill.getAttribute('data-width');
+                if (targetWidth) {
+                    fill.style.width = targetWidth;
+                }
+            });
         }
     });
-};
+}, { threshold: 0.2 });
+
+// Store target widths and set initial width to 0
+skillFills.forEach(skillFill => {
+    skillFill.setAttribute('data-width', skillFill.style.width);
+    skillFill.style.width = '0%';
+});
+
+// Observe skill categories for animation
+document.querySelectorAll('.skill-category').forEach(category => {
+    skillBarObserver.observe(category);
+});
 
 // Intersection Observer for animations
 const observerOptions = {
@@ -146,15 +160,6 @@ const typeWriter = (element, text, speed = 50) => {
     };
     type();
 };
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    // Animate skill bars initially
-    animateSkillBars();
-
-    // Add scroll event listener for skill bars
-    window.addEventListener('scroll', animateSkillBars);
-});
 
 // Console message for developers
 console.log('%c 김경학의 포트폴리오에 오신 것을 환영합니다! ', 'background: #6366f1; color: white; padding: 10px; border-radius: 5px;');

@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>원더메이트 - 프로젝트 상세 | 김경학 포트폴리오</title>
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="원더메이트 프로젝트 상세 페이지. Unity, FSM 패턴을 활용한 타워 디펜스 게임 개발 프로젝트 기술 문서 및 성과">
-    <meta name="keywords" content="원더메이트, 타워 디펜스, Unity, FSM, 유한상태머신, 게임 개발, 디자인 패턴">
-    <meta name="author" content="김경학">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / KakaoTalk -->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="김경학 포트폴리오">
-    <meta property="og:title" content="원더메이트 - 프로젝트 상세 | 김경학 포트폴리오">
-    <meta property="og:description" content="Unity, FSM 패턴을 활용한 타워 디펜스 게임 개발 프로젝트. 기술 스택, 문제 해결 과정, 성과를 상세하게 소개합니다.">
-    <meta property="og:url" content="https://onegoon123.github.io/portfolio/원더메이트_상세.html">
-    <meta property="og:image" content="https://onegoon123.github.io/portfolio/Images/metaimage.png">
-    <meta property="og:image:alt" content="원더메이트 게임 스크린샷">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="원더메이트 - 프로젝트 상세">
-    <meta name="twitter:description" content="Unity, FSM 패턴을 활용한 타워 디펜스 게임 개발 프로젝트. 기술 스택, 문제 해결 과정, 성과를 상세하게 소개합니다.">
-    <meta name="twitter:image" content="https://onegoon123.github.io/portfolio/Images/metaimage.png">
-
+    <meta name="description" content="김경학의 원더메이트 프로젝트 상세 페이지. 그리드 기반 전략 타워 디펜스 게임의 기술적 구현 내역을 소개합니다.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">KKH</a>
+            <a href="index.html" class="logo">김경학 Portfolio</a>
             <div class="nav-menu" id="navMenu">
                 <a href="index.html#about" class="nav-link">소개</a>
-                <a href="index.html#projects" class="nav-link">프로젝트</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">프로젝트</a>
+                    <div class="dropdown-menu">
+                        <a href="메모리아기사단_상세.html" class="dropdown-item">메모리아 기사단</a>
+                        <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
+                        <a href="와일드템페스트_상세.html" class="dropdown-item">와일드 템페스트</a>
+                        <a href="원더메이트_상세.html" class="dropdown-item">원더메이트</a>
+                    </div>
+                </div>
                 <a href="index.html#skills" class="nav-link">기술 스택</a>
                 <a href="index.html#contact" class="nav-link">연락처</a>
             </div>
@@ -55,370 +50,362 @@
             </div>
 
             <div class="doc-header">
-                <h1 class="doc-title">원더메이트 - 프로젝트 상세</h1>
+                <h1 class="doc-title">원더메이트 (WonderMate) - 프로젝트 상세</h1>
                 <div class="doc-meta">
-                    <span>2026-03-08</span>
-                    <span>타워 디펜스</span>
-                    <span>Unity, C#, FSM, Command</span>
+                    <span>2024.03</span>
+                    <span>전략 타워 디펜스</span>
+                    <span>Unity, C#, Grid System</span>
                 </div>
             </div>
 
             <div class="doc-content">
-                <h2>프로젝트 개요</h2>
-                <p>원더메이트는 FSM 기반 AI와 Command 패턴 스킬 시스템을 갖춘 타워 디펜스 게임입니다. 유닛 동작을 상태 머신으로 명확히 정의하고, 스킬을 Command 패턴으로 확장 가능하게 설계했습니다.</p>
-
-                <table>
-                    <tr>
-                        <th>항목</th>
-                        <th>내용</th>
-                    </tr>
-                    <tr>
-                        <td>프로젝트명</td>
-                        <td>원더메이트</td>
-                    </tr>
-                    <tr>
-                        <td>장르</td>
-                        <td>타워 디펜스</td>
-                    </tr>
-                    <tr>
-                        <td>개발 엔진</td>
-                        <td>Unity 2022</td>
-                    </tr>
-                    <tr>
-                        <td>개발 언어</td>
-                        <td>C#</td>
-                    </tr>
-                    <tr>
-                        <td>백엔드</td>
-                        <td>뒤끝 서버</td>
-                    </tr>
-                    <tr>
-                        <td>디자인 패턴</td>
-                        <td>FSM, Command, Singleton, Object Pool</td>
-                    </tr>
-                    <tr>
-                        <td>출시 플랫폼</td>
-                        <td>Google Play Store</td>
-                    </tr>
-                </table>
-
-                <h2>기술 스택</h2>
-                <ul>
-                    <li><strong>엔진:</strong> Unity 2022</li>
-                    <li><strong>언어:</strong> C#</li>
-                    <li><strong>백엔드:</strong> 뒤끝 서버</li>
-                    <li><strong>디자인 패턴:</strong> FSM, Command, Singleton, Object Pool</li>
-                    <li><strong>형상 관리:</strong> Git</li>
-                </ul>
-
                 <div class="doc-section">
-                    <h2>1. FSM (유한 상태 머신) 기반 유닛 AI</h2>
-
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>유닛 AI 로직이 복잡하게 섞여 있어 다음 문제가 발생했습니다:</p>
-                        <ul>
-                            <li>코드 가독성 저하 (if-else 중첩)</li>
-                            <li>새로운 동작 추가 어려움</li>
-                            <li>버그 발생 시 디버깅 어려움</li>
-                        </ul>
-                    </div>
-
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: FSM 상태 기본 클래스</h4>
-                    <pre><code>public abstract class State
-{
-    protected StateMachine stateMachine;
-
-    public virtual void Enter() { }
-    public virtual void Update() { }
-    public virtual void Exit() { }
-
-    public void SetStateMachine(StateMachine machine)
-    {
-        stateMachine = machine;
-    }
-}
-
-public class StateMachine
-{
-    private State currentState;
-    private Dictionary&lt;System.Type, State&gt; states = new Dictionary&lt;System.Type, State&gt;();
-
-    public void ChangeState&lt;T&gt;() where T : State
-    {
-        State newState = states[typeof(T)];
-        if (currentState != null)
-        {
-            currentState.Exit();
-        }
-        currentState = newState;
-        currentState.Enter();
-    }
-
-    public void Update()
-    {
-        if (currentState != null)
-        {
-            currentState.Update();
-        }
-    }
-}</code></pre>
-
-                    <h4>2단계: 타워 AI 상태 구현</h4>
-                    <ul>
-                        <li><strong>IdleState:</strong> 대기 상태, 적이 사정거리 내에 있는지 확인</li>
-                        <li><strong>AttackState:</strong> 공격 상태, 주기적으로 공격</li>
-                    </ul>
-
-                    <h4>3단계: 적 AI 상태 구현</h4>
-                    <ul>
-                        <li><strong>MoveState:</strong> 이동 상태, 경로를 따라 이동</li>
-                        <li><strong>DieState:</strong> 사망 상태, 애니메이션 재생 후 삭제</li>
-                    </ul>
-
-                    <h4>4단계: 타워에 FSM 적용</h4>
-                    <p>FSM을 타워 컴포넌트에 통합하여 AI 동작을 제어합니다.</p>
-
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <table>
-                            <tr>
-                                <th>지표</th>
-                                <th>개선 전</th>
-                                <th>개선 후</th>
-                                <th>향상율</th>
-                            </tr>
-                            <tr>
-                                <td>코드 가독성</td>
-                                <td>낮음 (복잡한 if-else)</td>
-                                <td>높음 (명확한 상태)</td>
-                                <td>300% 개선</td>
-                            </tr>
-                            <tr>
-                                <td>새 동작 추가 시간</td>
-                                <td>2~3시간</td>
-                                <td>30분</td>
-                                <td>75% 단축</td>
-                            </tr>
-                            <tr>
-                                <td>버그 발생 시 디버깅</td>
-                                <td>어려움</td>
-                                <td>쉬움</td>
-                                <td>90% 개선</td>
-                            </tr>
-                            <tr>
-                                <td>상태 전환 로직</td>
-                                <td>중첩 분기</td>
-                                <td>명확한 전환</td>
-                                <td>100% 개선</td>
-                            </tr>
-                        </table>
-                    </div>
+                    <h2>프로젝트 개요</h2>
+                    <p>원더메이트는 체스판 형태의 전장에 다양한 동화 속 캐릭터 유닛을 배치하여 적들의 공격을 방어하는 전략형 타워 디펜스 게임입니다. 단순히 타워를 짓는 것을 넘어, 유닛의 배치와
+                        스킬 활용, 코스트 관리가 핵심인 게임입니다. 페어리 테일 캐릭터들에게 체스의 역할(킹, 퀸, 나이트 등)을 부여하여 친숙하면서도 색다른 전략성을 제공합니다.</p>
                 </div>
 
                 <div class="doc-section">
-                    <h2>2. Command 패턴 기반 스킬 시스템</h2>
-
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>스킬 시스템이 하드코딩되어 있어 다음 문제가 발생했습니다:</p>
-                        <ul>
-                            <li>새 스킬 추가 시 코드 수정 필요</li>
-                            <li>스킬 로직 재사용 불가</li>
-                            <li>스킬 조합 및 연계 어려움</li>
-                        </ul>
-                    </div>
-
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: Command 인터페이스</h4>
-                    <pre><code>public interface ICommand
-{
-    void Execute();
-    void Undo();
-}</code></pre>
-
-                    <h4>2단계: 스킬 Command 기본 클래스</h4>
-                    <p>모든 스킬이 상속받는 기본 클래스를 정의합니다.</p>
-
-                    <h4>3단계: 구체적 스킬 Command</h4>
-                    <ul>
-                        <li><strong>AttackSkillCommand:</strong> 기본 공격</li>
-                        <li><strong>AreaAttackSkillCommand:</strong> 범위 공격</li>
-                        <li><strong>BuffSkillCommand:</strong> 버프 스킬</li>
-                    </ul>
-
-                    <h4>4단계: 스킬 팩토리</h4>
-                    <p>스킬 생성 로직을 중앙화하여 확장성을 높였습니다.</p>
-
-                    <h4>5단계: 스킬 매니저</h4>
-                    <p>Command 큐와 히스토리를 관리하여 Undo 기능을 구현했습니다.</p>
-
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <ul>
-                            <li><strong>15종 이상 스킬 확장성:</strong> Command 패턴으로 쉬운 스킬 추가</li>
-                            <li><strong>스킬 로직 재사용:</strong> 기본 Command 상속으로 중복 제거</li>
-                            <li><strong>Undo 기능 구현:</strong> Command 히스토리로 실행 취소 가능</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="doc-section">
-                    <h2>3. 상태 효과 시스템 (Status Effect System)</h2>
-
-                    <div class="problem-box">
-                        <h4>문제 상황</h4>
-                        <p>버프/디버프 시스템이 통합되어 있지 않아 다음 문제가 발생했습니다:</p>
-                        <ul>
-                            <li>각 버프/디버프가 따로 구현되어 관리 어려움</li>
-                            <li>효과 중첩 로직 부재</li>
-                            <li>효과 종료 처리 복잡</li>
-                        </ul>
-                    </div>
-
-                    <h3>해결 과정</h3>
-
-                    <h4>1단계: 상태 효과 기본 클래스</h4>
-                    <pre><code>public abstract class StatusEffect
-{
-    public string EffectName { get; protected set; }
-    public float Duration { get; protected set; }
-    public float RemainingTime { get; protected set; }
-    public int StackCount { get; protected set; } = 1;
-    public bool IsExpired =&gt; RemainingTime &lt;= 0;
-
-    protected GameObject target;
-
-    public virtual void Apply(GameObject target)
-    {
-        this.target = target;
-        this.RemainingTime = Duration;
-        OnApply();
-    }
-
-    public virtual void Update()
-    {
-        RemainingTime -= Time.deltaTime;
-        OnUpdate();
-    }
-
-    public virtual void Remove()
-    {
-        OnRemove();
-    }
-}</code></pre>
-
-                    <h4>2단계: 버프 구현</h4>
-                    <ul>
-                        <li>AttackBuffEffect: 공격력 증가</li>
-                        <li>SpeedBuffEffect: 속도 증가</li>
-                    </ul>
-
-                    <h4>3단계: 디버프 구현</h4>
-                    <ul>
-                        <li>SlowDebuffEffect: 속도 감소</li>
-                        <li>PoisonDebuffEffect: 독 (DoT)</li>
-                        <li>StunDebuffEffect: 기절</li>
-                    </ul>
-
-                    <h4>4단계: 상태 효과 매니저</h4>
-                    <p>모든 활성 효과를 중앙에서 관리하고 자동으로 만료된 효과를 제거합니다.</p>
-
-                    <div class="result-box">
-                        <h4>결과</h4>
-                        <ul>
-                            <li><strong>상태 효과 체계화:</strong> 버프/디버프 통합 관리</li>
-                            <li><strong>효과 중첩 지원:</strong> 같은 효과 중첩 가능</li>
-                            <li><strong>효과 종료 자동 처리:</strong> 매니저가 자동으로 만료된 효과 제거</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="doc-section">
-                    <h2>성과 및 기술적 성취</h2>
+                    <h2>팀원 소개</h2>
                     <table>
-                        <tr>
-                            <th>구분</th>
-                            <th>내용</th>
-                        </tr>
-                        <tr>
-                            <td>FSM 상태 구현</td>
-                            <td>명확한 AI 동작 정의</td>
-                        </tr>
-                        <tr>
-                            <td>Command 패턴 스킬 시스템</td>
-                            <td>15종 이상 스킬 확장 가능</td>
-                        </tr>
-                        <tr>
-                            <td>상태 효과 시스템</td>
-                            <td>버프/디버프 체계화</td>
-                        </tr>
-                        <tr>
-                            <td>코드 재사용성</td>
-                            <td>높음 (기본 클래스 상속)</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>이름</th>
+                                <th>역할</th>
+                                <th>담당 업무</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>오유나</td>
+                                <td>팀장</td>
+                                <td>캐릭터 컨셉 및 기획 조정</td>
+                            </tr>
+                            <tr>
+                                <td>정준오</td>
+                                <td>기획</td>
+                                <td>전투 밸런스 및 스테이지 기획</td>
+                            </tr>
+                            <tr>
+                                <td>김경학</td>
+                                <td>프로그래밍</td>
+                                <td>메인 시스템(Unit, Skill, Status), UI, 스테이지 생성 시스템, 데이터 관리</td>
+                            </tr>
+                            <tr>
+                                <td>강민재</td>
+                                <td>프로그래밍</td>
+                                <td>튜토리얼 및 기타 시스템</td>
+                            </tr>
+                            <tr>
+                                <td>김승진</td>
+                                <td>프로그래밍</td>
+                                <td>적 AI 및 스킬 구현</td>
+                            </tr>
+                            <tr>
+                                <td>김서빈</td>
+                                <td>아트</td>
+                                <td>캐릭터 스프라이트 및 애니메이션</td>
+                            </tr>
+                            <tr>
+                                <td>조현래</td>
+                                <td>영상</td>
+                                <td>트레일러 영상 및 이펙트 소스 제작</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
                 <div class="doc-section">
-                    <h2>개발 도전과제 및 해결</h2>
+                    <h2>기술 구현 내역</h2>
 
-                    <h3>FSM 상태 전환 로직</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 복잡한 상태 전환 조건 관리</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> 각 상태에서 다음 상태 조건을 명확히 정의, StateMachine에서 전환 로직 중앙화, 상태 전환 이벤트로 디버깅 용이</p>
+                    <div class="tech-topic">
+                        <h3>1. 확장성을 고려한 코어 아키텍처 설계</h3>
+                        <p>프로젝트의 기반이 되는 유닛 시스템의 전체 구조를 설계하고 구현했습니다. 모든 유닛의 공통 로직을 관장하는 <code>PieceUnit</code> 추상 클래스를 최상위에
+                            배치하고, 이를 상속받는 <code>PlayerUnit</code>과 <code>EnemyUnit</code>으로 분리하여 플레이어와 적군을 가리지 않고 동일한 인터페이스로
+                            동작하게 했습니다. <code>PieceUnit</code>에서는 HP/MP 관리, 피격/치유, 상태이상 lifecycle, 이동 애니메이션(easing), 공격 타이머, 그리드
+                            좌표 관리 등 모든 유닛이 공유하는 핵심 로직을 담당합니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// PieceUnit.cs - 모든 유닛의 기본 추상 클래스
+public abstract class PieceUnit : MonoBehaviour {
+    public int2 gridPos { get; private set; }
+    protected List&lt;StatusEffectInstance&gt; activeEffects = new();
+
+    protected virtual void Update() {
+        // 상태이상 lifecycle 관리 (OnUpdate → 만료 시 OnEnd 호출 및 제거)
+        for (int i = activeEffects.Count - 1; i >= 0; i--) {
+            activeEffects[i].Update(this);
+            if (activeEffects[i].IsEnd()) {
+                activeEffects[i].data.OnEnd(this);
+                activeEffects.RemoveAt(i);
+            }
+        }
+        // 공격 쿨다운 체크 후 자동 발동
+        if (attack != null && attack.CanActivate(this, atkSpeed))
+            attack.Activate(this);
+    }
+
+    public virtual bool TakeDamage(int dmg) {
+        currentHP -= dmg;
+        uIController.SetHPPercent((float)currentHP / maxHP);
+        // 체력 0 이하 시 StageManager에서 제거 후 Die 애니메이션
+    }
+}</code></pre>
+                        </div>
                     </div>
 
-                    <h3>스킬 확장성</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 다양한 스킬 효과 구현의 어려움</p>
-                    </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> Command 패턴으로 스킬을 독립적 객체로 관리, 기본 Command 클래스를 상속하여 쉬운 확장, 스킬 팩토리로 스킬 생성 로직 분리</p>
+                    <div class="tech-topic">
+                        <h3>2. 그리드 기반 전투 시스템 및 타일 관리</h3>
+                        <p>체스 테마의 전략성을 구현하기 위해 <code>StageManager</code> 싱글톤에서 11x7 그리드 좌표계를 관리합니다. 각 타일은 <code>TileType</code>(None,
+                            Ground, Sea)으로 구분되고, 플레이어 유닛은 타일당 1개, 적 유닛은 타일당 여러 개 배치될 수 있도록 <code>Tile</code> 클래스에 분리된 슬롯으로
+                            관리합니다. 유닛의 이동/배치 시마다 <code>StageManager</code>에 등록/해제하는 방식으로 그리드와 실제 오브젝트의 상태를 항상 동기화합니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// StageManager.cs - 타일 및 유닛 관리
+public class Tile {
+    public TileType type = TileType.None;
+    public List&lt;EnemyUnit&gt; enemies = new List&lt;EnemyUnit&gt;(5);
+    public PlayerUnit player = null;
+}
+
+// 그리드 ↔ 월드 좌표 변환
+public int2 WorldToGridPosition(Vector3 worldPos) {
+    int GridX = Mathf.FloorToInt((worldPos.x + cellOffset.x) / cellSize.x);
+    int GridY = Mathf.FloorToInt((worldPos.z + cellOffset.z) / cellSize.y);
+    return new int2(GridX, GridY);
+}
+
+// 유닛 등록 시 플레이어/적 분기 처리
+public void SetUnit(int2 pos, PieceUnit unit) {
+    if (unit is PlayerUnit)
+        tiles[GetTileIndex(pos)].player = (PlayerUnit)unit;
+    else if (unit is EnemyUnit)
+        tiles[GetTileIndex(pos)].enemies.Add((EnemyUnit)unit);
+}</code></pre>
+                        </div>
+
+                        <p>또한 <code>MovePoint</code>, <code>PiecePoint</code>, <code>PieceStack</code> 세 가지 자원을 관리하는 포인트 시스템을 구현했습니다.
+                            적을 처치하면 <code>PieceStack</code>이 누적되고, 1 이상이 되면 <code>PiecePoint</code>로 변환되어 새 유닛을 배치할 수 있는 구조입니다. 자원
+                            변화 시 <code>Action&lt;T&gt;</code> 이벤트를 발생시켜 UI가 자동으로 갱신되도록 옵저버 패턴을 적용했습니다.</p>
                     </div>
 
-                    <h3>상태 효과 충돌</h3>
-                    <div class="problem-box">
-                        <p><strong>문제:</strong> 여러 효과가 동시에 적용될 때 우선순위 문제</p>
+                    <div class="tech-topic">
+                        <h3>3. 맨해튼 거리 기반 타겟 탐색 및 사거리 시스템</h3>
+                        <p>체스판 그리드에서 정확한 거리 계산을 위해 맨해튼 거리(Manhattan Distance)를 사용합니다. <code>FindTargetsInRange</code>는 자신의 그리드
+                            위치를 중심으로 지정된 사거리 내의 모든 적을 탐색하며, <code>diagonalAttack</code> 플래그에 따라 대각선 공격 가능 여부를 판단합니다. 단일 타겟
+                            탐색 시에는 가장 가까운 적을 우선 공격하도록 거리 기반 정렬 로직을 적용했습니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// PieceUnit.cs - 그리드 기반 타겟 탐색
+public List&lt;PieceUnit&gt; FindTargetsInRange(int atkRange, bool diagonalAttack = false) {
+    List&lt;PieceUnit&gt; targets = new List&lt;PieceUnit&gt;();
+    for (int x = -atkRange; x &lt;= atkRange; x++) {
+        for (int y = -atkRange; y &lt;= atkRange; y++) {
+            // 대각선 불가 시 맨해튼 거리 초과하면 스킵
+            if (!diagonalAttack && math.abs(x) + math.abs(y) > atkRange) continue;
+            int2 targetPos = gridPos + new int2(x, y);
+            if (!StageManager.instance.IsValidTile(targetPos)) continue;
+            // isPlayer 여부에 따라 적/아군 탐색 분기
+        }
+    }
+    return targets;
+}
+
+// 거리 계산 (맨해튼 거리)
+public int GetDistance(int2 pos) {
+    return math.abs(gridPos.x - pos.x) + math.abs(gridPos.y - pos.y);
+}</code></pre>
+                        </div>
                     </div>
-                    <div class="solution-box">
-                        <p><strong>해결:</strong> 효과 적용 순서 정의 (버프 → 기본 능력치 → 디버프), 중첩 불가 효과는 기존 효과 시간만 갱신, 상태 효과 매니저로 중앙 관리</p>
+
+                    <div class="tech-topic">
+                        <h3>4. A* 알고리즘 기반 적 AI 경로 탐색</h3>
+                        <p><code>EnemyUnit</code>은 킹(플레이어 메인 유닛)을 향해 이동하기 위해 A* 경로 탐색 알고리즘을 사용합니다. 휴리스틱 함수로 맨해튼 거리를 사용하고,
+                            4방향 탐색으로 최단 경로를 계산합니다. 경로가 완전히 막힌 경우에는 킹에 가장 가까운 도달 가능한 위치까지의 경로를 대안으로 반환하여 적이 멈추지 않고 항상 의미 있는
+                            이동을 하도록 처리했습니다. 또한 이동 방향의 우선순위를 무작위로 변경하여 적들이 서로 다른 경로로 분산되도록 구현했습니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// EnemyUnit.cs - A* 경로 탐색
+List&lt;int2&gt; FindSimplePath(int2 start, int2 goal) {
+    HashSet&lt;int2&gt; closed = new HashSet&lt;int2&gt;();
+    Dictionary&lt;int2, int2&gt; cameFrom = new Dictionary&lt;int2, int2&gt;();
+    List&lt;int2&gt; open = new List&lt;int2&gt; { start };
+    Dictionary&lt;int2, int&gt; gScore = new Dictionary&lt;int2, int&gt; { [start] = 0 };
+
+    int2 nearest = start;
+    int nearestHeuristic = Heuristic(start, goal);
+
+    while (open.Count > 0) {
+        open.Sort((a, b) => (gScore[a] + Heuristic(a, goal))
+            .CompareTo(gScore[b] + Heuristic(b, goal)));
+        int2 current = open[0];
+        open.RemoveAt(0);
+
+        if (current.Equals(goal)) return ReconstructPath(cameFrom, current);
+        closed.Add(current);
+
+        foreach (int2 dir in Directions) {
+            int2 neighbor = current + dir;
+            if (closed.Contains(neighbor)) continue;
+            if (!StageManager.instance.IsValidTile(neighbor)) continue;
+            if (StageManager.instance.GetTileType(neighbor) != TileType.Ground) continue;
+            // G-score 갱신 및 open 리스트에 추가
+        }
+    }
+    // 목표 도달 불가 시 가장 가까운 위치까지 경로 반환
+    if (!nearest.Equals(start)) return ReconstructPath(cameFrom, nearest);
+    return new List&lt;int2&gt;();
+}
+
+int Heuristic(int2 a, int2 b) => math.abs(a.x - b.x) + math.abs(a.y - b.y);</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tech-topic">
+                        <h3>5. 상태 머신(FSM) 기반 웨이브 관리 시스템</h3>
+                        <p><code>EnemySpawner</code>는 상태 머신 패턴으로 웨이브 진행을 관리합니다. <code>None → Wait → Wave → Clear</code>의 상태 전이를
+                            가지며, 각 상태 진입/업데이트/종료 시점에 해당하는 로직을 명확히 분리했습니다. 웨이브 데이터는 CSV 파일로 관리하여 스테이지마다 적 종류, 출현 위치, 수량, 웨이브
+                            간 대기 시간을 에디터에서 쉽게 조정할 수 있도록 구성했습니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// EnemySpawner.cs - 상태 전이 로직
+enum EnemySpawnerState { None, Wait, Wave, Clear }
+
+private void ChangeState(EnemySpawnerState state) {
+    // 현재 상태 종료 처리
+    switch (currentState) {
+        case EnemySpawnerState.Wait: WaitEnd(); break;
+        case EnemySpawnerState.Wave: WaveEnd(); break;
+        case EnemySpawnerState.Clear: ClearEnd(); break;
+    }
+    currentState = state;
+    // 새 상태 시작 처리
+    switch (currentState) {
+        case EnemySpawnerState.Wait: WaitStart(); break;
+        case EnemySpawnerState.Wave: WaveStart(); break;
+        case EnemySpawnerState.Clear: ClearStart(); break;
+    }
+}
+
+// Wave 상태: SpawnData의 count를 소모하며 적 생성
+private void WaveUpdate() {
+    bool clearWave = true;
+    foreach (SpawnData spawnData in currentWave.spawnDatas) {
+        if (spawnData.count <= 0) continue;
+        clearWave = false;
+        SpawnEnemy(SpawnPoint[spawnData.point], spawnData.code);
+        spawnData.count--;
+    }
+    if (clearWave) // 다음 웨이브 또는 Clear 상태로 전이
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tech-topic">
+                        <h3>6. ScriptableObject 기반 스킬/상태이상 데이터 파이프라인</h3>
+                        <p>45종 이상의 스킬과 상태 이상 효과를 효율적으로 관리하기 위해 <code>SkillBase</code>와 <code>StatusEffectBase</code>를
+                            <code>ScriptableObject</code>로 구현했습니다. 스킬은 발동 방식에 따라 4가지 타입(<code>Auto</code>, <code>TargetTile</code>,
+                            <code>Direction</code>, <code>SelfOnly</code>)으로 분류되며, 각 타입에 맞는 활성화 로직을 추상 메서드로 제공합니다. 상태이상은
+                            <code>OnStart</code>, <code>OnUpdate</code>, <code>OnEnd</code> lifecycle을 가지며, 동일한 상태이상이 중복 적용되면 지속시간만
+                            갱신하는 방식으로 관리합니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// SkillBase.cs - ScriptableObject 기반 스킬 추상 클래스
+public enum SkillActivationType {
+    Auto,           // 자동 발동
+    TargetTile,     // 타일 클릭 시 발동
+    Direction,      // 방향 선택 후 발동
+    SelfOnly        // 자신에게만 적용
+}
+
+public abstract class SkillBase : ScriptableObject {
+    public int manaCost;
+    public float cooldown;
+    public SkillActivationType activationType;
+    public List&lt;int2&gt; ranges;      // 스킬 범위 좌표
+    public int2 rangeBoxScale;       // 박스 범위 스케일
+
+    public virtual bool CanActivate(PieceUnit unit, float time = 1.0f) {
+        cooldownTimer -= Time.deltaTime * time;
+        return cooldownTimer &lt; 0 && manaCost &lt;= unit.GetMP();
+    }
+    public virtual void ShowRange(PieceUnit unit) { /* 범위 시각화 */ }
+    public virtual void ActivateAt(PieceUnit unit, int2 targetPos) { /* 선택형 스킬 */ }
+}
+
+// StatusEffectBase.cs - 상태이상 추상 클래스
+public abstract class StatusEffectBase : ScriptableObject {
+    public abstract void OnStart(PieceUnit unit);
+    public abstract void OnUpdate(PieceUnit unit);
+    public abstract void OnEnd(PieceUnit unit);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="tech-topic">
+                        <h3>7. PC/모바일 멀티플랫폼 입력 시스템</h3>
+                        <p><code>UIManager</code>는 <code>#if UNITY_ANDROID</code> 전처리기를 통해 PC와 모바일 환경의 입력 처리를 분리합니다. PC는 마우스
+                            클릭/드래그 기반, 모바일은 터치 기반으로 유닛 선택, 드래그 배치, 카메라 이동을 처리합니다. 스킬 사용 시 슬로우 모션(0.2x)을 적용하여 플레이어가 타겟을
+                            신중하게 선택할 수 있도록 하고, 전투 속도는 1x/2x/3x로 전환 가능하도록 구현했습니다.</p>
+                    </div>
+
+                    <div class="tech-topic">
+                        <h3>8. CSV/JSON 기반 데이터 관리 및 저장 시스템</h3>
+                        <p><code>DataManager</code> 싱글톤에서 게임의 모든 정적/동적 데이터를 관리합니다. 캐릭터 스탯, 스킬 정보 등은 CSV 파일에서 파싱하여 로드하고,
+                            플레이어의 진행 상황(레벨, 골드, 보유 캐릭터, 클리어 스테이지 등)은 <code>JsonUtility</code>를 통해 JSON 파일로 저장/로드합니다. 골드, 젬
+                            등 재화 변화 시 <code>Action&lt;T&gt;</code> 이벤트로 UI를 갱신하는 옵저버 패턴을 일관되게 적용했습니다.</p>
+
+                        <div class="code-block">
+                            <pre><code class="language-csharp">// DataManager.cs - JSON 저장/로드
+public void SaveGame() {
+    string json = JsonUtility.ToJson(data, true);
+    File.WriteAllText(Application.persistentDataPath + "/save.json", json);
+}
+
+public void LoadGame() {
+    string path = Application.persistentDataPath + "/save.json";
+    if (File.Exists(path)) {
+        string json = File.ReadAllText(path);
+        data = JsonUtility.FromJson&lt;SaveData&gt;(json);
+    } else {
+        data = new SaveData();
+        data.ClearData(); // 초기 캐릭터(Alice, Cheshire, King) 지급
+    }
+}</code></pre>
+                        </div>
                     </div>
                 </div>
 
                 <div class="doc-section">
-                    <h2>결론</h2>
-                    <p>원더메이트 프로젝트에서는 FSM으로 명확한 유닛 AI 동작, Command 패턴으로 확장 가능한 스킬 시스템, 상태 효과 시스템으로 체계화된 버프/디버프를 구현했습니다.</p>
-
-                    <h3>주요 성과</h3>
+                    <h2>주요 성과</h2>
                     <ul>
-                        <li><strong>FSM 기반 AI 명확화:</strong> 유닛 동작을 상태로 명확히 정의</li>
-                        <li><strong>Command 패턴 스킬 시스템:</strong> 15종 이상 스킬 확장성 확보</li>
-                        <li><strong>상태 효과 체계화:</strong> 버프/디버프 통합 관리</li>
-                        <li><strong>디자인 패턴 적용:</strong> 코드 재사용성과 유지보수성 향상</li>
-                    </ul>
-
-                    <h3>학습 내용</h3>
-                    <ul>
-                        <li>FSM (유한 상태 머신) 패턴</li>
-                        <li>Command 패턴</li>
-                        <li>상태 효과 시스템 설계</li>
-                        <li>게임 아키텍처 설계 능력 향상</li>
+                        <li><strong>확장성 확보:</strong> 추상화된 기반 클래스 설계로 20종 이상의 유닛과 45종의 스킬을 빠르고 안정적으로 구현</li>
+                        <li><strong>유지보수 용이성:</strong> 데이터 기반 설계를 통해 QA 기간 중 발생한 대규모 밸런싱 수정을 코드 변경 없이 완료</li>
+                        <li><strong>사용자 경험 개선:</strong> 스킬 사용 시 슬로우 모션과 범위 미리보기를 통해 전략적 판단 지원</li>
+                        <li><strong>멀티플랫폼 대응:</strong> PC/모바일 입력을 전처리기로 분리하여 단일 코드베이스로 양쪽 플랫폼 대응</li>
                     </ul>
                 </div>
 
-                <div class="doc-nav" style="margin-top: 3rem;">
-                    <a href="index.html#projects">← 프로젝트 목록으로 돌아가기</a>
+                <div class="doc-section">
+                    <h2>결론 및 학습 내용</h2>
+                    <p>이 프로젝트를 통해 대규모 시스템의 기반을 설계할 때 <strong>추상 클래스와 인터페이스의 중요성</strong>을 깊이 깨달았습니다. 초기 설계 단계에서 공통 기능을 잘
+                        정의해둔 덕분에 프로젝트 후반부에 유닛 종류가 늘어나도 시스템이 무너지지 않고 안정적으로 확장될 수 있었습니다. 또한 <code>ScriptableObject</code>를
+                        활용한 데이터 기반 작업 방식이 협업 효율성을 얼마나 높여줄 수 있는지 직접 체감하며, 데이터 중심의 프로그래밍 사고를 기를 수 있었습니다. 특히 A* 알고리즘을 직접
+                        구현하면서 경로 탐색의 기본 원리와 최적화 포인트를 이해할 수 있었고, FSM 패턴을 적용한 웨이브 관리 시스템을 통해 상태 기반 설계의 장점을 학습했습니다.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 김경학. All Rights Reserved.</p>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 </body>
+
 </html>

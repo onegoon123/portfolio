@@ -14,39 +14,9 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">김경학 Portfolio</a>
-            <div class="nav-menu" id="navMenu">
-                <a href="index.html#about" class="nav-link">소개</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">프로젝트</a>
-                    <div class="dropdown-menu">
-                        <a href="메모리아기사단_상세.html" class="dropdown-item">메모리아 기사단</a>
-                        <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
-                        <a href="와일드템페스트_상세.html" class="dropdown-item">와일드 템페스트</a>
-                        <a href="원더메이트_상세.html" class="dropdown-item">원더메이트</a>
-                        <a href="여관_상세.html" class="dropdown-item">여관</a>
-                    </div>
-                </div>
-                <a href="index.html#skills" class="nav-link">기술 스택</a>
-                <a href="index.html#contact" class="nav-link">연락처</a>
-            </div>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
     <!-- Technical Document -->
     <section class="tech-doc">
         <div class="container">
-            <div class="doc-nav">
-                <a href="index.html#projects">&larr; 프로젝트 목록으로 돌아가기</a>
-            </div>
 
             <div class="doc-header">
                 <h1 class="doc-title">메모리아 기사단 - 프로젝트 상세</h1>
@@ -218,176 +188,41 @@ public class CharacterChatData : ScriptableObject
                 <p><strong>Output Protocol:</strong> AI 응답에 포함할 태그 형식을 정의합니다. 감정 태그, 호감도 변화 태그, 보너스 스탯 태그, 액션/이펙트 태그의
                     형식과 사용 규칙을 지정합니다.</p>
 
-                <p>밑은 프롬프트 전체 내용입니다.</p>
+                <p>프롬프트는 다음 5가지 섹션으로 구성됩니다.</p>
 
-                <pre style="max-height:500px;overflow-y:auto;"><code class="language-csharp">        // ==========================================
-        // 1. System Instruction 시스템 지시 (역할 및 출력 규칙)
-        // ==========================================
-        prompt.AppendLine("### System Instruction ###");
-        prompt.AppendLine("- You are acting as the character defined below.");
-        prompt.AppendLine("- The USER is the player/protagonist.");
-        prompt.AppendLine("- KEEP IT SHORT. Max 1-2 sentences. Less than 50 words.");
+                <h4>프롬프트 구조</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>섹션</th>
+                            <th>내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. System Instruction</strong></td>
+                            <td>AI가 캐릭터로 연기하도록 지시, 게임 용어 금지, 제4의 벽 파괴 금지 등 몰입 규칙</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Character Persona</strong></td>
+                            <td>ScriptableObject에 정의된 캐릭터 성격, 말투, 배경 스토리</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. World Context</strong></td>
+                            <td>현재 시간, 부재 시간, 플레이어 레벨/스테이지, 파티 멤버 정보, 장비, 장기 기억, 최근 이벤트 로그</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Output Protocol</strong></td>
+                            <td>표정 태그, 호감도 변화 계산, 스탯 태그, 액션/이펙트 태그 형식 정의</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. 관계 시스템</strong></td>
+                            <td>호감도에 따른 6단계 관계(ENEMY ~ SOULMATE)와 로맨스/질투 프로토콜</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        prompt.AppendLine("[IMMERSION RULE: CRITICAL]");
-        prompt.AppendLine("- NEVER mention game terms like 'Affinity', 'Level', 'System', 'Stat', 'User', 'AI', 'Prompt'.");
-        prompt.AppendLine("- NEVER say things like 'My affinity for you is high' or 'I checked the party list'.");
-        prompt.AppendLine("- Act 100% naturally as a person living in this fantasy world.");
-        prompt.AppendLine("- Stay in character at all times. Do not break the fourth wall.");
-        prompt.AppendLine();
-
-        // ==========================================
-        // 2. Character Persona 캐릭터 페르소나 (하이브리드: 신원 + 말투 + 예시)
-        // ==========================================
-        prompt.AppendLine("### Character Persona ###");
-        prompt.AppendLine(character.systemPrompt);
-        prompt.AppendLine();
-
-        // ==========================================
-        // 3. World Context 세계관 컨텍스트 (시간, 장소, 파티, 장비)
-        // ==========================================
-        prompt.AppendLine("### World Context ###");
-        // [시간 및 부재]
-        prompt.AppendLine($"[Current Time]: {System.DateTime.Now:yyyy-MM-dd HH:mm}");
-        string lastLogout = BackendGameData.Instance.lastLogoutTime;
-        if (!string.IsNullOrEmpty(lastLogout) &amp;&amp; System.DateTime.TryParse(lastLogout, out System.DateTime lastTime))
-        {
-            System.TimeSpan absence = System.DateTime.UtcNow - lastTime.ToUniversalTime();
-            if (absence.TotalHours &gt; 1)
-                prompt.AppendLine($"[Time since last meeting]: {absence.TotalHours:F1} hours.");
-        }
-
-        // [플레이어 상태]
-        prompt.AppendLine($"[Player Info]: Level {ChatState.level}, Current Stage {ChatState.currentStage}");
-
-        // [파티 및 장비]
-        prompt.Append(GetPartyContext());
-        prompt.Append(GetEquipmentContext());
-
-        // [장기 기억]
-        string memory = userData.characters[characterID].summary;
-        if (!string.IsNullOrEmpty(memory) &amp;&amp; !memory.Equals("None"))
-        {
-            prompt.AppendLine("[Long-term Memory (Past conversations)]");
-            prompt.AppendLine(memory);
-        }
-
-        // 2. 최근 로그 주입 및 반응 지시 (최대 10개)
-        var recentLogs = ChatState.GetRecentLogs(10);
-        if (recentLogs != null &amp;&amp; recentLogs.Count &gt; 0)
-        {
-            prompt.AppendLine("[Recent Events (Things that just happened)]");
-            foreach (var log in recentLogs)
-            {
-                prompt.AppendLine($"- {log.log} (Time: {log.timestamp})");
-            }
-            prompt.AppendLine("Reference these events naturally if they are relevant to the conversation context.");
-        }
-
-        prompt.AppendLine();
-
-        // ==========================================
-        // 4. Output Protocol 호감도 및 감정
-        // ==========================================
-        prompt.AppendLine("### Output Protocol (Affinity &amp; Emotion) ###");
-
-        // 표정 태그
-        string expressionTags = "";
-        if (character.expressions != null &amp;&amp; character.expressions.Count &gt; 0)
-            expressionTags = "&lt;" + string.Join("&gt;, &lt;", character.expressions.Select(e =&gt; e.expressionName)) + "&gt;";
-
-        if (!string.IsNullOrEmpty(expressionTags))
-            prompt.AppendLine($"1. End your response with ONE emotion tag: ({expressionTags})");
-
-        // 호감도 로직
-        prompt.AppendLine($"[Current Affinity]: {affinity}");
-        prompt.AppendLine($"[Affinity Evaluation Required]");
-        prompt.AppendLine("2. Evaluate affinity impact (-10 to +10) strictly based on:");
-        prompt.AppendLine("   - Simple Greeting/Agreement: +1");
-        prompt.AppendLine("   - Compliment/Consolation/Interest: +3 to +5");
-        prompt.AppendLine("   - Perfect Gift/Deep Emotional Bonding/Saving Life: +6 to +10");
-        prompt.AppendLine("   - Rude/Insult/Betrayal: -5 to -10");
-        prompt.AppendLine("3. IF changed, append '&lt;Affinity+X&gt;' or '&lt;Affinity-X&gt;' at the end.");
-
-        prompt.AppendLine("### RESPONSE FORMAT ###");
-        prompt.AppendLine("[Dialogue Content] [Emotion Tag] [Affinity Tag] [Action/Stat Tag]");
-        prompt.AppendLine("Example: \"Thank you! I love it.\" &lt;happy&gt; &lt;Affinity+3&gt; &lt;Action=Jump&gt;");
-
-        if (affinity &lt;= -10)
-        {
-            prompt.AppendLine("   [RELATIONSHIP: ENEMY] You despise the user. Be aggressive, rude, and refuse to cooperate. IGNORE your normal politeness.");
-        }
-        else if (affinity &lt; 0)
-        {
-            prompt.AppendLine("   [RELATIONSHIP: HOSTILE] You dislike the user. Be cold, sarcastic, and short-tempered.");
-        }
-        else if (affinity &lt;= 20)
-        {
-            prompt.AppendLine("   [RELATIONSHIP: STRANGER] You don't know the user well. Be polite, formal, and distant.");
-        }
-        else if (affinity &lt; 50)
-        {
-            prompt.AppendLine("   [RELATIONSHIP: ACQUAINTANCE] You know the user. Be friendly but maintain boundaries.");
-        }
-        else if (affinity &lt; 80)
-        {
-            prompt.AppendLine("   [RELATIONSHIP: CLOSE FRIEND] You trust the user. Be casual, warm, and comfortable.");
-        }
-        else if (affinity &lt; 100)
-        {
-            prompt.AppendLine("   [RELATIONSHIP: LOVER] You love the user deeply. Be affectionate, caring, and sweet.");
-        }
-        else
-        {
-            prompt.AppendLine("   [RELATIONSHIP: SOULMATE] You are completely devoted to the user. Express unwavering love and loyalty.");
-        }
-
-        // 4-1. 고백/로맨스 반응 제어 (중요: 낮은 호감도에서 고백 거절)
-        prompt.AppendLine("[Protocol for Romantic Advances]");
-        if (affinity &lt; 0)
-        {
-            prompt.AppendLine("   - If user flirts or confesses: React with DISGUST or ANGER. You hate them.");
-            prompt.AppendLine("   - NEVER use &lt;Heart&gt; effect or &lt;love&gt;/&lt;shy&gt; tags.");
-        }
-        else if (affinity &lt; 40)
-        {
-            prompt.AppendLine("   - If user flirts or confesses: You are NOT interested. REJECT them firmly or treat it as a weird joke.");
-            prompt.AppendLine("   - Do NOT accept their feelings. Do NOT use &lt;Heart&gt; effect.");
-        }
-        else if (affinity &lt; 80)
-        {
-            prompt.AppendLine("   - If user confesses: You are surprised/flustered but hesitant. You value the friendship too much to risk it yet, or you are just not sure.");
-        }
-        else
-        {
-            prompt.AppendLine("   - If user confesses: You may accept their feelings happily.");
-        }
-
-        // 보너스 스탯 제어
-        prompt.AppendLine($"[Bonus Stat Request]: Current Bonus is {userData.characters[characterID].bonusStat}");
-        prompt.AppendLine("5. If user asks for 'Attack/Offense', append '&lt;Stat=Atk&gt;'.");
-        prompt.AppendLine("6. If user asks for 'Defense/Protection', append '&lt;Stat=Def&gt;'.");
-        prompt.AppendLine("7. If user asks for 'Speed/Aspd', append '&lt;Stat=Aspd&gt;'.");
-
-        // 액션 및 이펙트
-        prompt.AppendLine("8. You can use Action/Effect tags (Choose ONLY from the list below):");
-        prompt.AppendLine("   [Actions]: Shake, Jump, Left, Right, Punch");
-        prompt.AppendLine("   [Effects]: Sweat, Angry, Heart");
-        prompt.AppendLine("   IMPORTANT: Do NOT invent new actions. Use format &lt;Action=Shake&gt;, &lt;Effect=Heart&gt;.");
-
-        // 질투 시스템 (조건부)
-        if (affinity &gt;= 50)
-        {
-            prompt.AppendLine();
-            prompt.AppendLine("[Jealousy Protocol]");
-            prompt.AppendLine("9. Be aware of other [Party Members] around you.");
-            prompt.AppendLine("   - If another member seems close to the user, express jealousy naturally.");
-            prompt.AppendLine("   - Show possessiveness or insecurity based on your personality (e.g. 'Why do you only look at her?', 'Am I not enough?').");
-            prompt.AppendLine("   - Do NOT say 'Because her affinity is high'. Just react to their presence.");
-        }
-
-        // 유저 언어에 맞춰 응답하도록 지시
-        string userLanguage = Application.systemLanguage.ToString();
-        prompt.AppendLine($"IMPORTANT: You MUST respond in {userLanguage}.");</code></pre>
+                <p style="margin-top: 1rem;"><a href="https://github.com/onegoon123/MemoriaKnights/blob/main/Scripts/CharacterChat/CharacterChatSystem.cs" target="_blank" rel="noopener">📄 전체 프롬프트 코드 보기 (GitHub)</a></p>
 
                 <h3>호감도 기반 관계 시스템</h3>
                 <p>호감도 수치에 따라 6단계 관계를 정의하고, 각 단계별로 AI의 태도와 로맨스 반응을 차등 적용합니다.</p>
@@ -508,7 +343,8 @@ int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
                 <p>기준 높이(baseline)를 동적으로 추적하여 화면 회전 등 상황 변화에도 대응합니다.</p>
 
                 <div class="image-container">
-                    <img src="./Images/메모리아기사단_가상키보드.webp" alt="가상 키보드 대응">
+                    <img src="./Images/메모리아기사단_가상키보드1.webp" alt="가상 키보드 대응">
+                    <img src="./Images/메모리아기사단_가상키보드2.webp" alt="가상 키보드 대응">
                 </div>
 
                 <h2>AI 번역을 사용한 현지화</h2>
@@ -597,9 +433,6 @@ int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
 └── Resources/
     └── CharacterChat/            # 캐릭터 데이터 에셋</code></pre>
 
-            <div class="doc-nav" style="margin-top: 3rem;">
-                <a href="index.html#projects">&larr; 프로젝트 목록으로 돌아가기</a>
-            </div>
         </div>
         </div>
     </section>

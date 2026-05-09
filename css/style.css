@@ -1151,9 +1151,11 @@ body {
     background-color: #f1f5f9;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
-    font-family: 'Fira Code', monospace;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.875rem;
     color: #dc2626;
+    text-decoration: none;
+    border: none;
 }
 
 .doc-content pre {
@@ -1161,19 +1163,22 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
-    white-space: pre-wrap;
-    word-break: break-all;
+    border: 1px solid #334155;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.6;
 }
 
 .doc-content pre code {
     background-color: transparent;
     padding: 0;
-    color: #e2e8f0;
-    font-size: 0.85rem;
-    line-height: 1.7;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+    line-height: 1.8;
     text-shadow: none;
-    white-space: pre-wrap;
-    word-break: break-all;
+    font-weight: 400;
+    text-decoration: none;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 .doc-content table {
@@ -1266,5 +1271,81 @@ body {
     .doc-meta {
         flex-direction: column;
         gap: 0.5rem;
+    }
+}
+
+/* ============================================
+   PDF Print Optimization
+   ============================================ */
+@media print {
+    /* 코드 블록 PDF 최적화 */
+    .doc-content pre {
+        background-color: #ffffff !important;
+        border: 3px solid #1e293b !important;
+        border-radius: 4px !important;
+        padding: 1.5rem !important;
+        page-break-inside: avoid !important;
+        white-space: pre-wrap !important;
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        box-shadow: none !important;
+    }
+
+    .doc-content pre code {
+        color: #1e293b !important;
+        font-size: 0.85rem !important;
+        line-height: 1.7 !important;
+        font-weight: 400 !important;
+        text-decoration: none !important;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+    }
+
+    /* 인라인 코드도 대비 개선 */
+    .doc-content code,
+    a code,
+    .doc-content a code {
+        background-color: #e2e8f0 !important;
+        color: #be123c !important;
+        border: none !important;
+        font-weight: 500 !important;
+        text-decoration: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 페이지 나눔 방지 */
+    .problem-box,
+    .solution-box,
+    .result-box,
+    table,
+    h2,
+    h3,
+    h4 {
+        page-break-inside: avoid !important;
+    }
+
+    /* 테이블 개선 */
+    table {
+        page-break-inside: avoid !important;
+    }
+
+    th,
+    td {
+        border: 1px solid #64748b !important;
+    }
+
+    /* 네비게이션 숨기기 */
+    .navbar,
+    .doc-nav {
+        display: none !important;
+    }
+
+    /* 여백 조정 */
+    .tech-doc {
+        padding: 1rem !important;
+    }
+
+    .doc-content {
+        padding: 1rem !important;
     }
 }

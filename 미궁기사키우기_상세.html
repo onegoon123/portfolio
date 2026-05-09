@@ -277,11 +277,6 @@ private int CalculateStat(int baseValue, float growth, int level)
 
                 <p>생성된 장비는 희귀도(일반 50%, 고급 75%, 희귀 90%, 영웅 98%, 전설 2%)에 따라 1~4개의 랜덤 스탯이 부여되고, 희귀도 배율이 스탯에 곱해집니다.</p>
 
-                <h2>세이브 시스템</h2>
-                <p><code>GameSaveSystem</code>은 JSON 파일로 버전 관리(<code>saveVersion = 5</code>)하며 저장합니다. 업그레이드 레벨만 저장하고 기본 스탯과 성장 계수는 ScriptableObject에서 불러오는 방식으로, 밸런스 수정 시 기존 세이브에 영향을 주지 않습니다.</p>
-
-                <p>30초 간격 자동 저장, 앱 일시정지/종료 시에도 저장을 수행합니다. 장비 제작 포인트는 오프라인 시간을 계산해 복귀 시 자동 회복합니다.</p>
-
                 <h2>주요 성과</h2>
                 <ul>
                     <li><strong>Claude Skill 기반 시나리오 자동 생성:</strong> nani-scenario-generator 스킬로 자연어 → Naninovel 스크립트 변환 워크플로우 구축</li>
@@ -291,7 +286,6 @@ private int CalculateStat(int baseValue, float growth, int level)
                     <li><strong>지수 성장 스탯 시스템:</strong> 방치형 RPG의 장기 진행 밸런스 설계</li>
                     <li><strong>ICombatTarget 인터페이스:</strong> 플레이어와 동료가 동시에 공격받는 전투 구조</li>
                     <li><strong>랜덤 장비 생성:</strong> 5단계 희귀도, 포인트 기반 제작, 오프라인 회복</li>
-                    <li><strong>버전 관리 세이브:</strong> 밸런스 패치 시 데이터 호환성 유지</li>
                 </ul>
 
                 <h2>결론/학습 내용</h2>
@@ -307,7 +301,6 @@ private int CalculateStat(int baseValue, float growth, int level)
                     <li>Interface 기반 다중 타겟 전투 시스템 설계</li>
                     <li>지수 함수 스탯 성장 시스템과 오버플로우 방지</li>
                     <li>Observer 패턴(이벤트)을 활용한 시스템 간 느슨한 결합</li>
-                    <li>JSON 기반 버전 관리 세이브 시스템 설계</li>
                 </ul>
 
                 <div class="doc-nav" style="margin-top: 3rem;">

@@ -27,7 +27,6 @@
                         <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
                         <a href="와일드템페스트_상세.html" class="dropdown-item">와일드 템페스트</a>
                         <a href="원더메이트_상세.html" class="dropdown-item">원더메이트</a>
-                        <a href="여관_상세.html" class="dropdown-item">여관</a>
                     </div>
                 </div>
                 <a href="index.html#skills" class="nav-link">기술 스택</a>
@@ -58,8 +57,8 @@
 
             <div class="doc-content">
                 <h2>프로젝트 개요</h2>
-                <p>메모리아 기사단은 LLM API를 사용한 캐릭터 채팅을 결합한 방치형 RPG 게임입니다. 프로그래머 2인이서 개발했으며, 한 달이라는 짧은 개발 기간 내에 기획부터 출시까지
-                    완료했습니다. 플레이어는 영웅들을 수집하고 육성하며 캐릭터 채팅 시스템을 통해 캐릭터들과 자연스러운 대화를 나눌 수 있습니다.</p>
+                <p>메모리아 기사단은 뒤끝 서버를 사용하여 개발한 방치형 RPG 입니다. 프로그래머 2인이서 개발했으며, 한 달이라는 짧은 개발 기간 내에 기획부터 출시까지
+                    완료했습니다. 플레이어는 캐릭터들을 수집하고 육성하며 캐릭터 채팅 시스템을 통해 캐릭터들과 자연스러운 대화를 나눌 수 있습니다.</p>
 
                 <h2>팀원 소개</h2>
                 <table>
@@ -74,7 +73,7 @@
                         <tr>
                             <td>김경학</td>
                             <td>프로그래머, 그래픽</td>
-                            <td>UI, 캐릭터 채팅, 캐릭터 제작, 백엔드 연동, 스토어 출시</td>
+                            <td>UI, 캐릭터 채팅, 캐릭터 제작, 뒤끝 서버 연동, 결제 및 광고 시스템, 스토어 출시</td>
                         </tr>
                         <tr>
                             <td>장준아</td>
@@ -83,14 +82,13 @@
                         </tr>
                     </tbody>
                 </table>
-                <p>프로그래머 2명이서 진행한 프로젝트입니다.</p>
 
                 <h2>기술 스택</h2>
                 <ul>
                     <li><strong>엔진:</strong> Unity 6.3</li>
                     <li><strong>언어:</strong> C#</li>
                     <li><strong>백엔드:</strong> 뒤끝 (TheBackend)</li>
-                    <li><strong>라이브러리:</strong> UniTask, DOTween</li>
+                    <li><strong>라이브러리:</strong> DOTween</li>
                     <li><strong>디자인 패턴:</strong> Singleton, Strategy</li>
                     <li><strong>LLM:</strong> OpenAI GPT, Google Gemini, Anthropic Claude</li>
                 </ul>
@@ -98,11 +96,11 @@
                 <h2>LLM 기반 캐릭터 채팅 시스템</h2>
 
                 <h3>백엔드 프록시 아키텍처</h3>
-                <p>클라이언트에서 직접 LLM API를 호출하지 않고, 뒤끝(Backend) 클라우드 함수를 프록시로 사용하는 아키텍처를 채택했습니다. API 키가 클라이언트에 노출되지 않습니다.
+                <p>클라이언트에서 직접 LLM API를 호출하지 않고, 뒤끝펑션을 프록시로 사용하는 아키텍처를 채택했습니다. API 키가 클라이언트에 노출되지 않습니다.
                 </p>
 
-                <p>모든 LLM 요청은 BackendChatService를 통해 뒤끝 클라우드 함수 <code>AIChat</code>으로 전달되며, provider와 model ID를 파라미터로
-                    보내어 백엔드에서 해당 API를 호출합니다.</p>
+                <p>모든 LLM 요청은 BackendChatService를 통해 뒤끝펑션으로 전달되며, provider(LLM 종류)와 model ID, 메세지를 파라미터로
+                    보내 뒤끝펑션에서 API를 호출한 결과물을 클라이언트로 반환합니다.</p>
 
                 <pre><code class="language-csharp">public class BackendChatService : IChatService
 {
@@ -129,9 +127,100 @@
         // 뒤끝 클라우드 함수 호출
         Backend.BFunc.InvokeFunction("AIChat", param, callback =&gt; { ... });
     }
-}</code></pre>
+}
+</code></pre>
+    <pre><code class="language-csharp">// 뒤끝펑션
+    public class BFunc
+    {
+        private static readonly System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient { Timeout = TimeSpan.FromSeconds(20) };
 
-                <h3>멀티 모델 선택 시스템</h3>
+        private const string OPENAI_API_KEY = "KEY1";
+        private const string GEMINI_API_KEY = "KEY2";
+        private const string CLAUDE_API_KEY = "KEY3";
+
+        public async Task<Stream> Function(Stream stream, ILambdaContext context)
+        {
+            try
+            {
+                // 뒤끝 펑션 API 초기화
+                Backend.Initialize(ref stream);
+            }
+            catch (Exception e)
+            {
+                return ReturnErrorObject("Initialize error: " + e.ToString());
+            }
+
+            try
+            {
+                // Backend.Content가 null인지 확인
+                if (Backend.Content == null)
+                {
+                    return ReturnErrorObject("Backend.Content is null");
+                }
+
+                // 입력값 파싱
+                // Backend.Content는 LitJson.JsonData 타입이므로 키가 존재하는지 확인합니다.
+                if (!Backend.Content.Keys.Contains("provider") || !Backend.Content.Keys.Contains("model"))
+                {
+                    return ReturnErrorObject("Missing required parameters: provider, model");
+                }
+
+                string provider = Backend.Content["provider"].ToString();
+                string model = Backend.Content["model"].ToString();
+                JArray messages = new JArray();
+
+                // Handle 'messages' array (preferred)
+                if (Backend.Content.Keys.Contains("messages") && Backend.Content["messages"].IsArray)
+                {
+                    var msgs = Backend.Content["messages"];
+                    for (int i = 0; i < msgs.Count; i++)
+                    {
+                        messages.Add(new JObject
+                        {
+                            ["role"] = msgs[i]["role"].ToString(),
+                            ["content"] = msgs[i]["content"].ToString()
+                        });
+                    }
+                }
+                // Fallback for 'message' string (legacy/simple)
+                else if (Backend.Content.Keys.Contains("message"))
+                {
+                    messages.Add(new JObject { ["role"] = "user", ["content"] = Backend.Content["message"].ToString() });
+                }
+                else
+                {
+                    return ReturnErrorObject("Missing required parameters: messages or message");
+                }
+
+                string responseText = "";
+
+                switch (provider.ToLower())
+                {
+                    case "openai":
+                        responseText = await CallOpenAI(model, messages);
+                        break;
+                    case "gemini":
+                        responseText = await CallGemini(model, messages);
+                        break;
+                    case "claude":
+                        responseText = await CallClaude(model, messages);
+                        break;
+                    default:
+                        return ReturnErrorObject($"Unknown provider: {provider}");
+                }
+
+                // 결과 반환
+                JObject result = new JObject();
+                result["response"] = responseText;
+                return Backend.JsonToStream(result.ToString(Newtonsoft.Json.Formatting.None));
+            }
+            catch (Exception e)
+            {
+                return ReturnErrorObject("Execution error: " + e.ToString());
+            }
+        }</code></pre>
+
+                <h3>모델 선택</h3>
                 <p>ScriptableObject 기반으로 6개의 AI 모델을 관리하며, 각 모델에 에너지 비용을 설정하여 과금 모델로 구현하였습니다.</p>
                 <p>(초기에는 GPT 모델을 포함했으나 크레딧 관리가 번거로워서 삭제했습니다)</p>
 
@@ -494,8 +583,13 @@ public class CharacterChatData : ScriptableObject
                 <p>기존 기억을 완전히 교체하지 않고 새로운 정보를 병합하는 방식을 채택하여, 이전 대화에서 형성된 관계나 정보가 유지됩니다.</p>
 
                 <h2>모바일 UX 최적화</h2>
-                <p>모바일 환경에서 키보드가 올라올 때 채팅 UI가 가려지는 문제를 해결하기 위해 MobileKeyboardAdapter를 구현했습니다. Android 네이티브 코드를 통해 키보드
-                    높이를 감지하고, Canvas scaleFactor를 고려하여 채팅 패널을 스무스하게 위로 이동시킵니다.</p>
+
+                <div class="problem-box">
+                    <strong>문제:</strong> 모바일 채팅 시 키보드가 UI를 가리며, Unity의 <code>TouchScreenKeyboard.area</code>가 Android에서 부정확한 값을 반환
+                </div>
+                <div class="solution-box">
+                    <strong>해결:</strong> Android 네이티브 Java API(<code>getWindowVisibleDisplayFrame</code>)로 화면의 실제 표시 영역을 감지. 기준선(Baseline) 패턴으로 키보드가 없을 때의 최대 표시 영역을 저장하고 차이를 계산. <code>SmoothDamp</code>로 자연스러운 이동, 100px 노이즈 필터링, <code>Canvas scaleFactor</code> 보정 적용. 에디터에서는 가상 키보드 높이 슬라이더로 테스트 지원
+                </div>
 
                 <pre><code class="language-csharp">// Android 네이티브로 가시 영역 높이 계산
 AndroidJavaObject view = unityPlayer.Call&lt;AndroidJavaObject&gt;("getWindow")
@@ -503,9 +597,12 @@ AndroidJavaObject view = unityPlayer.Call&lt;AndroidJavaObject&gt;("getWindow")
 AndroidJavaObject rect = new AndroidJavaObject("android.graphics.Rect");
 view.Call("getWindowVisibleDisplayFrame", rect);
 
+// 기준선 패턴: 키보드 없을 때 최댓값 저장, 차이 = 키보드 높이
 int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
 
-                <p>기준 높이(baseline)를 동적으로 추적하여 화면 회전 등 상황 변화에도 대응합니다.</p>
+                <div class="result-box">
+                    <strong>결과:</strong> UI 가림 현상 100% 해결, Editor/Android/iOS 모두 지원, 여러 UI 컴포넌트에 재사용 가능
+                </div>
 
                 <div class="image-container">
                     <img src="./Images/메모리아기사단_가상키보드.webp" alt="가상 키보드 대응">
@@ -543,24 +640,14 @@ int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
                     <li><strong>그래픽 겸임:</strong> 프로그래머로서 캐릭터 일러스트 및 리소스 제작 완료</li>
                     <li><strong>글로벌 진출:</strong> 다국어 로컬라이제이션 완료 및 해외 출시</li>
                     <li><strong>수익 창출:</strong> IAP와 AdMob을 통한 수익화 모델 성공 구현</li>
+                </ul>
 
-                    <div class="image-gallery">
-                        <img src="./Images/메모리아기사단_성과1.webp" alt="성과1">
-                    </div>
-                    결제 수입<br>
-
-                    <div class="image-gallery">
-                        <img src="./Images/메모리아기사단_성과2.webp" alt="성과2">
-                    </div>
-                    광고 수입<br>
-
-                    <div class="image-gallery">
-                        <img src="./Images/메모리아기사단_지표.webp" alt="ARU">
-                        <img src="./Images/메모리아기사단_DAU.webp" alt="DAU">
-                    </div>
-
-            </div>
-            </ul>
+                <div class="image-gallery">
+                    <img src="./Images/메모리아기사단_성과1.webp" alt="결제 수입">
+                    <img src="./Images/메모리아기사단_성과2.webp" alt="광고 수입">
+                    <img src="./Images/메모리아기사단_지표.webp" alt="ARU">
+                    <img src="./Images/메모리아기사단_DAU.webp" alt="DAU">
+                </div>
 
             <h2>시스템 아키텍처</h2>
             <pre><code class="language-none">메모리아 기사단

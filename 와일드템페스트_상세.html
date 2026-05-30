@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>와일드 템페스트 - 프로젝트 상세 | 김경학 포트폴리오</title>
     <meta name="description" content="김경학의 와일드 템페스트 프로젝트 상세 페이지. Unity 모바일 뱀서라이크 게임의 전투, 성장, 풀링, 데이터 저장 시스템 구현 내용을 소개합니다.">
+    <meta name="description" content="김경학의 와일드 템페스트 프로젝트 상세 페이지. Unity 모바일 뱀서라이크 게임의 전투, 성장, 풀링, 데이터 저장 시스템 구현 내용을 소개합니다.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
@@ -51,6 +53,9 @@
                     <span>모바일 서바이벌 액션</span>
                     <span>Unity 2022.3 LTS, C#</span>
                     <span>GPGS, AdMob, Unity IAP</span>
+                    <span>모바일 서바이벌 액션</span>
+                    <span>Unity 2022.3 LTS, C#</span>
+                    <span>GPGS, AdMob, Unity IAP</span>
                 </div>
             </div>
 
@@ -58,7 +63,7 @@
                 <h2>프로젝트 개요</h2>
                 <p>와일드 템페스트는 모바일 환경을 목표로 제작한 2D 톱다운 서바이벌 액션 게임입니다. 플레이어는 이동에 집중하고 무기는 자동으로 공격하며, 전투 중 획득한 경험치로 무기와 액세서리를 선택해 빌드를 완성합니다. 단순한 전투 구현에 그치지 않고, 대량의 적과 투사체가 동시에 등장하는 장르 특성을 고려해 객체 풀링, 데이터 기반 밸런싱, 로컬/클라우드 저장, 광고와 결제 연동까지 하나의 모바일 게임 사이클로 구현했습니다.</p>
 
-                <h2>팀원 소개</h2>
+                <h2>개발 범위</h2>
                 <table>
                     <thead>
                         <tr><th>이름</th><th>역할</th><th>담당 업무</th></tr>
@@ -79,8 +84,25 @@
                     <li><strong>서비스 연동:</strong> Google Play Games Services, Google AdMob, Unity IAP</li>
                     <li><strong>데이터 관리:</strong> PlayerPrefs, GPGS Cloud Save, Unity Google Sheets</li>
                     <li><strong>주요 패턴:</strong> Singleton, Object Pool, Factory, Observer, State, Template Method</li>
+                    <li><strong>서비스 연동:</strong> Google Play Games Services, Google AdMob, Unity IAP</li>
+                    <li><strong>데이터 관리:</strong> PlayerPrefs, GPGS Cloud Save, Unity Google Sheets</li>
+                    <li><strong>주요 패턴:</strong> Singleton, Object Pool, Factory, Observer, State, Template Method</li>
                 </ul>
 
+                <h2>핵심 구현 요약</h2>
+                <table>
+                    <thead><tr><th>구현 영역</th><th>내용</th><th>기술 포인트</th></tr></thead>
+                    <tbody>
+                        <tr><td>자동 전투</td><td>무기별 쿨다운과 공격 패턴을 독립적으로 실행</td><td>ItemBase/WeaponBase 기반 Template Method</td></tr>
+                        <tr><td>성장 시스템</td><td>레벨업 시 3개 아이템 선택, 무기/액세서리 슬롯 관리, 조건부 진화</td><td>Factory 패턴, Fisher-Yates 셔플</td></tr>
+                        <tr><td>대량 객체 처리</td><td>적, 투사체, 경험치 오브젝트, 이펙트 재사용</td><td>Queue 기반 Object Pool</td></tr>
+                        <tr><td>스폰 시스템</td><td>스테이지 웨이브와 무한 생존 모드 분리</td><td>State 기반 EnemySpawner</td></tr>
+                        <tr><td>서비스 연동</td><td>게스트/Google 로그인 저장, 리더보드, 광고, 결제</td><td>GPGS, AdMob, Unity IAP</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>전투 및 아이템 시스템</h2>
+                <p>무기, 액세서리, 진화 아이템을 하나의 인벤토리에서 관리하되, 각 아이템의 동작은 개별 클래스에 분리했습니다. <code>ItemBase</code>는 쿨다운과 레벨 구조를 담당하고, 무기 클래스는 <code>Activate()</code>를 오버라이드하여 화염구, 검, 번개, 메테오 등 서로 다른 공격 방식을 구현합니다.</p>
                 <h2>핵심 구현 요약</h2>
                 <table>
                     <thead><tr><th>구현 영역</th><th>내용</th><th>기술 포인트</th></tr></thead>
@@ -106,6 +128,7 @@ ItemBase (추상 기본 클래스)
     ├── AttackRing, SpeedBoots, Robe, Quiver
     └── Book, DarkRing, Hourglass, Accessory</code></pre>
 
+                <pre><code class="language-csharp">public abstract class ItemBase
                 <pre><code class="language-csharp">public abstract class ItemBase
 {
     public virtual void Tick()
@@ -145,7 +168,50 @@ ItemBase (추상 기본 클래스)
     int accessory = data.EvolutionItem;
 
     if (items.TryGetValue((ItemCode)weapon, out var item))
+    public virtual void Tick()
     {
+        cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer < 0)
+        {
+            if (Activate())
+                cooldownTimer = cooldown * (1.0f - cooldownReduction);
+        }
+    }
+
+    public virtual bool Activate() { return false; }
+    public abstract void OnEquip();
+    public abstract void LevelUp();
+}</code></pre>
+
+                <p><code>PlayerInventory</code>는 아이템 코드를 생성 함수와 매핑하는 팩토리 구조를 사용합니다. 새 무기를 추가할 때 생성 로직을 여러 곳에 흩뿌리지 않고, 아이템 코드와 클래스 등록만으로 인벤토리 시스템에 연결되도록 설계했습니다.</p>
+
+                <pre><code class="language-csharp">Dictionary&lt;ItemCode, Func&lt;ItemBase&gt;&gt; itemFactory = new()
+{
+    { ItemCode.Fireball, () =&gt; new Fireball() },
+    { ItemCode.Sword, () =&gt; new Sword() },
+    { ItemCode.TripleLightning, () =&gt; new TripleLightning() },
+    { ItemCode.Meteor, () =&gt; new Meteor() },
+    { ItemCode.Axe, () =&gt; new Axe() },
+    { ItemCode.Staff, () =&gt; new Staff() },
+};</code></pre>
+
+                <h2>레벨업 및 진화 시스템</h2>
+                <p>레벨업 보상은 현재 보유 아이템, 무기/액세서리 슬롯, 최대 레벨 여부, 진화 조건을 함께 고려해 후보를 구성합니다. 무기가 최대 레벨이고 필요한 액세서리를 보유한 경우에만 진화 아이템이 후보에 들어가도록 하여, 무작위 선택 안에서도 플레이어의 성장 상태가 반영되게 했습니다.</p>
+
+                <pre><code class="language-csharp">public bool CanEvolution(int id)
+{
+    var data = Wild.Item.Data.DataMap[id];
+    int weapon = data.EvolutionWeapon;
+    int accessory = data.EvolutionItem;
+
+    if (items.TryGetValue((ItemCode)weapon, out var item))
+    {
+        if (item is WeaponBase weaponItem &amp;&amp; weaponItem.isEvolution)
+            return false;
+    }
+
+    return IsMaxLevel(weapon) &amp;&amp; ContainsItem(accessory);
+}</code></pre>
         if (item is WeaponBase weaponItem &amp;&amp; weaponItem.isEvolution)
             return false;
     }
@@ -210,6 +276,7 @@ ItemBase (추상 기본 클래스)
             break;
     }
 }</code></pre>
+}</code></pre>
 
                 <table>
                     <thead><tr><th>기능</th><th>기술</th><th>구현 내용</th></tr></thead>
@@ -258,6 +325,18 @@ ItemBase (추상 기본 클래스)
                         <tr><td>Template Method</td><td>ItemBase.Tick()</td><td>공통 쿨다운 흐름은 기반 클래스에서 처리하고 공격 방식만 파생 클래스에서 구현</td></tr>
                     </tbody>
                 </table>
+                <h2>적용한 설계 패턴</h2>
+                <table>
+                    <thead><tr><th>패턴</th><th>적용 위치</th><th>선택 이유</th></tr></thead>
+                    <tbody>
+                        <tr><td>Singleton</td><td>GameManager, DataManager, ObjectPoolManager</td><td>게임 전역에서 하나만 필요한 매니저와 상태를 일관되게 관리</td></tr>
+                        <tr><td>Factory</td><td>PlayerInventory의 itemFactory</td><td>아이템 코드 기반 생성 로직을 한 곳에 모아 확장성 확보</td></tr>
+                        <tr><td>Object Pool</td><td>ObjectPoolManager, Poolable</td><td>빈번한 생성/제거 비용을 줄이고 재사용 lifecycle 분리</td></tr>
+                        <tr><td>State</td><td>EnemySpawner</td><td>웨이브 대기, 스폰, 무한 모드의 전환을 명확하게 관리</td></tr>
+                        <tr><td>Observer</td><td>SaveData.onMoneyChangeEvent</td><td>재화 변경과 UI 갱신의 결합도 감소</td></tr>
+                        <tr><td>Template Method</td><td>ItemBase.Tick()</td><td>공통 쿨다운 흐름은 기반 클래스에서 처리하고 공격 방식만 파생 클래스에서 구현</td></tr>
+                    </tbody>
+                </table>
 
                 <h2>주요 성과</h2>
                 <table>
@@ -279,6 +358,8 @@ ItemBase (추상 기본 클래스)
     </section>
 
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 </body>

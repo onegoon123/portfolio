@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -55,7 +56,8 @@
 
             <div class="doc-content">
                 <h2>프로젝트 개요</h2>
-                <p>Naninovel 비주얼 노벨 엔진과 방치형 RPG 시스템을 통합한 게임입니다. 플레이어는 기사를 조작해 무한 스테이지의 몬스터를 자동 전투로 처치하며 골드를 획득하고, 골드로 스탯을 강화해 더 높은 스테이지에 도전합니다. 3명의 동료 캐릭터(Ariel, Elena, Lynn)를 해금하고 호감도를 쌓으면 개별 스토리가 진행되는 구조입니다.</p>
+                <p><strong>미궁기사 키우기</strong>는 자동 전투로 스테이지를 돌파하고, 획득한 골드와 장비로 기사를 성장시키는 2D 방치형 RPG입니다. 전투 중심의 반복 플레이에 Naninovel 기반 캐릭터 스토리를 결합해, 동료 해금과 호감도 상승이 다음 에피소드로 이어지는 구조를 만들었습니다.</p>
+                <p>이 프로젝트에서 저는 기획, 프로그래밍, 데이터 설계, UI 구성, 캐릭터 일러스트 제작, 시나리오 제작 워크플로우까지 1인 개발로 담당했습니다. 특히 반복 콘텐츠가 많은 방치형 장르 특성에 맞춰 <strong>무한 스테이지 진행, 다중 타겟 전투, 랜덤 장비 생성, 자동 저장/오프라인 보상, 스토리 스크립트 자동화</strong>를 하나의 루프로 연결하는 데 집중했습니다.</p>
 
                 <h2>팀원 소개</h2>
                 <table>
@@ -69,8 +71,8 @@
                     <tbody>
                         <tr>
                             <td>김경학</td>
-                            <td>프로그래머, 기획, 아트</td>
-                            <td>프로젝트 전체 개발 (시스템 설계, 동료 시스템, 장비 제작 시스템, Naninovel 연동, Claude Skill 기반 시나리오 자동 생성, 일러스트 제작)</td>
+                            <td>1인 개발</td>
+                            <td>게임 기획, Unity/C# 시스템 구현, 전투/동료/장비/저장 구조 설계, Naninovel 연동, 시나리오 자동 생성 워크플로우, 캐릭터 일러스트 제작</td>
                         </tr>
                     </tbody>
                 </table>
@@ -79,188 +81,108 @@
                 <ul>
                     <li><strong>엔진:</strong> Unity 2022.3 LTS</li>
                     <li><strong>언어:</strong> C#</li>
-                    <li><strong>라이브러리:</strong> Naninovel (비주얼 노벨 스크립트 엔진), DOTween (애니메이션), DarkNaku.Number (대수 표기)</li>
-                    <li><strong>시나리오 생성:</strong> Claude Code Skill (nani-scenario-generator)</li>
-                    <li><strong>아키텍처:</strong> Singleton, Object Pool, Observer (이벤트), Interface 기반 전투 타겟팅</li>
-                    <li><strong>데이터:</strong> ScriptableObject (캐릭터/적 스탯), CSV (외부 데이터), JSON (세이브)</li>
+                    <li><strong>주요 패키지:</strong> Naninovel, DOTween, DarkNaku.Number, Unity 2D Tilemap, URP</li>
+                    <li><strong>데이터:</strong> ScriptableObject, CSV, JSON SaveData</li>
+                    <li><strong>구조:</strong> Singleton, Object Pool, Observer, Facade, Interface 기반 다형성</li>
+                    <li><strong>콘텐츠 제작:</strong> AI 기반 캐릭터 일러스트/스토리 초안 제작, Naninovel 스크립트 변환 자동화</li>
                 </ul>
 
-                <!-- ============================================ -->
-                <!-- Naninovel 스토리 시스템 (핵심 섹션) -->
-                <!-- ============================================ -->
-
-                <h2>Claude Skill 기반 Naninovel 시나리오 자동 생성</h2>
-                <p>이 프로젝트에서는 Claude Code의 커스텀 스킬(<code>nani-scenario-generator</code>)을 개발해, 자연어 시나리오를 Naninovel 스크립트(.nani)로 자동 변환하는 워크플로우를 구축했습니다.</p>
-
-                <h3>시나리오 생성 워크플로우</h3>
-                <p>캐릭터 일러스트는 니지저니(Nijiourney)로 제작하고, 캐릭터 설정과 스토리 초안은 제미나이(Gemini)가 작성합니다. 작성된 시나리오를 Claude Skill에 전달하면 Naninovel 규칙에 맞춰 스크립트가 자동 완성됩니다.</p>
-
-                <pre><code>[시나리오 생성 워크플로우]
-1. 니지저니(Nijiourney) → 캐릭터 일러스트 제작
-2. 제미나이(Gemini) → 캐릭터 설정, 스토리 초안 작성
-3. Claude Skill(nani-scenario-generator) → Naninovel 스크립트 자동 변환</code></pre>
-
-                <h3>nani-scenario-generator 스킬 구조</h3>
-                <p>스킬은 <code>.claude/skills/nani-scenario-generator/SKILL.md</code>에 정의되어 있으며, Naninovel의 전체 명령어 문법을 포함합니다. 자연어 입력에서 캐릭터, 배경, 선택지, 효과음, 카메라 연출 등을 추출해 .nani 파일로 변환합니다.</p>
-
-                <pre><code>; --- 스킬이 지원하는 Naninovel 명령어 ---
-@back BackgroundName time:1.0        ; 배경 전환
-@char CharacterName.pose pose:center  ; 캐릭터 표정/위치
-@hide CharacterName                   ; 캐릭터 숨기기
-@hideAll time:1                       ; 전체 숨기기
-@choice "선택지" goto:.LabelName     ; 분기 선택지
-@goto .LabelName                      ; 라벨 이동
-@bgm BGMName volume:0.3              ; 배경음악
-@sfx SFXName                          ; 효과음
-@camera zoom:0.3                      ; 카메라 줌
-@shake MainBackground power:0.2       ; 화면 흔들기
-@spawn SpawnName pos:55,45            ; 이펙트 생성
-@showUI / @hideUI                     ; UI 표시/숨기기
-@wait / @delay                        ; 대기
-@end                                  ; 스크립트 종료</code></pre>
-
-                <h3>스킬 입력 예시</h3>
-                <pre><code>[입력] "Scene starts in a dark dungeon.
-Elena is scared, cornered by slimes.
-She screams for help.
-The player can choose to help her immediately or watch first."</code></pre>
-
-                <h3>스킬 출력 결과</h3>
-                <pre><code>; Elena story 1
-@back Dungeon0 time:1
-@showUI time:1
-@bgm Action2 volume:.3
-
-@char Elena.scared pose:center
-Unknown: 으악! 안 돼! 이건 졸업 기념으로 맞춘 특제 로브란 말이야!
-
-@char Slime pose:left
-Unknown: 저리 가! 이렇게 붙으면 마법을 못쓴다고!
-
-@choice "구해준다." goto:.Rescue
-@choice "잠깐 지켜본다." goto:.Watch
-@stop
-
-# Rescue
-나는 검을 뽑아 들고 슬라임 사이로 뛰어들었다.
-@hide Elena
-@char Slime pose:center
-@camera zoom:.3
-@delay .5
-    @spawn SwordSlashThinBlue pos:55,45
-    @sfx Skill_Knife_Throw_B
-@delay 1.2
-    @hide Slime lazy:true
-    @sfx Weapon_Impact_Blood</code></pre>
-
-                <p>이 워크플로우를 통해 3개 캐릭터 × 5개 에피소드, 총 16개의 시나리오 스크립트를 효율적으로 생성했습니다.</p>
-
-                <h3>시나리오 통계</h3>
+                <h2>핵심 구현 요약</h2>
                 <table>
                     <thead>
-                        <tr><th>항목</th><th>수치</th></tr>
+                        <tr>
+                            <th>구현 영역</th>
+                            <th>핵심 내용</th>
+                            <th>성과</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr><td>시나리오 스크립트</td><td>16개 (.nani 파일)</td></tr>
-                        <tr><td>총 선택지(Choice) 지점</td><td>39개</td></tr>
-                        <tr><td>분기 라벨(Label)</td><td>60개 이상</td></tr>
-                        <tr><td>사용 배경(Background)</td><td>12종 (던전, 숲, 동굴, 비, 모닥불, 레이저 복도 등)</td></tr>
-                        <tr><td>캐릭터 표정(Pose)</td><td>14종 (default, happy, angry, scared, nervous, love, sad, shy, embarrassed, tired, disgusted, thinking, worried, determined)</td></tr>
-                        <tr><td>효과음/배경음</td><td>20종 이상 (전투, 마법, 환경음, 타격음)</td></tr>
-                        <tr><td>카메라 연출</td><td>줌, 흔들기, 페이드</td></tr>
+                        <tr>
+                            <td>무한 스테이지</td>
+                            <td>스테이지별 테마, 적 템플릿, 보상을 런타임에 생성</td>
+                            <td>별도 씬 추가 없이 장기 진행 가능한 전투 루프 구성</td>
+                        </tr>
+                        <tr>
+                            <td>다중 타겟 전투</td>
+                            <td><code>ICombatTarget</code>으로 플레이어와 동료를 동일한 공격 대상으로 추상화</td>
+                            <td>동료가 전투에 실제로 참여하고 피격/사망/리스폰되는 구조 구현</td>
+                        </tr>
+                        <tr>
+                            <td>장비 제작</td>
+                            <td>포인트 기반 랜덤 장비 생성, 희귀도/스탯/부위 자동 결정</td>
+                            <td>방치 보상과 성장 동기를 연결하는 반복 콘텐츠 확보</td>
+                        </tr>
+                        <tr>
+                            <td>스토리 연동</td>
+                            <td>Naninovel 커스텀 명령어와 씬 전환 매니저로 전투와 스토리 연결</td>
+                            <td>동료 호감도 상승 → 에피소드 재생 → 메인 전투 복귀 흐름 구현</td>
+                        </tr>
+                        <tr>
+                            <td>저장/로드</td>
+                            <td>플레이어 성장, 현재 스테이지, 동료 상태, 장비, 제작 포인트 저장</td>
+                            <td>모바일 방치형 게임에 필요한 이어하기와 오프라인 회복 지원</td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <h2>3개 캐릭터 스토리 라인</h2>
-                <p>각 캐릭터는 프롤로그 1개 + 에피소드 5개로 구성되며, 선택지에 따라 대사가 분기합니다.</p>
+                <h2>게임 루프 설계</h2>
+                <p>방치형 RPG의 핵심은 플레이어가 직접 조작하지 않아도 “전투 → 보상 → 성장 → 더 높은 스테이지”가 끊기지 않는 것입니다. 이를 위해 <code>DungeonSystem</code>이 스테이지 시작, 적 스폰, 처치 카운트, 다음 스테이지 전환을 관리하고, <code>PlayerStats</code>와 <code>EquipmentSystem</code>이 성장치를 계산하도록 역할을 나눴습니다.</p>
 
-                <h3>Elena - 수석 졸업생 마법사</h3>
-                <p>에피소드 1에서 던전에서 슬라임에게 쫓기는 모습으로 첫 등장합니다. 플레이어가 구해주거나 지켜보는 선택지로 시작해, 마법 실전 강의(에피소드 2), 수정 동굴 사고와 스킨십(에피소드 3), 모닥불 야간 장면(에피소드 4), 최종 전투와 평생 계약(에피소드 5)으로 이어집니다.</p>
-
-                <p>선택지는 전투 방식(직접 구출 vs 관전), 대화 태도(위로 vs 놀림), 관계 발전(수락 vs 거절) 등 상황마다 2~3개의 분기를 제공합니다. 에피소드 5에서는 최종 선택지로 "평생 함께하자"와 "보수는 너로 충분해" 두 가지 결말이 있습니다.</p>
-
-                <h3>Lynn - 용병 기사</h3>
-                <p>에피소드 1에서 던전에서 몬스터와 교전 중인 용병으로 만납니다. 왕립 기사냐는 질문, 협력 제안, 전투 돕기 등의 선택지로 관계가 시작됩니다. 레이저 트랩에서 함께 넘어지는 해프닝(에피소드 2), 불침번 교대(에피소드 3), 전투 전 손잡기(에피소드 4), 최종 전투 후 새로운 계약(에피소드 5)으로 진행됩니다.</p>
-
-                <p>Lynn의 스토리는 전투와 전문성이 핵심 테마입니다. 선택지는 작전 수락, 걱정 표현, 로맨스 모멘트 등으로 구성되고, 최종적으로 플레이어와 "새로운 계약"을 맺으며 용병 생활을 마감합니다.</p>
-
-                <h3>Ariel - 숲의 수호자</h3>
-                <p>에피소드 1에서 숲 던전에서 활을 겨누며 경계하는 엘프로 등장합니다. 길을 잃었다고 설명하거나 항복하는 선택지로 시작합니다. 흔들리는 다리 공포(에피소드 2), 비 피하며 동굴에서 대화(에피소드 3), 괴물 습격 시 아리엘의 희생(에피소드 4), 모닥불 앞 맹세(에피오드 5)로 이어집니다.</p>
-
-                <p>에피소드 3의 비 피하기 씬에서는 일러스트 CG(ArielCG0)가 등장하고, 에피소드 4에서는 아리엘이 플레이어를 구하기 위해 몸을 던지는 연출로 감정적 몰입을 높입니다. 최종 선택지에서 숲을 함께 떠나거나 영원히 곁에 있겠다는 약속으로 마무리됩니다.</p>
-
-                <h2>동료 시스템과 스토리 연동</h2>
-                <p>3명의 동료는 각각 고유한 <code>CompanionData</code> ScriptableObject로 스탯, 애니메이션, 해금 비용을 관리합니다. 한 번에 1명만 활성화할 수 있으며, <code>CompanionSystem</code> 싱글톤이 해금, 호감도, 리스폰을 관리합니다.</p>
-
-                <p>호감도는 활성화된 동료와 함께 전투하는 동안 20초마다 1씩 상승하며 최대 100까지 쌓입니다. 스토리 에피소드는 호감도 기준(예: 에피소드 1은 호감도 10, 에피소드 5는 호감도 80)으로 해금되어, 전투와 스토리가 자연스럽게 연결되는 루프를 구성합니다.</p>
-
-                <p>동료의 레벨은 플레이어 레벨에 동기화됩니다. 플레이어가 레벨업하면 <code>OnLevelUp</code> 이벤트를 통해 동료 스탯도 갱신됩니다. 동료 AI는 플레이어가 공격 중인 적에게 2.5배 거리 페널티를 적용해 적을 분산시키는 전략을 사용합니다.</p>
-
-                <h2>Naninovel 커스텀 명령어</h2>
-                <p>한국어 조사 처리를 위해 <code>@jong</code> 커스텀 명령어를 구현했습니다. 문자열의 마지막 글자 받침 여부를 판별해 올바른 조사(은/는, 이/가 등)를 선택합니다.</p>
-
-                <pre><code>[CommandAlias("jong")]
-public class JongsungCheck : Command
+                <pre><code class="language-csharp">private void StartStage(int stage, int totalGoalCount, int enemiesToSpawn, bool regenerateMap)
 {
-    [ParameterAlias("text")]   public StringParameter SourceText;
-    [ParameterAlias("with")]   public StringParameter WithBatchim;    // 받침 있을 때
-    [ParameterAlias("without")] public StringParameter WithoutBatchim; // 받침 없을 때
-    [ParameterAlias("set")]    public StringParameter TargetVariable;
-    [ParameterAlias("append")] public BooleanParameter AppendToSource;
+    currentStage = stage;
+    remainingEnemiesInStage = totalGoalCount;
 
-    private static bool HasFinalConsonant(string text)
+    StageThemeData currentTheme = null;
+    if (stageThemes != null &amp;&amp; stageThemes.Count &gt; 0)
     {
-        var lastChar = text[text.Length - 1];
-        const int hangulBase = 0xAC00;
-        const int hangulLast = 0xD7A3;
-        if (lastChar &lt; hangulBase || lastChar &gt; hangulLast) return false;
-        var code = lastChar - hangulBase;
-        var jong = code % 28;
-        return jong != 0;
+        int themeIndex = ((stage - 1) / 10) % stageThemes.Count;
+        currentTheme = stageThemes[themeIndex];
     }
+
+    if (regenerateMap &amp;&amp; currentTheme != null &amp;&amp; mapManager != null)
+        mapManager.GenerateMap(currentTheme);
+
+    if (spawnCoroutine != null) StopCoroutine(spawnCoroutine);
+    spawnCoroutine = StartCoroutine(SpawnStageEnemies(currentTheme, stage, enemiesToSpawn));
+
+    OnStageStart?.Invoke(stage);
 }</code></pre>
 
-                <p>시나리오에서의 사용 예시:</p>
-                <pre><code>; 플레이어 이름의 받침 여부에 따라 조사 선택
-@jong text:{PlayerName} with:이 without:"" append:true set:name
-@choice "난 {name}야. 잘 부탁해." goto:.Accept</code></pre>
+                <p>스테이지 테마는 10스테이지 단위로 순환되며, 적 보상은 <code>1.08^(stage-1)</code> 계수와 스테이지 보정값을 함께 사용합니다. 덕분에 초반에는 성장 체감이 빠르고, 후반에는 장비와 업그레이드를 병행해야 하는 구조가 됩니다.</p>
 
-                <p>스토리 종료 시 <code>@end</code> 커스텀 명령어가 메인 게임 씬으로 전환합니다.</p>
-
-                <pre><code>[CommandAlias("end")]
-public class SwitchToAdventureMode : Command
+                <pre><code class="language-csharp">private EnemyData CreateEnemyDataForStage(StageThemeData theme, int stage)
 {
-    public override async UniTask Execute(AsyncToken asyncToken)
+    EnemyData data = ScriptableObject.CreateInstance&lt;EnemyData&gt;();
+    data.level = stage;
+
+    EnemyData template = null;
+    if (theme != null &amp;&amp; theme.enemyTemplates != null &amp;&amp; theme.enemyTemplates.Count &gt; 0)
+        template = theme.enemyTemplates[Random.Range(0, theme.enemyTemplates.Count)];
+
+    if (template != null)
     {
-        var opMain = SceneManager.LoadSceneAsync("main");
-        await UniTask.WaitUntil(() =&gt; opMain.isDone);
+        data.characterName = template.characterName;
+        data.sprite = template.sprite;
+        data.baseMaxHealth = template.baseMaxHealth;
+        data.baseAttackPower = template.baseAttackPower;
+        data.growthHealth = template.growthHealth;
+        data.growthAttack = template.growthAttack;
+
+        float goldMultiplier = Mathf.Pow(1.08f, stage - 1);
+        data.goldReward = Mathf.RoundToInt(template.goldReward * goldMultiplier) + (stage * 10);
+
+        float expMultiplier = Mathf.Pow(1.08f, stage - 1);
+        data.experienceReward = Mathf.RoundToInt(template.experienceReward * expMultiplier) + (stage * 5);
     }
+
+    return data;
 }</code></pre>
 
-                <p><code>DialogueManager</code>는 스토리 재생 시 <code>SceneFadeManager</code>로 페이드 효과와 함께 스토리 씬으로 전환하고, Naninovel 엔진 초기화 후 플레이어 이름을 커스텀 변수로 설정합니다.</p>
+                <h2>ICombatTarget 기반 전투 구조</h2>
+                <p>초기 전투 구조는 적이 플레이어만 공격하는 단순한 형태였습니다. 하지만 동료 시스템을 붙이면서 “동료도 전투 대상이 되고, 적이 가장 가까운 대상을 선택해야 한다”는 요구가 생겼습니다. 이를 해결하기 위해 플레이어와 동료가 공통으로 구현하는 <code>ICombatTarget</code> 인터페이스를 만들었습니다.</p>
 
-                <h2>지수 성장 스탯 시스템</h2>
-                <p>캐릭터와 적의 스탯은 지수 함수 기반으로 성장합니다. <code>CharacterStatsData</code> ScriptableObject에 기본값과 성장 계수를 정의합니다.</p>
-
-                <pre><code>Stat(n) = baseStat × growthRate^(n-1)
-
-// 예: HP의 경우 baseMaxHealth=150, growthHealth=1.12
-// 레벨 10 → 150 × 1.12^9 ≈ 415
-
-private int CalculateStat(int baseValue, float growth, int level)
-{
-    if (level &lt;= 1) return baseValue;
-    double result = baseValue * System.Math.Pow(growth, level - 1);
-    if (result &gt; int.MaxValue) return int.MaxValue; // 오버플로우 방지
-    return (int)result;
-}</code></pre>
-
-                <p>플레이어는 업그레이드 레벨을 골드로 올려 스탯을 성장시키고, 장비 보너스가 추가로 더해집니다. 골드는 <code>DarkNaku.Number</code> 타입으로 대수 표기(1.5K, 2.3M 등)를 지원합니다.</p>
-
-                <h2>ICombatTarget 인터페이스 기반 전투</h2>
-                <p>적이 플레이어와 동료 모두를 공격할 수 있도록 <code>ICombatTarget</code> 인터페이스를 도입했습니다. PlayerStats와 CompanionController 모두 이 인터페이스를 구현합니다.</p>
-
-                <pre><code>public interface ICombatTarget
+                <pre><code class="language-csharp">public interface ICombatTarget
 {
     Transform GetTransform();
     bool IsAlive();
@@ -270,37 +192,340 @@ private int CalculateStat(int baseValue, float growth, int level)
     string GetName();
 }</code></pre>
 
-                <p>적은 플레이어와 모든 활성 동료 중 가장 가까운 대상을 타겟으로 삼습니다. 타겟 유효성 검사에서 null 체크, GameObject 파괴 여부, IsAlive까지 확인하고 <code>MissingReferenceException</code>도 캐치합니다.</p>
+                <p><code>Enemy</code>는 플레이어와 씬의 모든 <code>CompanionController</code>를 캐싱한 뒤, 유효한 대상 중 가장 가까운 대상을 선택합니다. Unity 오브젝트가 파괴된 뒤 참조가 남는 상황도 고려해 <code>UnityEngine.Object</code> null 체크, <code>activeInHierarchy</code>, <code>IsAlive()</code>, <code>MissingReferenceException</code> 처리를 함께 넣었습니다.</p>
+
+                <pre><code class="language-csharp">private void FindNearestTarget()
+{
+    UpdateTargetCache();
+
+    ICombatTarget nearestTarget = null;
+    float nearestDistance = float.MaxValue;
+
+    foreach (ICombatTarget target in cachedTargets)
+    {
+        if (!IsValidTarget(target)) continue;
+
+        float distance = Vector2.Distance(transform.position, target.GetTransform().position);
+        if (distance &lt; nearestDistance)
+        {
+            nearestTarget = target;
+            nearestDistance = distance;
+        }
+    }
+
+    currentTarget = nearestTarget;
+    if (currentTarget != null)
+    {
+        cachedDistanceToPlayer = nearestDistance;
+        isPlayerDetected = cachedDistanceToPlayer &lt;= enemyData.detectionRange;
+        isPlayerInRange = cachedDistanceToPlayer &lt;= enemyData.attackRange;
+    }
+}</code></pre>
+
+                <pre><code class="language-csharp">private bool IsValidTarget(ICombatTarget target)
+{
+    if (target == null || (target as UnityEngine.Object) == null) return false;
+
+    try
+    {
+        Transform targetTransform = target.GetTransform();
+        if (targetTransform == null) return false;
+        if (!targetTransform.gameObject.activeInHierarchy) return false;
+        if (!target.IsAlive()) return false;
+
+        return true;
+    }
+    catch (MissingReferenceException)
+    {
+        return false;
+    }
+}</code></pre>
+
+                <h2>무한 스테이지와 오브젝트 풀링</h2>
+                <p>방치형 게임은 적이 반복적으로 생성되고 사라지기 때문에 <code>Instantiate</code>/<code>Destroy</code>를 그대로 사용하면 GC와 프레임 저하가 쉽게 발생합니다. 적 생성은 <code>EnemySpawner</code>와 <code>PoolManager</code>로 분리하고, 사망한 적은 제거하지 않고 비활성화 후 풀로 반환되도록 구성했습니다.</p>
+
+                <pre><code class="language-csharp">private void OnEnemyDefeated(Enemy enemy)
+{
+    if (enemy == null) return;
+
+    enemy.OnEnemyDefeated -= OnEnemyDefeated;
+    activeEnemies.Remove(enemy);
+    remainingEnemiesInStage--;
+
+    CheckStageClear();
+}
+
+private void CheckStageClear()
+{
+    if (remainingEnemiesInStage &lt;= 0)
+    {
+        OnStageClear?.Invoke(currentStage);
+        NextStage();
+    }
+}</code></pre>
+
+                <p>적 AI에서도 매 프레임 모든 계산을 수행하지 않도록 거리 체크와 타겟 캐시 갱신 주기를 나눴습니다. 거리 판정은 0.1초 간격, 타겟 목록 갱신은 0.2초 간격으로 처리해 자동 전투 중 불필요한 탐색 비용을 줄였습니다.</p>
+
+                <h2>동료 시스템과 스토리 해금</h2>
+                <p><code>CompanionSystem</code>은 동료 해금, 선택, 소환, 호감도, 저장 데이터를 관리하는 싱글톤 매니저입니다. 한 번에 하나의 동료만 활성화되며, 씬 전환 시 현재 동료 ID를 기반으로 다시 소환합니다. 전투가 아닌 타이틀/스토리 씬에서는 동료를 소환하지 않도록 씬 이름을 검사해 전투 오브젝트가 스토리 씬에 남는 문제를 방지했습니다.</p>
+
+                <pre><code class="language-csharp">private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+{
+    InitializeReferences();
+
+    string sceneName = scene.name.ToLower();
+    if (sceneName.Contains("story") || sceneName == "title" || sceneName == "lobby")
+        return;
+
+    if (!string.IsNullOrEmpty(currentCompanionId))
+        SpawnCompanionById(currentCompanionId);
+}</code></pre>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>동료 시스템 요소</th>
+                            <th>구현 내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>해금</td>
+                            <td>동료별 골드 비용을 확인하고, 조건 충족 시 상태를 저장 데이터에 반영</td>
+                        </tr>
+                        <tr>
+                            <td>호감도</td>
+                            <td>활성 동료가 생존 중이면 20초마다 호감도 1 증가, 최대 100으로 제한</td>
+                        </tr>
+                        <tr>
+                            <td>전투 참여</td>
+                            <td><code>CompanionController</code>가 <code>ICombatTarget</code>을 구현해 적의 공격 대상이 됨</td>
+                        </tr>
+                        <tr>
+                            <td>사망/부활</td>
+                            <td>동료 사망 시 제거 후 10초 뒤 재소환, 부활 이펙트 재생</td>
+                        </tr>
+                        <tr>
+                            <td>저장</td>
+                            <td>해금 여부, 현재 호감도, 스토리 해금 여부, 현재 선택 동료 ID 저장</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Naninovel 스토리 연동</h2>
+                <p>동료별 스토리는 Naninovel의 <code>.nani</code> 스크립트로 제작했습니다. 프로젝트에는 프롤로그와 Ariel, Elena, Lynn 3명의 캐릭터별 5개 에피소드가 포함되어 있으며, 총 16개의 시나리오 파일로 구성됩니다.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>수치</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>시나리오 스크립트</td><td>16개</td></tr>
+                        <tr><td>동료 캐릭터</td><td>3명 (Ariel, Elena, Lynn)</td></tr>
+                        <tr><td>캐릭터별 에피소드</td><td>각 5개</td></tr>
+                        <tr><td>선택지 지점</td><td>39개</td></tr>
+                        <tr><td>분기 라벨</td><td>60개 이상</td></tr>
+                    </tbody>
+                </table>
+
+                <p><code>DialogueManager</code>는 스토리 시작 시 페이드와 함께 <code>story</code> 씬으로 전환하고, Naninovel 런타임을 초기화한 뒤 <code>PlayerName</code> 커스텀 변수를 주입합니다. 스토리가 끝나면 커스텀 명령어 <code>@end</code>가 <code>main</code> 씬으로 복귀시켜 전투 루프가 다시 이어집니다.</p>
+
+                <pre><code class="language-csharp">public async void PlayStory(string scriptName, string playerNameOverride = null)
+{
+    var saveSystem = FindFirstObjectByType&lt;GameSaveSystem&gt;();
+    var name = playerNameOverride;
+
+    if (string.IsNullOrEmpty(name))
+        name = (saveSystem != null &amp;&amp; saveSystem.playerStats != null)
+            ? saveSystem.playerStats.playerName
+            : "Player";
+
+    SceneFadeManager.Instance.LoadSceneWithFade("story");
+    await UniTask.WaitUntil(() =&gt; SceneManager.GetActiveScene().name == "story");
+
+    await RuntimeInitializer.Initialize();
+
+    var vars = Engine.GetService&lt;ICustomVariableManager&gt;();
+    vars.SetVariableValue("PlayerName", new(name));
+
+    var player = Engine.GetService&lt;IScriptPlayer&gt;();
+    await player.LoadAndPlay(scriptName);
+
+    var inputManager = Engine.GetService&lt;IInputManager&gt;();
+    inputManager.ProcessInput = true;
+}</code></pre>
+
+                <h2>한국어 조사 커스텀 명령어</h2>
+                <p>플레이어 이름을 시나리오에 자연스럽게 넣기 위해 <code>@jong</code> 명령어를 구현했습니다. 한글 마지막 글자의 유니코드 값을 기준으로 받침 여부를 판별하고, 받침이 있을 때와 없을 때의 조사를 자동 선택합니다.</p>
+
+                <pre><code class="language-csharp">public override UniTask Execute(AsyncToken token = default)
+{
+    var text = Assigned(SourceText) ? SourceText.Value : string.Empty;
+    var particleWithBatchim = Assigned(WithBatchim) ? WithBatchim.Value : "은";
+    var particleWithoutBatchim = Assigned(WithoutBatchim) ? WithoutBatchim.Value : "는";
+
+    var particle = HasFinalConsonant(text) ? particleWithBatchim : particleWithoutBatchim;
+    var result = AppendToSource.HasValue ? $"{text}{particle}" : particle;
+
+    if (Assigned(TargetVariable))
+    {
+        var variables = Engine.GetService&lt;ICustomVariableManager&gt;();
+        variables.SetVariableValue(TargetVariable, new(result));
+    }
+
+    return UniTask.CompletedTask;
+}</code></pre>
+
+                <pre><code class="language-csharp">private static bool HasFinalConsonant(string text)
+{
+    if (string.IsNullOrEmpty(text)) return false;
+
+    var lastChar = text[text.Length - 1];
+    const int hangulBase = 0xAC00;
+    const int hangulLast = 0xD7A3;
+
+    if (lastChar &lt; hangulBase || lastChar &gt; hangulLast)
+        return false;
+
+    var code = lastChar - hangulBase;
+    var jong = code % 28;
+    return jong != 0;
+}</code></pre>
+
+                <p>단순한 문자열 치환 대신 스크립트 명령어로 처리했기 때문에, 작성자는 시나리오마다 이름의 받침을 수동으로 고려하지 않아도 됩니다. 이는 한국어 텍스트가 많은 비주얼 노벨형 콘텐츠에서 반복적인 오탈자와 어색한 문장을 줄이는 데 도움이 되었습니다.</p>
 
                 <h2>장비 제작 시스템</h2>
-                <p><code>EquipmentCraftingSystem</code>은 포인트 기반으로 랜덤 장비를 생성합니다. 최대 5포인트를 보유하고 60초마다 1포인트가 회복됩니다. 앱을 종료했다가 돌아오면 오프라인 시간만큼 포인트를 자동 회복합니다.</p>
+                <p><code>EquipmentCraftingSystem</code>은 방치형 게임의 짧은 접속 보상을 만들기 위한 시스템입니다. 최대 5포인트를 보유하고, 60초마다 1포인트가 회복됩니다. 포인트를 사용하면 무기, 투구, 갑옷, 신발 중 하나가 랜덤 생성되고, 아이템 레벨은 플레이어 레벨을 기준으로 결정됩니다.</p>
 
-                <p>생성된 장비는 희귀도(일반 50%, 고급 75%, 희귀 90%, 영웅 98%, 전설 2%)에 따라 1~4개의 랜덤 스탯이 부여되고, 희귀도 배율이 스탯에 곱해집니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>구현 내용</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>제작 재화</td><td>최대 5포인트, 60초마다 1포인트 회복</td></tr>
+                        <tr><td>오프라인 회복</td><td>마지막 저장 시각과 현재 시각의 차이를 계산해 포인트 보정</td></tr>
+                        <tr><td>장비 부위</td><td>Weapon, Helmet, Armor, Boots 중 랜덤 선택</td></tr>
+                        <tr><td>희귀도</td><td>Common, Uncommon, Rare, Epic, Legendary</td></tr>
+                        <tr><td>스탯 후보</td><td>체력, 공격력, 방어력, 공격속도, 이동속도, 치명타 확률, 치명타 피해</td></tr>
+                        <tr><td>중복 방지</td><td>선택된 스탯은 후보 리스트에서 제거해 한 장비 안에서 중복되지 않도록 처리</td></tr>
+                    </tbody>
+                </table>
+
+                <pre><code class="language-csharp">private ItemRarity DetermineRarity()
+{
+    float roll = Random.Range(0f, 1f);
+
+    if (roll &lt;= commonChance) return ItemRarity.Common;
+    else if (roll &lt;= uncommonChance) return ItemRarity.Uncommon;
+    else if (roll &lt;= rareChance) return ItemRarity.Rare;
+    else if (roll &lt;= epicChance) return ItemRarity.Epic;
+    else return ItemRarity.Legendary;
+}</code></pre>
+
+                <pre><code class="language-csharp">private void GenerateRandomStats(ItemData item, int level, float multiplier)
+{
+    int statCount = Random.Range(minStats, maxStats + 1);
+    List&lt;StatType&gt; availableStats = new List&lt;StatType&gt;
+    {
+        StatType.Health,
+        StatType.Attack,
+        StatType.Defense,
+        StatType.AttackSpeed,
+        StatType.MoveSpeed,
+        StatType.CritChance,
+        StatType.CritDamage
+    };
+
+    for (int i = 0; i &lt; statCount &amp;&amp; availableStats.Count &gt; 0; i++)
+    {
+        int randomIndex = Random.Range(0, availableStats.Count);
+        StatType selectedStat = availableStats[randomIndex];
+        availableStats.RemoveAt(randomIndex);
+
+        float baseStat = level * statPerLevel * multiplier;
+        ApplyStat(item, selectedStat, baseStat);
+    }
+}</code></pre>
+
+                <h2>저장/로드와 오프라인 진행</h2>
+                <p>저장 시스템은 Unity <code>JsonUtility</code> 기반으로 구성했습니다. 자동 저장은 30초 간격으로 실행되며, 앱 일시정지, 포커스 상실, 종료 시에도 저장합니다. 모바일 방치형 게임에서 중요한 “짧게 나갔다 돌아와도 손해 보지 않는 경험”을 위해 제작 포인트는 마지막 저장 시각을 함께 저장하고, 로드 시 경과 시간을 포인트 회복으로 환산합니다.</p>
+
+                <pre><code class="language-csharp">GameSaveData saveData = new GameSaveData
+{
+    playerStats = new PlayerSaveData
+    {
+        playerName = playerStats.playerName,
+        level = playerStats.level,
+        experience = playerStats.experience,
+        currentHealth = playerStats.currentHealth,
+        gold = playerStats.gold.ToString(),
+        autoBattleLevel = playerStats.autoBattleLevel,
+        isAutoBattleEnabled = playerStats.isAutoBattleEnabled,
+        currentCompanionId = companionSystem != null ? companionSystem.GetCurrentCompanionId() : "",
+        companions = companionSystem != null ? companionSystem.GetCompanionSaveDataList() : new List&lt;CompanionSaveData&gt;()
+    },
+    battleSystem = new BattleSystemData
+    {
+        isAutoBattleActive = dungeonSystem.isDungeonActive,
+        totalVictories = dungeonSystem.totalVictories,
+        totalDefeats = dungeonSystem.totalDefeats,
+        currentEnemyLevel = dungeonSystem.currentStage
+    },
+    equipment = SaveEquipment(),
+    lastSaveTimeString = DateTime.Now.ToBinary().ToString(),
+    craftingPoints = equipmentCraftingSystem != null ? equipmentCraftingSystem.GetCurrentPoints() : 5,
+    saveVersion = 5
+};</code></pre>
+
+                <pre><code class="language-csharp">if (equipmentCraftingSystem != null &amp;&amp; saveData.saveVersion &gt;= 5)
+{
+    equipmentCraftingSystem.SetCurrentPoints(saveData.craftingPoints);
+
+    if (!string.IsNullOrEmpty(saveData.lastSaveTimeString))
+    {
+        long binaryTime = Convert.ToInt64(saveData.lastSaveTimeString);
+        DateTime lastTime = DateTime.FromBinary(binaryTime);
+        TimeSpan elapsed = DateTime.Now - lastTime;
+
+        if (elapsed.TotalSeconds &gt; 0)
+            equipmentCraftingSystem.SimulateTimePassing((float)elapsed.TotalSeconds);
+    }
+}</code></pre>
+
+                <p>골드는 일반 정수 대신 <code>DarkNaku.Number</code>를 사용해 큰 수 표기에 대응했습니다. 장비와 동료 데이터는 저장용 DTO로 변환해 보관하고, 로드 시 다시 런타임 객체로 복원합니다. 저장 버전도 함께 기록해 이후 저장 구조가 바뀌어도 최소한의 호환 처리를 할 수 있도록 했습니다.</p>
+
+                <h2>데이터 중심 밸런싱</h2>
+                <p>캐릭터와 적 스탯은 <code>ScriptableObject</code>에 기본값과 성장 계수를 나누어 저장했습니다. HP, 공격력, 방어력 같은 장기 성장 수치는 지수 함수를 사용하고, 치명타 확률은 0~1 범위로 클램프해 비정상적인 값이 나오지 않도록 처리했습니다.</p>
+
+                <pre><code class="language-csharp">Stat(level) = baseValue * growthRate^(level - 1)
+
+private int CalculateStat(int baseValue, float growth, int level)
+{
+    if (level <= 1) return baseValue;
+
+    double result = baseValue * System.Math.Pow(growth, level - 1);
+    if (result > int.MaxValue) return int.MaxValue;
+
+    return (int)result;
+}</code></pre>
+
+                <p>이 구조 덕분에 코드 수정 없이 Inspector와 CSV 값을 조정해 성장 속도, 적 난이도, 보상량을 빠르게 튜닝할 수 있습니다.</p>
 
                 <h2>주요 성과</h2>
                 <ul>
-                    <li><strong>Claude Skill 기반 시나리오 자동 생성:</strong> nani-scenario-generator 스킬로 자연어 → Naninovel 스크립트 변환 워크플로우 구축</li>
-                    <li><strong>16개 시나리오 스크립트:</strong> 3개 캐릭터 × 5개 에피소드 + 프롤로그, 총 39개 선택지 분기</li>
-                    <li><strong>Naninovel 커스텀 명령어:</strong> 한국어 조사 처리(jong)와 스토리-게임플레이 전환(end) 구현</li>
-                    <li><strong>동료 호감도-스토리 연동:</strong> 전투로 호감도를 올리고, 호감도 기준으로 에피소드가 해금되는 루프</li>
-                    <li><strong>지수 성장 스탯 시스템:</strong> 방치형 RPG의 장기 진행 밸런스 설계</li>
-                    <li><strong>ICombatTarget 인터페이스:</strong> 플레이어와 동료가 동시에 공격받는 전투 구조</li>
-                    <li><strong>랜덤 장비 생성:</strong> 5단계 희귀도, 포인트 기반 제작, 오프라인 회복</li>
-                </ul>
-
-                <h2>결론/학습 내용</h2>
-
-                <h3>프로젝트의 의의</h3>
-                <p>비주얼 노벨 엔진과 방치형 RPG를 통합해 스토리와 전투가 연결되는 게임을 만들었습니다. Claude Code 커스텀 스킬을 개발해 시나리오 작업을 자동화하고, 니지저니·제미나이와 결합한 AI 워크플로우로 콘텐츠 제작 효율을 높였습니다. 동료 호감도 시스템이 스토리 진행의 핵심 동기가 되고, 전투로 얻은 자원으로 성장하는 루프를 구성했습니다.</p>
-
-                <h3>학습 내용</h3>
-                <ul>
-                    <li>Claude Code Skill 개발: 자연어 → 도메인 특화 스크립트 변환 스킬 설계</li>
-                    <li>Naninovel 엔진의 커스텀 명령어와 씬 전환 구조 이해</li>
-                    <li>AI 도구 협업 워크플로우: 니지저니(일러스트) + 제미나이(스토리) + Claude Skill(스크립트 변환)</li>
-                    <li>Interface 기반 다중 타겟 전투 시스템 설계</li>
-                    <li>지수 함수 스탯 성장 시스템과 오버플로우 방지</li>
-                    <li>Observer 패턴(이벤트)을 활용한 시스템 간 느슨한 결합</li>
+                    <li><strong>전투와 스토리를 연결한 방치형 RPG 루프 구현:</strong> 자동 전투로 성장하고, 동료 호감도를 통해 캐릭터 스토리를 여는 구조를 완성했습니다.</li>
+                    <li><strong>다형성 기반 전투 대상 처리:</strong> <code>ICombatTarget</code>으로 플레이어와 동료를 통합해 적 AI가 유연하게 대상을 선택하도록 만들었습니다.</li>
+                    <li><strong>반복 생성 최적화:</strong> 적 오브젝트 풀링, 거리 체크 주기화, 타겟 캐싱으로 자동 전투의 기본 성능을 확보했습니다.</li>
+                    <li><strong>랜덤 장비 제작 시스템:</strong> 희귀도, 부위, 스탯 개수, 옵션 값을 자동 생성해 반복 플레이 보상을 구성했습니다.</li>
+                    <li><strong>모바일 방치형 저장 흐름:</strong> 자동 저장, 앱 백그라운드 저장, 제작 포인트 오프라인 회복을 구현했습니다.</li>
+                    <li><strong>Naninovel 커스텀 명령어:</strong> <code>@jong</code>, <code>@end</code>를 구현해 한국어 텍스트 품질과 스토리-전투 전환을 개선했습니다.</li>
+                    <li><strong>시나리오 제작 자동화:</strong> AI 기반 초안 제작과 Naninovel 스크립트 변환 흐름을 구축해 16개 스토리 파일을 효율적으로 제작했습니다.</li>
                 </ul>
 
                 <div class="doc-nav" style="margin-top: 3rem;">
@@ -310,6 +535,9 @@ private int CalculateStat(int baseValue, float growth, int level)
         </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
+

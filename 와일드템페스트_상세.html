@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>와일드 템페스트 - 프로젝트 상세 | 김경학 포트폴리오</title>
+    <meta name="description" content="김경학의 와일드 템페스트 프로젝트 상세 페이지. Unity 모바일 뱀서라이크 게임의 전투, 성장, 풀링, 데이터 저장 시스템 구현 내용을 소개합니다.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -23,7 +25,6 @@
                         <a href="미궁기사키우기_상세.html" class="dropdown-item">미궁기사 키우기</a>
                         <a href="와일드템페스트_상세.html" class="dropdown-item">와일드 템페스트</a>
                         <a href="원더메이트_상세.html" class="dropdown-item">원더메이트</a>
-                        <a href="여관_상세.html" class="dropdown-item">여관</a>
                     </div>
                 </div>
                 <a href="index.html#skills" class="nav-link">기술 스택</a>
@@ -47,30 +48,26 @@
             <div class="doc-header">
                 <h1 class="doc-title">와일드 템페스트 - 프로젝트 상세</h1>
                 <div class="doc-meta">
-                    <span>2026-03-13</span>
-                    <span>뱀서라이크</span>
-                    <span>Unity, C#, GPGS</span>
+                    <span>모바일 서바이벌 액션</span>
+                    <span>Unity 2022.3 LTS, C#</span>
+                    <span>GPGS, AdMob, Unity IAP</span>
                 </div>
             </div>
 
             <div class="doc-content">
                 <h2>프로젝트 개요</h2>
-                <p>Google Play Game Services(GPGS)를 활용한 뱀서라이크 게임입니다. 플레이어는 무작위 생성되는 던전을 탐험하며 적을 처치하고 아이템을 수집합니다. 사망 시 모든 진행이 초기화되는 뱀서라이크 특성을 살리면서, 리더보드와 업적 시스템으로 플레이어의 도전 의지를 고취시켰습니다.</p>
+                <p>와일드 템페스트는 모바일 환경을 목표로 제작한 2D 톱다운 서바이벌 액션 게임입니다. 플레이어는 이동에 집중하고 무기는 자동으로 공격하며, 전투 중 획득한 경험치로 무기와 액세서리를 선택해 빌드를 완성합니다. 단순한 전투 구현에 그치지 않고, 대량의 적과 투사체가 동시에 등장하는 장르 특성을 고려해 객체 풀링, 데이터 기반 밸런싱, 로컬/클라우드 저장, 광고와 결제 연동까지 하나의 모바일 게임 사이클로 구현했습니다.</p>
 
                 <h2>팀원 소개</h2>
                 <table>
                     <thead>
-                        <tr>
-                            <th>이름</th>
-                            <th>역할</th>
-                            <th>담당 업무</th>
-                        </tr>
+                        <tr><th>이름</th><th>역할</th><th>담당 업무</th></tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>김경학</td>
                             <td>프로그래머</td>
-                            <td>프로젝트 전체 개발 (던전 생성, 아이템/무기 시스템, AI, 데이터 관리, 수익화)</td>
+                            <td>전투/성장 시스템, 적 스폰, UI, 데이터 저장, Google Play Games, 광고 및 결제 연동</td>
                         </tr>
                     </tbody>
                 </table>
@@ -79,470 +76,200 @@
                 <ul>
                     <li><strong>엔진:</strong> Unity 2022.3 LTS</li>
                     <li><strong>언어:</strong> C#</li>
-                    <li><strong>백엔드:</strong> GPGS (Google Play Game Services)</li>
-                    <li><strong>데이터 관리:</strong> Unity Google Sheets (UGS)</li>
-                    <li><strong>디자인 패턴:</strong> Singleton, Object Pool, Factory, Observer, Strategy</li>
+                    <li><strong>서비스 연동:</strong> Google Play Games Services, Google AdMob, Unity IAP</li>
+                    <li><strong>데이터 관리:</strong> PlayerPrefs, GPGS Cloud Save, Unity Google Sheets</li>
+                    <li><strong>주요 패턴:</strong> Singleton, Object Pool, Factory, Observer, State, Template Method</li>
                 </ul>
 
-                <h2>아이템 및 무기 시스템</h2>
-                <p>무기와 아이템의 구조를 설계하기 위해 상속 구조를 활용했습니다. 공통적인 속성을 가진 기본 클래스를 정의하고, 각 타입별로 상속받아 구현했습니다.</p>
+                <h2>핵심 구현 요약</h2>
+                <table>
+                    <thead><tr><th>구현 영역</th><th>내용</th><th>기술 포인트</th></tr></thead>
+                    <tbody>
+                        <tr><td>자동 전투</td><td>무기별 쿨다운과 공격 패턴을 독립적으로 실행</td><td>ItemBase/WeaponBase 기반 Template Method</td></tr>
+                        <tr><td>성장 시스템</td><td>레벨업 시 3개 아이템 선택, 무기/액세서리 슬롯 관리, 조건부 진화</td><td>Factory 패턴, Fisher-Yates 셔플</td></tr>
+                        <tr><td>대량 객체 처리</td><td>적, 투사체, 경험치 오브젝트, 이펙트 재사용</td><td>Queue 기반 Object Pool</td></tr>
+                        <tr><td>스폰 시스템</td><td>스테이지 웨이브와 무한 생존 모드 분리</td><td>State 기반 EnemySpawner</td></tr>
+                        <tr><td>서비스 연동</td><td>게스트/Google 로그인 저장, 리더보드, 광고, 결제</td><td>GPGS, AdMob, Unity IAP</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>전투 및 아이템 시스템</h2>
+                <p>무기, 액세서리, 진화 아이템을 하나의 인벤토리에서 관리하되, 각 아이템의 동작은 개별 클래스에 분리했습니다. <code>ItemBase</code>는 쿨다운과 레벨 구조를 담당하고, 무기 클래스는 <code>Activate()</code>를 오버라이드하여 화염구, 검, 번개, 메테오 등 서로 다른 공격 방식을 구현합니다.</p>
 
                 <pre><code>[아이템 상속 구조]
-Item (기본 클래스)
-├── Weapon (무기)
-│   ├── MeleeWeapon (근접 무기)
-│   └── RangedWeapon (원거리 무기)
-├── Consumable (소모품)
-│   ├── Potion (포션)
-│   └── Scroll (스크롤)
-└── Equipment (장비)
-    ├── Armor (방어구)
-    └── Accessory (장신구)
-</code></pre>
+ItemBase (추상 기본 클래스)
+├── WeaponBase
+│   ├── Fireball, Sword, TripleLightning, Meteor
+│   ├── Axe, Staff, Grimoire, FrostMine
+│   └── Evolution()으로 무기 진화 처리
+└── Accessory
+    ├── AttackRing, SpeedBoots, Robe, Quiver
+    └── Book, DarkRing, Hourglass, Accessory</code></pre>
 
-                <pre><code>// 기본 아이템 클래스
-public abstract class Item : ScriptableObject
+                <pre><code class="language-csharp">public abstract class ItemBase
 {
-    public string itemId;
-    public string itemName;
-    public string description;
-    public Sprite icon;
-    public int maxStack;
-    public bool isConsumable;
-
-    public abstract void Use(GameObject user);
-}
-
-// 무기 클래스
-public abstract class Weapon : Item
-{
-    public int baseDamage;
-    public float attackSpeed;
-    public int durability;
-    public int maxDurability;
-
-    public abstract void Attack(GameObject target);
-
-    public void Repair()
+    public virtual void Tick()
     {
-        durability = maxDurability;
-    }
-}
-
-// 근접 무기 구현
-[CreateAssetMenu(fileName = "NewSword", menuName = "Data/Weapons")]
-public class MeleeWeapon : Weapon
-{
-    public float attackRange;
-
-    public override void Attack(GameObject target)
-    {
-        // 근접 공격 로직
-        if (Vector3.Distance(transform.position, target.transform.position) <= attackRange)
+        cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer < 0)
         {
-            var damageable = target.GetComponent&lt;IDamageable&gt;();
-            damageable?.TakeDamage(baseDamage);
+            if (Activate())
+                cooldownTimer = cooldown * (1.0f - cooldownReduction);
         }
     }
-}
 
-// 원거리 무기 구현
-[CreateAssetMenu(fileName = "NewBow", menuName = "Data/Weapons")]
-public class RangedWeapon : Weapon
+    public virtual bool Activate() { return false; }
+    public abstract void OnEquip();
+    public abstract void LevelUp();
+}</code></pre>
+
+                <p><code>PlayerInventory</code>는 아이템 코드를 생성 함수와 매핑하는 팩토리 구조를 사용합니다. 새 무기를 추가할 때 생성 로직을 여러 곳에 흩뿌리지 않고, 아이템 코드와 클래스 등록만으로 인벤토리 시스템에 연결되도록 설계했습니다.</p>
+
+                <pre><code class="language-csharp">Dictionary&lt;ItemCode, Func&lt;ItemBase&gt;&gt; itemFactory = new()
 {
-    public GameObject projectilePrefab;
-    public float projectileSpeed;
+    { ItemCode.Fireball, () =&gt; new Fireball() },
+    { ItemCode.Sword, () =&gt; new Sword() },
+    { ItemCode.TripleLightning, () =&gt; new TripleLightning() },
+    { ItemCode.Meteor, () =&gt; new Meteor() },
+    { ItemCode.Axe, () =&gt; new Axe() },
+    { ItemCode.Staff, () =&gt; new Staff() },
+};</code></pre>
 
-    public override void Attack(GameObject target)
+                <h2>레벨업 및 진화 시스템</h2>
+                <p>레벨업 보상은 현재 보유 아이템, 무기/액세서리 슬롯, 최대 레벨 여부, 진화 조건을 함께 고려해 후보를 구성합니다. 무기가 최대 레벨이고 필요한 액세서리를 보유한 경우에만 진화 아이템이 후보에 들어가도록 하여, 무작위 선택 안에서도 플레이어의 성장 상태가 반영되게 했습니다.</p>
+
+                <pre><code class="language-csharp">public bool CanEvolution(int id)
+{
+    var data = Wild.Item.Data.DataMap[id];
+    int weapon = data.EvolutionWeapon;
+    int accessory = data.EvolutionItem;
+
+    if (items.TryGetValue((ItemCode)weapon, out var item))
     {
-        // 투사체 발사 로직
-        var projectile = Instantiate(projectilePrefab, transform.position);
-        projectile.GetComponent&lt;Projectile&gt;().Initialize(target, baseDamage, projectileSpeed);
+        if (item is WeaponBase weaponItem &amp;&amp; weaponItem.isEvolution)
+            return false;
     }
-}
-</code></pre>
+
+    return IsMaxLevel(weapon) &amp;&amp; ContainsItem(accessory);
+}</code></pre>
 
                 <h2>오브젝트 풀링 시스템</h2>
-                <p>던전 생성 시 타일 프리팹을 매번 인스턴스화하지 않고 오브젝트 풀을 사용하여 인스턴스화 비용을 최소화했습니다. 수명이 다한 오브젝트가 자동으로 풀로 반환되도록 구현했습니다.</p>
 
-                <pre><code>// 오브젝트 풀 구현
-public class ObjectPool&lt;T&gt; where T : MonoBehaviour
+                <div class="problem-box">
+                    <strong>문제:</strong> 서바이벌 장르는 적, 투사체, 경험치 오브젝트, 이펙트가 짧은 시간 안에 반복 생성됩니다. 모바일 환경에서 <code>Instantiate</code>/<code>Destroy</code>가 누적되면 GC와 프레임 드롭이 쉽게 발생합니다.
+                </div>
+                <div class="solution-box">
+                    <strong>해결:</strong> 프리팹 이름을 키로 사용하는 <code>ObjectPoolManager</code>를 만들고, 각 풀은 <code>Queue&lt;GameObject&gt;</code>로 대기 객체를 관리했습니다. <code>Poolable</code>의 <code>OnSpawn</code>/<code>OnDespawn</code> 훅으로 재사용 시 초기화와 정리 로직을 분리했습니다.
+                </div>
+
+                <pre><code class="language-csharp">public class ObjectPool
 {
-    private Queue&lt;T&gt; pool = new Queue&lt;T&gt;();
-    private T prefab;
-    private Transform parent;
-    private int initialSize;
+    public Queue&lt;GameObject&gt; queue = new Queue&lt;GameObject&gt;();
 
-    public ObjectPool(T prefab, Transform parent, int initialSize)
+    public GameObject Get()
     {
-        this.prefab = prefab;
-        this.parent = parent;
-        this.initialSize = initialSize;
-        PreWarm();
-    }
-
-    private void PreWarm()
-    {
-        for (int i = 0; i &lt; initialSize; i++)
+        GameObject obj;
+        if (queue.Count > 0)
+            obj = queue.Dequeue();
+        else
         {
-            T obj = Object.Instantiate(prefab, parent);
-            obj.gameObject.SetActive(false);
-            pool.Enqueue(obj);
+            obj = GameObject.Instantiate(prefab, parent);
+            obj.GetComponent&lt;Poolable&gt;()?.Init(o =&gt; Return(o));
         }
+
+        obj.SetActive(true);
+        obj.GetComponent&lt;Poolable&gt;().OnSpawn();
+        return obj;
     }
 
-    public T Get()
+    public void Return(GameObject obj)
     {
-        if (pool.Count &gt; 0)
-        {
-            T obj = pool.Dequeue();
-            obj.gameObject.SetActive(true);
-            return obj;
-        }
-        return Object.Instantiate(prefab, parent);
+        obj.SetActive(false);
+        obj.GetComponent&lt;Poolable&gt;().OnDespawn();
+        queue.Enqueue(obj);
     }
+}</code></pre>
 
-    public void Return(T obj)
-    {
-        obj.gameObject.SetActive(false);
-        pool.Enqueue(obj);
-    }
-}
+                <div class="result-box">
+                    <strong>결과:</strong> 반복 생성 비용을 줄이고, 적과 투사체가 많아지는 상황에서도 프레임 안정성을 확보할 수 있는 구조를 만들었습니다.
+                </div>
 
-// 오브젝트 풀 매니저
-public class PoolManager : MonoBehaviour
+                <h2>데이터 저장 및 서비스 연동</h2>
+                <p>게스트 플레이와 Google 계정 플레이를 모두 지원하기 위해 저장 경로를 분리했습니다. 게스트는 <code>PlayerPrefs</code>에 저장하고, Google 로그인 상태에서는 GPGS 클라우드 저장을 호출합니다. 앱 일시정지와 종료 시점에 자동 저장을 수행하여 모바일 환경에서 데이터 손실 가능성을 줄였습니다.</p>
+
+                <pre><code class="language-csharp">public static void Save()
 {
-    private static PoolManager instance;
-    private Dictionary&lt;string, object&gt; pools = new Dictionary&lt;string, object&gt;();
-
-    public static PoolManager Instance
+    switch (GameManager.Instance.type)
     {
-        get
-        {
-            if (instance == null)
-            {
-                GameObject go = new GameObject("PoolManager");
-                instance = go.AddComponent&lt;PoolManager&gt;();
-                DontDestroyOnLoad(go);
-            }
-            return instance;
-        }
+        case SigninType.guest:
+            data.SaveLocal();
+            break;
+        case SigninType.google:
+            if (PlayGamesPlatform.Instance.IsAuthenticated())
+                GPGSManager.Instance.Save(data);
+            break;
     }
+}</code></pre>
 
-    public void CreatePool&lt;T&gt;(string key, T prefab, int size, Transform parent) where T : MonoBehaviour
-    {
-        pools[key] = new ObjectPool&lt;T&gt;(prefab, parent, size);
-    }
+                <table>
+                    <thead><tr><th>기능</th><th>기술</th><th>구현 내용</th></tr></thead>
+                    <tbody>
+                        <tr><td>저장</td><td>PlayerPrefs, GPGS Cloud Save</td><td>로그인 타입에 따라 로컬/클라우드 저장 분기</td></tr>
+                        <tr><td>리더보드</td><td>Google Play Games Services</td><td>생존 기록과 점수 경쟁 요소 연동</td></tr>
+                        <tr><td>광고</td><td>Google AdMob</td><td>보상형 광고를 통한 부활/재화 보상 흐름 구현</td></tr>
+                        <tr><td>결제</td><td>Unity IAP</td><td>상품 구매와 게임 재화 지급 흐름 구현</td></tr>
+                        <tr><td>밸런스 데이터</td><td>Unity Google Sheets</td><td>아이템, 적, 웨이브 데이터를 코드 수정 없이 조정</td></tr>
+                    </tbody>
+                </table>
 
-    public T GetFromPool&lt;T&gt;(string key) where T : MonoBehaviour
-    {
-        if (pools.TryGetValue(key, out var pool))
-        {
-            return ((ObjectPool&lt;T&gt;)pool).Get();
-        }
-        return null;
-    }
+                <h2>시스템 아키텍처</h2>
+                <pre><code class="language-none">ProjectWild
+├── System
+│   ├── GameManager              # 게임 상태, 씬 흐름, 재화 처리
+│   ├── DataManager              # PlayerPrefs/GPGS 저장 분기
+│   ├── ObjectPoolManager        # 적/투사체/이펙트 풀 관리
+│   ├── EnemySpawner             # 웨이브/무한 모드 스폰 상태 관리
+│   ├── GPGSManager              # Google Play Games 연동
+│   └── Shop
+│       ├── AdMobManager         # 보상형 광고
+│       └── IAPManager           # 인앱 결제
+├── Player
+│   ├── Player                   # HP/EXP/전투 흐름
+│   ├── PlayerMovement           # 모바일 조이스틱 이동
+│   ├── PlayerInventory          # 아이템 생성, 레벨업, 진화 조건
+│   ├── ItemBase                 # 공통 아이템 lifecycle
+│   ├── Weapons                  # 무기별 공격 패턴
+│   └── Armors                   # 액세서리 효과
+└── UI
+    ├── UIManager
+    ├── LevelUpItem
+    ├── HeroSelector
+    └── VirtualJoystick</code></pre>
 
-    public void ReturnToPool&lt;T&gt;(string key, T obj) where T : MonoBehaviour
-    {
-        if (pools.TryGetValue(key, out var pool))
-        {
-            ((ObjectPool&lt;T&gt;)pool).Return(obj);
-        }
-    }
-}
-</code></pre>
-
-                <h2>데이터 시트 시스템 (UGS)</h2>
-                <p>Unity Google Sheets (UGS) 라이브러리를 사용하여 데이터 관리 시스템을 구현했습니다. 구글 시트에 적용된 데이터를 빠르게 게임에 적용하여 밸런스 수정 시간을 단축했습니다.</p>
-
-                <pre><code>// UGS 데이터 로더
-public class UGSDataLoader : MonoBehaviour
-{
-    public string spreadsheetId;
-    public int sheetIndex = 0;
-
-    private void Start()
-    {
-        LoadMonsterData();
-        LoadStageData();
-        LoadItemData();
-    }
-
-    private async void LoadMonsterData()
-    {
-        try
-        {
-            var data = await GoogleSheetsReader.Read(
-                spreadsheetId,
-                sheetIndex,
-                "Monsters!A2:F100"
-            );
-
-            var monsterTable = ParseMonsterData(data);
-            MonsterDataManager.Instance.SetMonsterData(monsterTable);
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to load monster data: {e.Message}");
-        }
-    }
-
-    private Dictionary&lt;string, MonsterData&gt; ParseMonsterData(string[,] data)
-    {
-        var monsterTable = new Dictionary&lt;string, MonsterData&gt;();
-
-        for (int row = 0; row &lt; data.GetLength(0); row++)
-        {
-            string id = data[row, 0];
-            if (string.IsNullOrEmpty(id)) continue;
-
-            monsterTable[id] = new MonsterData
-            {
-                id = id,
-                name = data[row, 1],
-                hp = int.Parse(data[row, 2]),
-                attack = int.Parse(data[row, 3]),
-                defense = int.Parse(data[row, 4]),
-                expReward = int.Parse(data[row, 5])
-            };
-        }
-
-        return monsterTable;
-    }
-}
-</code></pre>
-
-                <pre><code>// 몬스터 데이터 매니저
-public class MonsterDataManager : MonoBehaviour
-{
-    private static MonsterDataManager instance;
-    private Dictionary&lt;string, MonsterData&gt; monsterData;
-
-    public static MonsterDataManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                GameObject go = new GameObject("MonsterDataManager");
-                instance = go.AddComponent&lt;MonsterDataManager&gt;();
-                DontDestroyOnLoad(go);
-            }
-            return instance;
-        }
-    }
-
-    public void SetMonsterData(Dictionary&lt;string, MonsterData&gt; data)
-    {
-        monsterData = data;
-        Debug.Log($"Loaded {data.Count} monsters.");
-    }
-
-    public MonsterData GetMonsterData(string id)
-    {
-        if (monsterData.TryGetValue(id, out var data))
-        {
-            return data;
-        }
-        Debug.LogWarning($"Monster data not found: {id}");
-        return null;
-    }
-}
-
-// 몬스터 데이터 클래스
-[System.Serializable]
-public class MonsterData
-{
-    public string id;
-    public string name;
-    public int hp;
-    public int attack;
-    public int defense;
-    public int expReward;
-}
-</code></pre>
-
-                <pre><code>// 스테이지 데이터 로드
-private async void LoadStageData()
-{
-    try
-    {
-        var data = await GoogleSheetsReader.Read(
-            spreadsheetId,
-            sheetIndex,
-            "Stages!A2:H50"
-        );
-
-        var stageTable = ParseStageData(data);
-        StageDataManager.Instance.SetStageData(stageTable);
-    }
-    catch (Exception e)
-    {
-        Debug.LogError($"Failed to load stage data: {e.Message}");
-    }
-}
-
-private List&lt;StageData&gt; ParseStageData(string[,] data)
-{
-    var stageTable = new List&lt;StageData&gt;();
-
-    for (int row = 0; row &lt; data.GetLength(0); row++)
-    {
-        stageTable.Add(new StageData
-        {
-            stageId = data[row, 0],
-            name = data[row, 1],
-            floorCount = int.Parse(data[row, 2]),
-            minMonsterLevel = int.Parse(data[row, 3]),
-            maxMonsterLevel = int.Parse(data[row, 4]),
-            bossId = data[row, 5],
-            stageDifficulty = float.Parse(data[row, 6]),
-            goldReward = int.Parse(data[row, 7])
-        });
-    }
-
-    return stageTable;
-}
-</code></pre>
-
-                <p>구글 시트에 몬스터 데이터와 스테이지 정보를 입력하고, UGS 라이브러리를 통해 실시간으로 데이터를 로드합니다. 이를 통해 빠르게 밸런스 수정이 가능했습니다.</p>
-
-                <pre><code>[구글 시트 구조 예시]
-
-Monsters 시트:
-| ID | Name | HP | Attack | Defense | Exp Reward |
-|----|------|----|--------|---------|------------|
-| M001 | 슬라임 | 50 | 10 | 5 | 20 |
-| M002 | 고블린 | 80 | 15 | 8 | 35 |
-| M003 | 오크 | 150 | 25 | 12 | 80 |
-
-Stages 시트:
-| ID | Name | Floor Count | Min Lv | Max Lv | Boss ID | Difficulty | Gold Reward |
-|----|------|-------------|---------|---------|-----------|-------------|
-| S001 | 숲의 던전 | 5 | 1 | 10 | B001 | 1.0 | 100 |
-| S002 | 동굴 던전 | 8 | 5 | 20 | B002 | 1.5 | 200 |
-| S003 | 화산 던전 | 12 | 15 | 30 | B003 | 2.0 | 350 |
-</code></pre>
-
-                <h2>GPGS 리더보드 연동</h2>
-                <p>Google Play Game Services(GPGS)를 활용하여 전 세계 플레이어와 점수를 경쟁할 수 있는 리더보드 시스템을 구현했습니다.</p>
-
-                <pre><code>// GPGS 매니저
-public class GPGSManager : MonoBehaviour
-{
-    private void Start()
-    {
-        PlayGamesPlatform.Activate();
-    }
-
-    public void SubmitScore(long score, string leaderboardId)
-    {
-        Social.ReportScore(score, leaderboardId, (bool success) =&gt;
-        {
-            if (success)
-            {
-                Debug.Log("Score submitted successfully.");
-            }
-            else
-            {
-                Debug.LogWarning("Score submission failed.");
-            }
-        });
-    }
-
-    public void ShowLeaderboard(string leaderboardId)
-    {
-        Social.ShowLeaderboardUI(leaderboardId);
-    }
-}
-</code></pre>
-
-                <h2>IAP 및 광고 시스템</h2>
-                <p>Unity IAP를 사용하여 인앱결제 상품을 설계하고, AdMob SDK를 사용하여 광고 시스템을 구현했습니다.</p>
-
-                <pre><code>// IAP 매니저
-public class IAPManager : MonoBehaviour
-{
-    // 상품 종류
-    public enum ProductType
-    {
-        Currency,       // 골드
-        Revive,        // 부활
-        StarterPack     // 스타터 팩
-    }
-
-    public async void PurchaseProduct(string productId)
-    {
-        try
-        {
-            var product = _storeController.products.WithID(productId);
-            await _storeController.InitiatePurchase(product);
-        }
-        catch (Exception e)
-        {
-            HandlePurchaseError(e);
-        }
-    }
-}
-</code></pre>
-
-                <pre><code>// 보상형 광고 매니저
-public class RewardAdManager : MonoBehaviour
-{
-    private RewardedAd _rewardedAd;
-
-    public void LoadRewardAd()
-    {
-        string adUnitId = "ca-app-pub-xxx/yyy";
-        RewardedAd.Load(adUnitId, CreateAdRequest(),
-            (RewardedAd ad, LoadAdError error) =&gt;
-            {
-                if (error != null)
-                {
-                    Debug.LogError("Reward ad load failed");
-                    return;
-                }
-                _rewardedAd = ad;
-            });
-    }
-
-    public void ShowRewardAd(Action&lt;Reward&gt; onRewardEarned)
-    {
-        if (_rewardedAd != null &amp;&amp; _rewardedAd.CanShowAd())
-        {
-            _rewardedAd.Show((Reward reward) =&gt;
-            {
-                onRewardEarned?.Invoke(reward);
-            });
-        }
-    }
-}
-</code></pre>
+                <h2>적용한 설계 패턴</h2>
+                <table>
+                    <thead><tr><th>패턴</th><th>적용 위치</th><th>선택 이유</th></tr></thead>
+                    <tbody>
+                        <tr><td>Singleton</td><td>GameManager, DataManager, ObjectPoolManager</td><td>게임 전역에서 하나만 필요한 매니저와 상태를 일관되게 관리</td></tr>
+                        <tr><td>Factory</td><td>PlayerInventory의 itemFactory</td><td>아이템 코드 기반 생성 로직을 한 곳에 모아 확장성 확보</td></tr>
+                        <tr><td>Object Pool</td><td>ObjectPoolManager, Poolable</td><td>빈번한 생성/제거 비용을 줄이고 재사용 lifecycle 분리</td></tr>
+                        <tr><td>State</td><td>EnemySpawner</td><td>웨이브 대기, 스폰, 무한 모드의 전환을 명확하게 관리</td></tr>
+                        <tr><td>Observer</td><td>SaveData.onMoneyChangeEvent</td><td>재화 변경과 UI 갱신의 결합도 감소</td></tr>
+                        <tr><td>Template Method</td><td>ItemBase.Tick()</td><td>공통 쿨다운 흐름은 기반 클래스에서 처리하고 공격 방식만 파생 클래스에서 구현</td></tr>
+                    </tbody>
+                </table>
 
                 <h2>주요 성과</h2>
-                <ul>
-                    <li><strong>아이템 및 무기 상속 구조:</strong> 확장 가능한 시스템 구축</li>
-                    <li><strong>오브젝트 풀링:</strong> 성능 최적화</li>
-                    <li><strong>UGS 라이브러리 활용:</strong> 구글 시트 연동으로 빠른 밸런스 수정 가능</li>
-                    <li><strong>GPGS 연동:</strong> 전 세계 플레이어와 점수 경쟁 가능</li>
-                    <li><strong>IAP 및 광고:</strong> 수익화 모델 구현</li>
-                </ul>
-
-                <h2>결론/학습 내용</h2>
-
-                <h3>프로젝트의 의의</h3>
-                <p>와일드 템페스트 프로젝트는 뱀서라이크 장르의 핵심 요소(무한한 플레이, 난이도 밸런스, 전략적 전투)를 구현하고 데이터 주도 개발 방식을 통해 유지보수성을 높였습니다.</p>
-
-                <h3>학습 내용</h3>
-                <ul>
-                    <li>상속 구조를 활용한 확장 가능한 아이템 시스템 설계</li>
-                    <li>오브젝트 풀링 패턴을 통한 성능 최적화</li>
-                    <li>UGS 라이브러리를 활용한 구글 시트 연동</li>
-                    <li>데이터 주도 개발 방식을 통한 빠른 밸런스 수정</li>
-                    <li>Google Play Game Services API 활용</li>
-                    <li>IAP 및 AdMob을 통한 수익화 모델 구현</li>
-                </ul>
+                <table>
+                    <thead><tr><th>항목</th><th>내용</th></tr></thead>
+                    <tbody>
+                        <tr><td>모바일 게임 전체 흐름 구현</td><td>전투, 성장, 상점, 저장, 광고, 결제, 리더보드까지 출시형 구조 경험</td></tr>
+                        <tr><td>확장 가능한 전투 구조</td><td>무기와 액세서리를 추상 클래스와 팩토리로 관리하여 신규 아이템 추가 부담 감소</td></tr>
+                        <tr><td>성능 고려</td><td>Queue 기반 풀링으로 적과 투사체가 반복 생성되는 장르 특성에 대응</td></tr>
+                        <tr><td>데이터 기반 개발</td><td>Google Sheets 연동으로 적, 웨이브, 아이템 수치를 코드와 분리</td></tr>
+                        <tr><td>서비스 연동 경험</td><td>GPGS, AdMob, Unity IAP를 실제 게임 흐름에 연결</td></tr>
+                    </tbody>
+                </table>
 
                 <div class="doc-nav" style="margin-top: 3rem;">
                     <a href="index.html#projects">← 프로젝트 목록으로 돌아가기</a>
@@ -552,5 +279,7 @@ public class RewardAdManager : MonoBehaviour
     </section>
 
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd:*)"
+      "Bash(find D:/202534313/portfolio/ -name *.html -type f)",
+      "Bash(find D:/202534313/portfolio/ -name *.md -type f)",
+      "Bash(git checkout:*)"
     ]
   }
 }

@@ -295,22 +295,22 @@ public class CharacterChatData : ScriptableObject
                 <h3>시스템 프롬프트 구성</h3>
                 <p>BuildPrompt 메서드에서 게임 상태를 기반으로 시스템 프롬프트를 동적으로 생성합니다.</p>
 
-                <p><strong>System Instruction:</strong> AI가 캐릭터로서 연기하도록 지시하며, "Affinity", "Level", "AI" 같은 용어를 언급하지 않는
+                <p><strong>시스템 지침:</strong> AI가 캐릭터로서 연기하도록 지시하며, "Affinity", "Level", "AI" 같은 용어를 언급하지 않는
                     몰입 규칙을 포함합니다. 제 4의 벽을 허물지 않고 세계관 속 인물로서 행동하도록 강제합니다.</p>
 
-                <p><strong>Character Persona:</strong> CharacterChatData의 systemPrompt를 주입합니다. 각 캐릭터의 성격, 말투, 배경 스토리를
+                <p><strong>캐릭터 페르소나:</strong> CharacterChatData의 systemPrompt를 주입합니다. 각 캐릭터의 성격, 말투, 배경 스토리를
                     포함합니다.</p>
 
-                <p><strong>World Context:</strong> 현재 시간, 마지막 접속 이후 경과 시간, 플레이어 레벨과 스테이지, 파티 멤버와 그 인물 정보(summaryPrompt),
-                    장착 무기 정보를 전달합니다.</p>
+                <p><strong>상태 전달:</strong> 현재 시간, 마지막 접속 이후 경과 시간, 플레이어 레벨과 스테이지, 파티 멤버와 그 인물 정보(summaryPrompt),
+                    장착 무기 상태를 전달합니다.</p>
 
-                <p><strong>Output Protocol:</strong> AI 응답에 포함할 태그 형식을 정의합니다. 감정 태그, 호감도 변화 태그, 보너스 스탯 태그, 액션/이펙트 태그의
+                <p><strong>호감도 및 태그:</strong> 호감도 수치별 행동과 AI 응답에 포함할 태그 형식을 정의합니다. 감정 태그, 호감도 변화 태그, 보너스 스탯 태그, 액션/이펙트 태그의
                     형식과 사용 규칙을 지정합니다.</p>
 
                 <p>밑은 프롬프트 전체 내용입니다.</p>
 
                 <pre style="max-height:500px;overflow-y:auto;"><code class="language-csharp">        // ==========================================
-        // 1. System Instruction 시스템 지시 (역할 및 출력 규칙)
+        // 1. 시스템 지침 (역할 및 출력 규칙)
         // ==========================================
         prompt.AppendLine("### System Instruction ###");
         prompt.AppendLine("- You are acting as the character defined below.");
@@ -325,14 +325,14 @@ public class CharacterChatData : ScriptableObject
         prompt.AppendLine();
 
         // ==========================================
-        // 2. Character Persona 캐릭터 페르소나 (하이브리드: 신원 + 말투 + 예시)
+        // 2. 캐릭터 페르소나
         // ==========================================
         prompt.AppendLine("### Character Persona ###");
         prompt.AppendLine(character.systemPrompt);
         prompt.AppendLine();
 
         // ==========================================
-        // 3. World Context 세계관 컨텍스트 (시간, 장소, 파티, 장비)
+        // 3. 상태 전달 (시간, 장소, 파티, 장비)
         // ==========================================
         prompt.AppendLine("### World Context ###");
         // [시간 및 부재]
@@ -375,7 +375,7 @@ public class CharacterChatData : ScriptableObject
         prompt.AppendLine();
 
         // ==========================================
-        // 4. Output Protocol 호감도 및 감정
+        // 4. 호감도 및 태그
         // ==========================================
         prompt.AppendLine("### Output Protocol (Affinity &amp; Emotion) ###");
 
@@ -584,12 +584,7 @@ public class CharacterChatData : ScriptableObject
 
                 <h2>모바일 UX 최적화</h2>
 
-                <div class="problem-box">
-                    <strong>문제:</strong> 모바일 채팅 시 키보드가 UI를 가리며, Unity의 <code>TouchScreenKeyboard.area</code>가 Android에서 부정확한 값을 반환
-                </div>
-                <div class="solution-box">
-                    <strong>해결:</strong> Android 네이티브 Java API(<code>getWindowVisibleDisplayFrame</code>)로 화면의 실제 표시 영역을 감지. 기준선(Baseline) 패턴으로 키보드가 없을 때의 최대 표시 영역을 저장하고 차이를 계산. <code>SmoothDamp</code>로 자연스러운 이동, 100px 노이즈 필터링, <code>Canvas scaleFactor</code> 보정 적용. 에디터에서는 가상 키보드 높이 슬라이더로 테스트 지원
-                </div>
+                모바일 채팅 시 키보드가 UI를 가리며, Unity의 <code>TouchScreenKeyboard.area</code>가 Android에서 부정확한 값을 반환하는 문제를 해결하기 위해, Android 네이티브 API를 활용하여 화면의 실제 표시 영역을 감지하는 솔루션을 구현했습니다.
 
                 <pre><code class="language-csharp">// Android 네이티브로 가시 영역 높이 계산
 AndroidJavaObject view = unityPlayer.Call&lt;AndroidJavaObject&gt;("getWindow")
@@ -599,10 +594,6 @@ view.Call("getWindowVisibleDisplayFrame", rect);
 
 // 기준선 패턴: 키보드 없을 때 최댓값 저장, 차이 = 키보드 높이
 int keyboardHeight = baselineHeight - visibleHeight;</code></pre>
-
-                <div class="result-box">
-                    <strong>결과:</strong> UI 가림 현상 100% 해결, Editor/Android/iOS 모두 지원, 여러 UI 컴포넌트에 재사용 가능
-                </div>
 
                 <div class="image-container">
                     <img src="./Images/메모리아기사단_가상키보드.webp" alt="가상 키보드 대응">

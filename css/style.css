@@ -1278,17 +1278,39 @@ body {
    PDF Print Optimization
    ============================================ */
 @media print {
+    html,
+    body,
+    .tech-doc,
+    .tech-doc .container,
+    .doc-content {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
     /* 코드 블록 PDF 최적화 */
     .doc-content pre {
         background-color: #ffffff !important;
         border: 3px solid #1e293b !important;
         border-radius: 4px !important;
         padding: 1.5rem !important;
-        page-break-inside: avoid !important;
+        max-height: none !important;
+        overflow: visible !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
         white-space: pre-wrap !important;
         word-break: keep-all !important;
         overflow-wrap: break-word !important;
         box-shadow: none !important;
+    }
+
+    .doc-content pre[style] {
+        max-height: none !important;
+        overflow: visible !important;
+        overflow-y: visible !important;
     }
 
     .doc-content pre code {
@@ -1298,6 +1320,8 @@ body {
         font-weight: 400 !important;
         text-decoration: none !important;
         font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+        white-space: pre-wrap !important;
+        overflow: visible !important;
     }
 
     /* 인라인 코드도 대비 개선 */
